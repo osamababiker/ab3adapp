@@ -1,3 +1,6 @@
+import 'package:ab3ad/screens/cart/cart_screen.dart';
+import 'package:ab3ad/screens/home/home_screen.dart';
+import 'package:ab3ad/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,20 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
+      title: 'أبعاد',
+      theme: theme(),
+      debugShowCheckedModeBanner: false,
+      home: const CartScreen(),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  } 
 }
