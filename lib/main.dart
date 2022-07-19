@@ -1,10 +1,18 @@
-import 'package:ab3ad/screens/cart/cart_screen.dart';
-import 'package:ab3ad/screens/home/home_screen.dart';
-import 'package:ab3ad/theme.dart';
+import 'package:ab3ad/bindings/networkControllersBindings.dart';
+import 'package:ab3ad/routes.dart';
+import 'package:ab3ad/translations/translations.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:ab3ad/theme.dart';
 
-void main() {
-  runApp(const MyApp());
+
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(
+    const MyApp()
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,11 +21,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'أبعاد',
+    return GetMaterialApp(
+      title: 'app_name'.tr,
+      locale: Get.deviceLocale,
+      fallbackLocale: const Locale('en','en-US'),
+      translationsKeys: AppTranslation.translationsKeys,
       theme: theme(),
       debugShowCheckedModeBanner: false,
-      home: const CartScreen(),
+      initialRoute: '/home',
+      initialBinding: NetworkControllersBindings(),
+      getPages: Routes.routes,
     );
   } 
 }

@@ -1,18 +1,36 @@
 import 'package:ab3ad/enums.dart';
 import 'package:ab3ad/screens/components/coustom_bottom_nav_bar.dart';
 import 'package:ab3ad/screens/home/components/body.dart';
+import 'package:get/get.dart';
+import 'package:ab3ad/controllers/categoriesController.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+import '../../size_config.dart';
 
+
+class HomeScreen extends StatelessWidget {
+  HomeScreen({Key? key}) : super(key: key);
+
+  final CategoriesController _categoriesController = 
+    Get.find<CategoriesController>();
+    
   @override
   Widget build(BuildContext context) {
-    return const Directionality(
+    return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        body: Body(),
-        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
+        body: Obx((() =>   
+          _categoriesController.isLoading.value 
+          ? Center(
+            child: SizedBox(
+              width: getScreenSize(context) * 20.0,
+              height: getScreenSize(context) * 20.0,
+              child: Image.asset("assets/images/liquid-loader.gif")
+            ),
+          ) 
+          : Body(categories: _categoriesController.categoriesList)
+        )),
+        bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.home),
       ),
     );
   }
