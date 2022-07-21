@@ -44,7 +44,7 @@ class DiscountBanner extends StatelessWidget {
           ),
           SizedBox(
             width: getScreenSize(context) * 8.0,
-            height: getScreenSize(context) * 8.0,
+            height: getScreenSize(context) * 8.0, 
             child: Image.asset("assets/images/logos_black.png")
           )
         ],

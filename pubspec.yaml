@@ -41,7 +41,7 @@ dependencies:
   sqflite: ^2.0.3
   google_maps_flutter: ^2.1.8
   geolocator: ^9.0.1
-  geocode: ^1.0.1
+  geocoding: ^2.0.4
   dropdown_button2: ^1.6.3
   permission_handler: ^10.0.0
   flutter_secure_storage: ^5.0.2

@@ -10,7 +10,7 @@ import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:get/get.dart';
-import 'top_rounded_container.dart';
+import 'rounded_container.dart';
 
 class Body extends StatelessWidget {
   Body({
@@ -34,7 +34,7 @@ class Body extends StatelessWidget {
           key: _itemsController.formKey,
           child: Column(
             children: [
-              TopRoundedContainer( 
+              RoundedContainer( 
                 color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.all(kDefaultPadding / 2),
@@ -190,11 +190,11 @@ class Body extends StatelessWidget {
                                         ),
                                         overflow: TextOverflow.ellipsis,
                                       ),
-                                    ))
-                                  .toList(),
+                                    )
+                                  ).toList(),
                                   value: _itemsController.selectedItem,
                                   onChanged: (value) {
-                                    _itemsController.selectedItem!.value = value as Item;
+                                    _itemsController.selectedItem = value as Item;
                                   },
                                   icon: const Icon(
                                     Icons.arrow_forward_ios_outlined,
@@ -204,29 +204,22 @@ class Body extends StatelessWidget {
                                   iconDisabledColor: Colors.grey,
                                   buttonHeight: 50,
                                   buttonWidth: 160,
-                                  buttonPadding:
-                                      const EdgeInsets.only(left: 14, right: 14),
+                                  buttonPadding: const EdgeInsets.only(left: 14, right: 14),
                                   buttonDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        kDefaultPadding / 2),
-                                    border: Border.all(
-                                      color: Colors.black26,
-                                    ),
+                                    borderRadius: BorderRadius.circular(kDefaultPadding / 2),
+                                    border: Border.all(color: Colors.black26),
                                     color: Colors.white,
                                   ),
                                   itemHeight: 40,
-                                  itemPadding:
-                                      const EdgeInsets.only(left: 14, right: 14),
+                                  itemPadding: const EdgeInsets.only(left: 14, right: 14),
                                   dropdownMaxHeight: 200,
                                   dropdownWidth: 200,
                                   dropdownPadding: null,
                                   dropdownDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                        kDefaultPadding / 2),
+                                    borderRadius: BorderRadius.circular(kDefaultPadding / 2),
                                     color: Colors.white,
                                   ),
-                                  scrollbarRadius:
-                                      const Radius.circular(kDefaultPadding / 2),
+                                  scrollbarRadius: const Radius.circular(kDefaultPadding / 2),
                                   scrollbarThickness: 6,
                                   scrollbarAlwaysShow: true,
                                 ),

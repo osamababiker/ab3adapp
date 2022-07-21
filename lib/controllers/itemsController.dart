@@ -13,9 +13,9 @@ class ItemsController extends GetxController{
   File? image;
   String? uploadedFilePath;
   final picker = ImagePicker();
-  Rx<Item>? selectedItem;
+  Item? selectedItem;
   RxString selectedTime = "خلال اليوم".obs;
-  final List<String> timeList = [
+  final List<String> timeList = [ 
     'خلال اليوم',
     'صباحا',
     'بعد الظهر',
