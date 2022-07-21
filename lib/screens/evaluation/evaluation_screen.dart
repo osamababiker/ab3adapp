@@ -1,4 +1,4 @@
-import 'package:ab3ad/models/Order.dart';
+import 'package:ab3ad/models/order.dart';
 import 'package:flutter/material.dart';
 import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/enums.dart';

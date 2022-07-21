@@ -39,7 +39,9 @@ final Map<String, String> ar = {
   /** location screen */
   'location_screen_title': 'اختر موقع التوصيل',
   'location_screen_search_location_hint': 'ابحث عن موقع معين',
-  'location_screen_send_order_btn': 'ارسل الطلب'
+  'location_screen_send_order_btn': 'ارسل الطلب',
+  'location_screen_cart_empty_error_title': 'سلة التسوق فارغة',
+  'location_screen_cart_empty_error_message': 'الرجاء اضافة عناصر لسلة التسوق اولا'
 };
 
 final Map<String, String> en = {
@@ -73,6 +75,8 @@ final Map<String, String> en = {
   /** location screen */
   'location_screen_title': 'Choose a delivery location',
   'location_screen_search_location_hint': 'Search for a specific location',
-  'location_screen_send_order_btn': 'Send order'
+  'location_screen_send_order_btn': 'Send order',
+  'location_screen_cart_empty_error_title': 'Shopping cart is empty',
+  'location_screen_cart_empty_error_message': 'Plase add items to shopping cart first'
 
 };

@@ -1,5 +1,5 @@
-import 'package:ab3ad/models/Item.dart';
-import 'package:ab3ad/models/User.dart';
+import 'package:ab3ad/models/item.dart';
+import 'package:ab3ad/models/user.dart';
 
 class Order {
   final int id,

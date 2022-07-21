@@ -1,5 +1,5 @@
 import 'package:ab3ad/constants.dart';
-import 'package:ab3ad/models/Cart.dart';
+import 'package:ab3ad/models/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ab3ad/utils/.env.dart';

@@ -1,5 +1,5 @@
 import 'package:ab3ad/constants.dart';
-import 'package:ab3ad/models/Category.dart';
+import 'package:ab3ad/models/category.dart';
 import 'package:ab3ad/screens/home/components/categoriesCard.dart';
 import 'package:ab3ad/screens/home/components/discount_banner.dart';
 import 'package:ab3ad/screens/home/components/home_header.dart';

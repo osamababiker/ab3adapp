@@ -1,5 +1,5 @@
 import 'package:ab3ad/constants.dart';
-import 'package:ab3ad/models/Category.dart';
+import 'package:ab3ad/models/category.dart';
 import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';

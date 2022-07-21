@@ -5,12 +5,14 @@ import 'package:ab3ad/bindings/categoriesControllerBinding.dart';
 import 'package:ab3ad/bindings/imageControllerBinding.dart';
 import 'package:ab3ad/bindings/itemsControllerBindings.dart';
 import 'package:ab3ad/bindings/locationControllerBinding.dart';
+import 'package:ab3ad/bindings/ordersControllerBinding.dart';
 import 'package:ab3ad/bindings/settingsControllerBinding.dart';
 import 'package:ab3ad/controllers/imagePickerController.dart';
 import 'package:ab3ad/screens/cart/cart_screen.dart';
 import 'package:ab3ad/screens/home/home_screen.dart';
 import 'package:ab3ad/screens/location/location_screen.dart';
 import 'package:ab3ad/screens/order_form/order_form_screen.dart';
+import 'package:ab3ad/screens/orders/order_complete.dart';
 import 'package:ab3ad/screens/profile/profile_screen.dart';
 import 'package:ab3ad/screens/settings/settings_screen.dart';
 import 'package:ab3ad/screens/sign_in/sign_in_screen.dart';
@@ -52,7 +54,9 @@ class Routes {
       name: '/location', 
       page: () => const LocationScreen(),
       bindings: [
-        LocationControllersBindings()
+        LocationControllersBindings(),
+        CartControllersBindings(), 
+        OrdersControllersBindings()
       ]
     ),
     GetPage(
@@ -68,6 +72,10 @@ class Routes {
       name: '/cart', 
       page: () => const CartScreen(),
       binding: CartControllersBindings()
+    ),
+    GetPage(
+      name: '/orderComplete', 
+      page: () => const OrderCompleteScreen()
     )
   ];
 }

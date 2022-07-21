@@ -1,17 +1,25 @@
 
+import 'dart:convert';
+
+import 'package:ab3ad/controllers/cartController.dart';
 import 'package:ab3ad/controllers/locationController.dart';
+import 'package:ab3ad/controllers/ordersController.dart';
 import 'package:ab3ad/screens/components/default_button.dart';
-import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../../../constants.dart';
+import 'package:path/path.dart';
 
 class Body extends StatelessWidget {
 
   Body({Key? key}) : super(key: key);
   final LocationControler _locationControler = 
   Get.find<LocationControler>();
+  final CartDbController _cartController = 
+  Get.find<CartDbController>();
+  final OrdersController _ordersController = 
+  Get.find<OrdersController>();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +32,6 @@ class Body extends StatelessWidget {
         children: [
           SizedBox(
             width: double.infinity,
-            height: getScreenSize(context) * 50.0,
             child: GoogleMap(
               initialCameraPosition: CameraPosition(
                 target: LatLng(_locationControler.lat.value, _locationControler.lng.value),
@@ -67,8 +74,40 @@ class Body extends StatelessWidget {
                     const SizedBox(height: 5),
                     DefaultButton(
                       text: "location_screen_send_order_btn".tr,
-                      press: () async {}
-                    )
+                      press: () async {
+                        List cartList = await _cartController.getItems();
+                        if(cartList.isEmpty){
+                          Get.snackbar(
+                            "location_screen_cart_empty_error_title".tr,
+                            "location_screen_cart_empty_error_message".tr,
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: kPrimaryLightColor
+                          );
+                        }else {
+                          var _itemFile;
+                          for (var i = 0; i < cartList.length; i++) {
+                            var cartMap = cartList[i].toMap();
+                            if(cartMap['uploadedImage'] != null){
+                              _itemFile = MultipartFile(
+                                cartMap['uploadedImage'],
+                                filename: basename(cartMap['uploadedImage']),
+                              );
+                          }
+                          var formData = FormData({
+                            'userId': 1,
+                            'cart': jsonEncode(cartMap),
+                            'lat': _locationControler.lat.value,
+                            'lng': _locationControler.lng.value,
+                            'file': _itemFile,
+                            'status': 0
+                          });
+
+                          await _ordersController.sendOrder(formData: formData);
+                          await _cartController.deleteItem(cartList[i].id);
+                          Get.toNamed('/orderComplete');
+                        }
+                      }
+                    })
                   ]),
               ),
             ),

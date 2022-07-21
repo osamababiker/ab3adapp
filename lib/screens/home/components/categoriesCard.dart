@@ -2,7 +2,7 @@ import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../models/Category.dart';
+import '../../../models/category.dart';
 import 'category_card.dart';
 
 

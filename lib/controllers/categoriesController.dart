@@ -1,4 +1,4 @@
-import 'package:ab3ad/models/Category.dart';
+import 'package:ab3ad/models/category.dart';
 import 'package:ab3ad/services/categories_service.dart';
 import 'package:get/get.dart';
 

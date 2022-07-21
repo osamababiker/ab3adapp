@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
-import 'package:ab3ad/models/Item.dart';
+import 'package:ab3ad/models/item.dart';
 import 'package:ab3ad/services/items_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -38,7 +38,7 @@ class ItemsController extends GetxController{
     notesController.dispose();
   }
 
-  Future fetchItems({required String itemsEndPoint}) async{
+  Future fetchItems({required String itemsEndPoint}) async{ 
     await _itemsService.fetchItems(itemsEndPoint: itemsEndPoint).then((response) {
       itemsList.value = response;
     }, onError: (error) {

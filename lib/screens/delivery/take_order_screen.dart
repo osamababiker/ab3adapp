@@ -1,5 +1,5 @@
 import 'package:ab3ad/constants.dart';
-import 'package:ab3ad/models/Order.dart';
+import 'package:ab3ad/models/order.dart';
 import 'package:ab3ad/screens/components/coustom_bottom_nav_bar.dart';
 import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';

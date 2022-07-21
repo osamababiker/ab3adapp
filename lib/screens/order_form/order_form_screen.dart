@@ -1,7 +1,7 @@
 import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/controllers/itemsController.dart';
 import 'package:ab3ad/enums.dart';
-import 'package:ab3ad/models/Category.dart';
+import 'package:ab3ad/models/category.dart';
 import 'package:ab3ad/screens/components/coustom_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

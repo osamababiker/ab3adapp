@@ -1,5 +1,5 @@
 
-import 'package:ab3ad/models/User.dart';
+import 'package:ab3ad/models/user.dart';
 
 class Evaluation {
   final int id ;

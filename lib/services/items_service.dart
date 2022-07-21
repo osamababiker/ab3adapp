@@ -1,4 +1,4 @@
-import 'package:ab3ad/models/Item.dart';
+import 'package:ab3ad/models/item.dart';
 import 'package:get/get.dart';
 
 class ItemsService extends GetConnect{

@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:path/path.dart';
-import 'package:ab3ad/models/Cart.dart';
+import 'package:ab3ad/models/cart.dart';
 
 class CartDbController extends GetxController {
   static final CartDbController _instance =
