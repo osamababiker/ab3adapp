@@ -4,6 +4,7 @@ import 'package:ab3ad/bindings/cartControllerBinding.dart';
 import 'package:ab3ad/bindings/categoriesControllerBinding.dart';
 import 'package:ab3ad/bindings/imageControllerBinding.dart';
 import 'package:ab3ad/bindings/itemsControllerBindings.dart';
+import 'package:ab3ad/bindings/locationControllerBinding.dart';
 import 'package:ab3ad/bindings/settingsControllerBinding.dart';
 import 'package:ab3ad/controllers/imagePickerController.dart';
 import 'package:ab3ad/screens/cart/cart_screen.dart';
@@ -49,7 +50,10 @@ class Routes {
     ),
     GetPage(
       name: '/location', 
-      page: () => const LocationScreen()
+      page: () => const LocationScreen(),
+      bindings: [
+        LocationControllersBindings()
+      ]
     ),
     GetPage(
       name: '/settings', 

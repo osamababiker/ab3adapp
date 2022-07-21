@@ -1,6 +1,7 @@
 import 'package:ab3ad/screens/components/coustom_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:ab3ad/enums.dart';
+import 'package:get/get.dart';
 import 'components/body.dart';
 import '../../constants.dart';
 
@@ -11,17 +12,15 @@ class LocationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
 
-    return Directionality( 
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-          appBar: AppBar(
-            title: const Text(
-              "اختر موقع التوصيل",
-              style: TextStyle(fontSize: 16, color: kTextColor),
-            ),
-          ), 
-          body: const Body(),
-          bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.map)),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "location_screen_title".tr,
+          style: const TextStyle(fontSize: 16, color: kTextColor),
+        ),
+      ),  
+      body: Body(),
+      bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.map)
     );
   }
 }

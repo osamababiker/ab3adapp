@@ -17,7 +17,9 @@ class SearchField extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: TextField(
-        onTap: () {},
+        onTap: () {
+          Get.toNamed('/location');
+        },
         decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(
                 horizontal: getScreenSize(context) * 2.0,

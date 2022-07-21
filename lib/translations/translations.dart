@@ -33,8 +33,13 @@ final Map<String, String> ar = {
 
   /** cart screen */
   'cart_screen_title': 'عربة التسوق الخاصة بك',
-   'cart_screen_item_deleted_title': 'تم الحذف بنجاح',
+  'cart_screen_item_deleted_title': 'تم الحذف بنجاح',
   'cart_screen_item_deleted_title_message': 'تم حذف العنصر من سلة التسوق بنجاح',
+
+  /** location screen */
+  'location_screen_title': 'اختر موقع التوصيل',
+  'location_screen_search_location_hint': 'ابحث عن موقع معين',
+  'location_screen_send_order_btn': 'ارسل الطلب'
 };
 
 final Map<String, String> en = {
@@ -64,5 +69,10 @@ final Map<String, String> en = {
   'cart_screen_title': 'Your shopping cart',
   'cart_screen_item_deleted_title': 'Deleted successfully',
   'cart_screen_item_deleted_title_message': 'Item has been deleted successfully',
+
+  /** location screen */
+  'location_screen_title': 'Choose a delivery location',
+  'location_screen_search_location_hint': 'Search for a specific location',
+  'location_screen_send_order_btn': 'Send order'
 
 };

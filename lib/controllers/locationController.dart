@@ -2,13 +2,14 @@ import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocoding/geocoding.dart';
-import 'dart:async';
+import 'dart:async'; 
 
 class LocationControler extends GetxController {
   var isLoading = true.obs;
   var lat = 0.0.obs;
   var lng = 0.0.obs;
   var address = ''.obs;
+  var zoom = 19.151926040649414.obs;
 
   Completer<GoogleMapController> mapController = Completer();
   Map<MarkerId, Marker> markers = {};
