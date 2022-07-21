@@ -17,35 +17,32 @@ class OrderFormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) { 
     final Category categoryAgrs = ModalRoute.of(context)!.settings.arguments as Category;
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(" اضافة الطلب للسلة", 
-          style: TextStyle(
-            fontSize: 16,
-            color: kTextColor,
-            fontWeight: FontWeight.bold)
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("order_form_screen_title".tr,  
+        style: const TextStyle(
+          fontSize: 16,
+          color: kTextColor,
+          fontWeight: FontWeight.bold)
         ),
-        body: FutureBuilder(
-          future: _itemsController.fetchItems(itemsEndPoint: "$baseUri/items/${categoryAgrs.id}"),
-          builder: (context, AsyncSnapshot snapshot) {
-            return Obx((() => 
-              _itemsController.isLoading.value 
-              ? Center(
-                child: SizedBox(
-                  width: getScreenSize(context) * 4.0,
-                  height: getScreenSize(context) * 4.0,
-                  child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
-                ),
-              )
-              : Body(category: categoryAgrs, items: _itemsController.itemsList)
-            ));
-          }
-        ),
-        bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.orderForm),
       ),
+      body: FutureBuilder(
+        future: _itemsController.fetchItems(itemsEndPoint: "$baseUri/items/${categoryAgrs.id}"),
+        builder: (context, AsyncSnapshot snapshot) {
+          return Obx((() => 
+            _itemsController.isLoading.value 
+            ? Center(
+              child: SizedBox(
+                width: getScreenSize(context) * 4.0,
+                height: getScreenSize(context) * 4.0,
+                child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
+              ),
+            )
+            : Body(category: categoryAgrs, items: _itemsController.itemsList)
+          ));
+        }
+      ),
+      bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.orderForm),
     );
   }
 }

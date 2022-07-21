@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/enums.dart';
+import 'package:get/get.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
@@ -30,44 +31,44 @@ class CustomBottomNavBar extends StatelessWidget {
           topRight: Radius.circular(10),
         ),
       ),
-      child: SafeArea(
-          top: false,
-          child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/icons/Shop Icon.svg",
-                    color: MenuState.home == selectedMenu
-                        ? kPrimaryColor
-                        : kTextColor,
-                  ),
-                  onPressed: () => {}),
-                IconButton(
-                  icon: SvgPicture.asset("assets/icons/location.svg",
-                      color: MenuState.orders == selectedMenu
-                          ? kPrimaryColor
-                          : kTextColor),
-                  onPressed: () {},
+      child: SafeArea(top: false,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: SvgPicture.asset(
+                "assets/icons/Shop Icon.svg",
+                color: MenuState.home == selectedMenu
+                    ? kPrimaryColor
+                    : kTextColor,
+              ),
+              onPressed: () => Get.toNamed('/home')),
+            IconButton(
+              icon: SvgPicture.asset("assets/icons/location.svg",
+                  color: MenuState.orders == selectedMenu
+                      ? kPrimaryColor
+                      : kTextColor),
+              onPressed: () => Get.toNamed('/location'),
+            ),
+            IconButton(
+              icon: SvgPicture.asset("assets/icons/question_mark.svg",
+                  color: MenuState.settings == selectedMenu
+                      ? kPrimaryColor
+                      : kTextColor),
+              onPressed: () => Get.toNamed('/settings'),
+            ),
+            IconButton(
+                icon: SvgPicture.asset(
+                  "assets/icons/User_Icon.svg",
+                  color: MenuState.profile == selectedMenu
+                      ? kPrimaryColor
+                      : kTextColor,
                 ),
-                IconButton(
-                  icon: SvgPicture.asset("assets/icons/question_mark.svg",
-                      color: MenuState.settings == selectedMenu
-                          ? kPrimaryColor
-                          : kTextColor),
-                  onPressed: () {},
-                ),
-                IconButton(
-                    icon: SvgPicture.asset(
-                      "assets/icons/User_Icon.svg",
-                      color: MenuState.profile == selectedMenu
-                          ? kPrimaryColor
-                          : kTextColor,
-                    ),
-                    onPressed: () => {}),
-              ],
-            )
+                onPressed: () => Get.toNamed('/profile')
+              ),
+            ],
           )
-        );
+        )
+    );
   }
 }

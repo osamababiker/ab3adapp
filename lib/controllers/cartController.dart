@@ -24,7 +24,7 @@ class CartDbController extends GetxController {
   final String deliveryTime = "deliveryTime";
   final String deliveryNote = "deliveryNote"; 
 
-  RxInt listCounter = 0.obs;
+  RxInt cartCounter = 0.obs;
   RxList itemsList = [].obs;
   RxBool isLoading = false.obs;
 
@@ -147,7 +147,7 @@ class CartDbController extends GetxController {
       print("problem getting count == $e");
       throw (e);
     }
-    listCounter.value = numOfItems;
+    cartCounter.value = numOfItems;
   }
 
   // DELETEING ITEM

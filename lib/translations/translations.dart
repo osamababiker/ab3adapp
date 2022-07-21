@@ -12,7 +12,14 @@ final Map<String, String> ar = {
   'app_name': 'أبعاد',
   'app_slogan': 'خدمة توصيل غاز من الباب الى الباب', 
 
+  /** home screen */
+  'home_screen_categories_section_title': 'ماذا تريد ان تطلب',
+  'home_screen_discount_section_slogn': 'خدمة توصيل غاز من الباب الى الباب',
+  'home_screen_discount_section_action': 'أطلب الان',
+  'home_screen_header_section_search_label': 'حدد مكان التوصيل ',
+
   /** order form screen */
+  'order_form_screen_title': ' اضافة الطلب للسلة',
   'order_form_screen_quantity_label': 'العدد المطلوب',
   'order_form_screen_quantity_hint': 'ادخل عدد العناصر التي تريد',
   'order_form_screen_delivery_time_label': 'اختر موعد التوصيل',
@@ -23,13 +30,25 @@ final Map<String, String> ar = {
   'order_form_screen_add_to_cart_btn': 'أضف للسلة',
   'order_form_screen_add_to_cart_title': 'تمت الاضافة بنجاح',
   'order_form_screen_add_to_cart_message': 'تمت اضافة العنصر الى السلة بنجاح',
+
+  /** cart screen */
+  'cart_screen_title': 'عربة التسوق الخاصة بك',
+   'cart_screen_item_deleted_title': 'تم الحذف بنجاح',
+  'cart_screen_item_deleted_title_message': 'تم حذف العنصر من سلة التسوق بنجاح',
 };
 
 final Map<String, String> en = {
   'app_name': 'Ab3ad',
   'app_slogan': 'door-to-door gas delivery service', 
+
+  /** home screen */
+  'home_screen_categories_section_title': 'What you want to order',
+  'home_screen_discount_section_slogn': 'door-to-door gas delivery service',
+  'home_screen_discount_section_action': 'Order now',
+  'home_screen_header_section_search_label': 'Search delivery location',
   
   /** order form screen */
+  'order_form_screen_title': 'Add order to cart',
   'order_form_screen_quantity_label': 'The required number',
   'order_form_screen_quantity_hint': 'Enter the number of items you want.',
   'order_form_screen_delivery_time_label': 'Choose delivery date',
@@ -40,5 +59,10 @@ final Map<String, String> en = {
   'order_form_screen_add_to_cart_btn': 'Add to cart',
   'order_form_screen_add_to_cart_title': 'added successfully',
   'order_form_screen_add_to_cart_message': 'Item has been added to cart successfully',
+
+  /** cart screen */
+  'cart_screen_title': 'Your shopping cart',
+  'cart_screen_item_deleted_title': 'Deleted successfully',
+  'cart_screen_item_deleted_title_message': 'Item has been deleted successfully',
 
 };

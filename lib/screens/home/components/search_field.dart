@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -24,7 +25,7 @@ class SearchField extends StatelessWidget {
             border: InputBorder.none,
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
-            hintText: " حدد مكان التوصيل ",
+            hintText: "home_screen_header_section_search_label".tr,
             hintStyle: const TextStyle(color: kTextColor),
             prefixIcon: const Icon(Icons.location_on_outlined)),
       ),

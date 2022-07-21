@@ -294,9 +294,9 @@ class Body extends StatelessWidget {
                             'categoryId': category.id,
                             'name': _itemsController.selectedItem!.name,
                             'image': _itemsController.selectedItem!.image,
-                            'uploadedImage': _imagePickerController.selectedImagePath,
+                            'uploadedImage': _imagePickerController.selectedImagePath.value,
                             'price': _itemsController.selectedItem!.price,
-                            'deliveryTime': _itemsController.selectedTime,
+                            'deliveryTime': _itemsController.selectedTime.value,
                             'deliveryNote': _itemsController.notesController.text,
                             'quantity': _itemsController.quantityController.text
                           };

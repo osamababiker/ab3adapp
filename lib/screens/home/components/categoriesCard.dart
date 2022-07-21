@@ -1,6 +1,7 @@
 import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../models/Category.dart';
 import 'category_card.dart';
 
@@ -14,14 +15,14 @@ class CategoriesCard extends StatelessWidget {
   final List<Category> categories;
   @override
   Widget build(BuildContext context) { 
-    return Padding(
+    return Padding( 
       padding: const EdgeInsets.all(kDefaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "ماذا تريد ان تطلب",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          Text(
+            "home_screen_categories_section_title".tr,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const VerticalSpacing(of: 2.0),
           SingleChildScrollView(

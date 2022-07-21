@@ -17,22 +17,19 @@ class HomeScreen extends StatelessWidget {
     
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        body: Obx((() =>   
-          _categoriesController.isLoading.value 
-          ? Center(
-            child: SizedBox(
-              width: getScreenSize(context) * 4.0,
-              height: getScreenSize(context) * 4.0,
-              child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
-            ),
-          ) 
-          : Body(categories: _categoriesController.categoriesList)
-        )),
-        bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.home),
-      ),
+    return Scaffold(
+      body: Obx((() =>   
+        _categoriesController.isLoading.value 
+        ? Center(
+          child: SizedBox(
+            width: getScreenSize(context) * 4.0,
+            height: getScreenSize(context) * 4.0,
+            child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
+          ),
+        ) 
+        : Body(categories: _categoriesController.categoriesList)
+      )),
+      bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.home),
     );
   }
 }
