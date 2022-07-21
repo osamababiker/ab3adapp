@@ -12,71 +12,31 @@ class CartDbController extends GetxController {
       CartDbController.internal();
 
   factory CartDbController() => _instance;
-  final String table = "shoppingList";
+  final String table = "cart";
   final String id = "id";
   final String itemId = "itemId";
   final String categoryId = "categoryId";
   final String name = "name";
   final String image = "image";
+  final String uploadedImage = "uploadedImage";
   final String price = "price";
   final String quantity = "quantity";
-  final String shoppingNote = "shoppingNote";
-  final String isCustomOrder = "isCustomOrder";
+  final String deliveryTime = "deliveryTime";
+  final String deliveryNote = "deliveryNote"; 
 
   RxInt listCounter = 0.obs;
   RxList itemsList = [].obs;
   RxBool isLoading = false.obs;
 
-  // add to shopping list
-  final GlobalKey<FormState> addToShoppingListFormKey = GlobalKey<FormState>();
-  late TextEditingController itemNameController,
-      itemNotesController,
-      itemPriceController,
-      itemQuantityController;
-  var itemPrice = 0.0.obs;
-  var itemQuantity = 0.obs;
 
   @override
   void onInit() {
-    itemNameController = TextEditingController();
-    itemPriceController = TextEditingController();
-    itemNotesController = TextEditingController();
-    itemQuantityController = TextEditingController();
     getCount();
     getItems();
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    itemNameController.dispose();
-    itemNotesController.dispose();
-    itemPriceController.dispose();
-    itemQuantityController.dispose();
-    super.onClose();
-  }
-
-  String? validateName(String name) {
-    if (!GetUtils.isTxt(name)) {
-      return "home_screen_item_name_validation_error".tr;
-    }
-    return null;
-  }
-
-  String? validatePrice(String price) {
-    if (!GetUtils.isNum(price)) {
-      return "home_screen_item_price_validation_error".tr;
-    }
-    return null;
-  }
-
-  String? validateQuantity(String quantity) {
-    if (!GetUtils.isNumericOnly(quantity)) {
-      return "home_screen_item_quantity_validation_error".tr;
-    }
-    return null;
-  }
-
+  
   Future<Database> get db async {
     Database _db;
     _db = await initDb();
@@ -93,12 +53,12 @@ class CartDbController extends GetxController {
 
   void _onCreate(Database db, int newVersion) async {
     await db.execute(
-        "CREATE TABLE $table($id INTEGER PRIMARY KEY AUTOINCREMENT, $itemId INTEGER, $categoryId INTEGER, $name TEXT, $image TEXT, $price REAL, $quantity INTEGER, $shoppingNote TEXT, $isCustomOrder INTEGER)");
+      "CREATE TABLE $table($id INTEGER PRIMARY KEY AUTOINCREMENT, $itemId INTEGER, $categoryId INTEGER, $name TEXT, $image TEXT ,$uploadedImage TEXT , $price TEXT, $deliveryTime TEXT, $deliveryNote TEXT, $quantity INTEGER)");
   }
 
   /*================== CRUD ===================*/
 
-  addToList({required Map<String, dynamic> listData}) async {
+  addToCart({required Map<String, dynamic> listData}) async {
     var dbClient = await db;
     var id = listData['itemId'];
     var result = await dbClient
@@ -138,10 +98,11 @@ class CartDbController extends GetxController {
         categoryId,
         name,
         image,
+        uploadedImage,
         price,
         quantity,
-        shoppingNote,
-        isCustomOrder
+        deliveryTime,
+        deliveryNote
       ]);
       List<Cart> items = [];
       if (maps.isNotEmpty) {
@@ -158,7 +119,7 @@ class CartDbController extends GetxController {
     }
   }
 
-  Future<double> getListTotal() async {
+  Future<double> getCartTotal() async {
     var dbclient = await db;
     var total = 0.0;
     var listData = [];

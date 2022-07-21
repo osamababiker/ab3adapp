@@ -1,3 +1,4 @@
+import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/enums.dart';
 import 'package:ab3ad/screens/components/coustom_bottom_nav_bar.dart';
 import 'package:ab3ad/screens/home/components/body.dart';
@@ -23,9 +24,9 @@ class HomeScreen extends StatelessWidget {
           _categoriesController.isLoading.value 
           ? Center(
             child: SizedBox(
-              width: getScreenSize(context) * 20.0,
-              height: getScreenSize(context) * 20.0,
-              child: Image.asset("assets/images/liquid-loader.gif")
+              width: getScreenSize(context) * 4.0,
+              height: getScreenSize(context) * 4.0,
+              child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
             ),
           ) 
           : Body(categories: _categoriesController.categoriesList)

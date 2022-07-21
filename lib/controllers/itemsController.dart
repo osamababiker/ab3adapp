@@ -10,9 +10,6 @@ class ItemsController extends GetxController{
   var itemsList = <Item>[].obs;
   final ItemsService _itemsService = ItemsService();
   final formKey = GlobalKey<FormState>();
-  File? image;
-  String? uploadedFilePath;
-  final picker = ImagePicker();
   Item? selectedItem;
   RxString selectedTime = "خلال اليوم".obs;
   final List<String> timeList = [ 

@@ -35,9 +35,9 @@ class OrderFormScreen extends StatelessWidget {
               _itemsController.isLoading.value 
               ? Center(
                 child: SizedBox(
-                  width: getScreenSize(context) * 20.0,
-                  height: getScreenSize(context) * 20.0,
-                  child: Image.asset("assets/images/liquid-loader.gif")
+                  width: getScreenSize(context) * 4.0,
+                  height: getScreenSize(context) * 4.0,
+                  child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
                 ),
               )
               : Body(category: categoryAgrs, items: _itemsController.itemsList)
