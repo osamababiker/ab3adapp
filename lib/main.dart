@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       translationsKeys: AppTranslation.translationsKeys,
       theme: theme(),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/home',
+      initialRoute: '/splash',
       initialBinding: NetworkControllersBindings(),
       getPages: Routes.routes,
     );

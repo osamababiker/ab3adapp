@@ -41,7 +41,39 @@ final Map<String, String> ar = {
   'location_screen_search_location_hint': 'ابحث عن موقع معين',
   'location_screen_send_order_btn': 'ارسل الطلب',
   'location_screen_cart_empty_error_title': 'سلة التسوق فارغة',
-  'location_screen_cart_empty_error_message': 'الرجاء اضافة عناصر لسلة التسوق اولا'
+  'location_screen_cart_empty_error_message': 'الرجاء اضافة عناصر لسلة التسوق اولا',
+
+  /** signin screen */
+  'signin_screen_title': 'تسجيل دخول',
+  'signin_screen_phone_label': 'رقم الهاتف',
+  'signin_screen_phone_hint': 'أدخل رقم الهاتف',
+  'signin_screen_password_label': 'كلمة المرور',
+  'signin_screen_password_hint': 'أدخل كلمة المرور',
+  'signin_screen_btn': 'تسجيل دخول',
+  'signin_screen_not_having_account': 'لا تمتلك حسابا',
+  'signin_screen_create_account': 'أنشاء حساب',
+  'signin_screen_phone_validation_error': 'الرجاء ادخال رقم هاتف صحيح',
+  'signin_screen_password_validation_error': 'الرجاء ادخال كلمة مرور صحيحة',
+
+
+  /** signup screen */
+  'signup_screen_title': 'أنشاء حساب',
+  'signup_screen_terms': 'بانشاء حسابك فانك توافق على شروط وسياسات الاستخدام للتطبيق',
+  'signup_screen_btn': 'انشاء حساب',
+  'signup_screen_name_label': 'الاسم',
+  'signup_screen_name_hint': 'ادخل الاسم كاملا',
+  'signup_screen_address_label': 'السكن',
+  'signup_screen_address_hint': 'ادخل عنوان السكن',
+  'signup_screen_phone_label': 'رقم الهاتف',
+  'signup_screen_phone_hint': 'ادخل رقم الهاتف',
+  'signup_screen_password_confirm_label': 'تأكيد كلمة المرور',
+  'signup_screen_password_confirm_hint': 'قم باعادة ادخال كلمة المرور',
+  'signup_screen_password_label': 'كلمة المرور',
+  'signup_screen_password_hint': 'قم بادخال كلمة المرور',
+  'signup_screen_name_validation_error': 'الرجاء ادخال اسم صحيح',
+  'signup_screen_address_validation_error': 'الرجاء ادخال عنوان صحيح',
+  'signup_screen_password_confirm_validation_error': 'كلمة المرور التي ادخلتها غير مطابقة'
+  
 };
 
 final Map<String, String> en = {
@@ -77,6 +109,36 @@ final Map<String, String> en = {
   'location_screen_search_location_hint': 'Search for a specific location',
   'location_screen_send_order_btn': 'Send order',
   'location_screen_cart_empty_error_title': 'Shopping cart is empty',
-  'location_screen_cart_empty_error_message': 'Plase add items to shopping cart first'
+  'location_screen_cart_empty_error_message': 'Plase add items to shopping cart first',
+
+  /** signin screen */
+  'signin_screen_title': 'Sign in',
+  'signin_screen_phone_label': 'Phone number',
+  'signin_screen_phone_hint': 'Enter your phone number',
+  'signin_screen_password_label': 'Your password',
+  'signin_screen_password_hint': 'Enter your password',
+  'signin_screen_btn': 'Sign in',
+  'signin_screen_not_having_account': 'You don,t have an account',
+  'signin_screen_create_account': 'Create account',
+  'signin_screen_phone_validation_error': 'Please enter a valid phone number',
+  'signin_screen_password_validation_error': 'Please enter a valid password',
+
+  /** signup screen */
+  'signup_screen_title': 'Create account',
+  'signup_screen_terms': 'By creating your account, you agree to the application,s terms and policies of use.',
+  'signup_screen_btn': 'Create account',
+  'signup_screen_name_label': 'Your name',
+  'signup_screen_name_hint': 'Enter your name',
+  'signup_screen_address_label': 'Your address',
+  'signup_screen_address_hint': 'Enter your address',
+  'signup_screen_phone_label': 'Your phone',
+  'signup_screen_phone_hint': 'Enter your phone number',
+  'signup_screen_password_confirm_label': 'confirm your password',
+  'signup_screen_password_confirm_hint': 'Re-enter the password again',
+  'signup_screen_password_label': 'Your password',
+  'signup_screen_password_hint': 'Enter your password',
+  'signup_screen_name_validation_error': 'Please enter a valid name',
+  'signup_screen_address_validation_error': 'Please enter a valid address',
+  'signup_screen_password_confirm_validation_error': 'The password you entered does not match'
 
 };

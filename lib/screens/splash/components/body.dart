@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/size_config.dart';
+import 'package:get/get.dart';
 
 
 class Body extends StatelessWidget {
@@ -17,7 +18,7 @@ class Body extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Column(
-                children: <Widget>[
+                children: <Widget>[ 
                   const Spacer(),
                   Image.asset(
                     "assets/images/logo.jpg",
@@ -26,19 +27,19 @@ class Body extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    "أبعاد",
+                    "app_name".tr,
                     style: TextStyle(
                       fontSize: getScreenSize(context) * 3.6,
                       color: kPrimaryColor,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const Text(
-                    "خدمة توصيل غاز من الباب الى الباب",
+                  Text(
+                    "app_slogan".tr,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.bold, 
                     ),
                   ),
                 ],

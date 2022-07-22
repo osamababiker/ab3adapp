@@ -1,8 +1,9 @@
 import 'package:ab3ad/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:ab3ad/screens/components/no_account_text.dart';
+import 'package:ab3ad/screens/sign_in/components/no_account_text.dart';
+import 'package:get/get.dart';
 import '../../../size_config.dart';
-import 'sign_form.dart';
+import 'form.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class Body extends StatelessWidget {
                   ),
                   const SizedBox(height: kDefaultPadding / 4),
                   Text(
-                    "تسجيل دخول جديد",
+                    "signin_screen_title".tr,
                     style: TextStyle(
                       color: kTextColor,
                       fontSize: getScreenSize(context) * 2.5,
@@ -47,7 +48,7 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   const VerticalSpacing(of: 1.0),
-                  const SignForm(), 
+                  SignForm(), 
                   const VerticalSpacing(of: 1.0),
                   SizedBox(height: getScreenSize(context) * 2.0),
                   const NoAccountText(),

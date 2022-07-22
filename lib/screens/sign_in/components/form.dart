@@ -1,13 +1,18 @@
 
 
+import 'package:ab3ad/controllers/authController.dart';
 import 'package:ab3ad/screens/components/custom_suffix_icon.dart';
 import 'package:ab3ad/screens/components/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:ab3ad/screens/components/form_error.dart';
+import 'package:get/get.dart';
 import '../../../size_config.dart';
 
 class SignForm extends StatelessWidget {
-  const SignForm({Key? key}) : super(key: key);
+
+  SignForm({Key? key}) : super(key: key);
+  final AuthController _authController = 
+  Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +23,10 @@ class SignForm extends StatelessWidget {
           SizedBox(height: getScreenSize(context) * 3.0),
           buildPasswordFormField(),
           SizedBox(height: getScreenSize(context) * 3.0),
-          const FormError(errors: []),
+          FormError(errors: _authController.errors),
           SizedBox(height: getScreenSize(context) * 2.0),
           DefaultButton(
-            text: "تسجيل دخول",
+            text: "signin_screen_btn".tr,
             press: () async {}
           )
         ],
@@ -37,13 +42,13 @@ class SignForm extends StatelessWidget {
       },
       validator: (value) {
       },
-      decoration: const InputDecoration(
-  
-        labelText: "كلمة المرور",
-        hintText: "ادخل كلمة المرور",
-        suffixIcon: CustomSuffixIcon(
+      decoration: InputDecoration(
+        labelText: "signin_screen_password_label".tr,
+        hintText: "signin_screen_password_hint".tr,
+        suffixIcon: const CustomSuffixIcon(
           svgIcon: "assets/icons/Lock.svg",
         ),
+        floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
     );
   }
@@ -56,10 +61,10 @@ class SignForm extends StatelessWidget {
       },
       validator: (value) {
       },
-      decoration: const InputDecoration(
-        labelText: "رقم الهاتف",
-        hintText: "ادخل رقم الهاتف",
-        suffixIcon: CustomSuffixIcon(
+      decoration: InputDecoration(
+        labelText: "signin_screen_phone_label".tr,
+        hintText: "signin_screen_phone_hint".tr,
+        suffixIcon: const CustomSuffixIcon(
           svgIcon: "assets/icons/Phone.svg",
         ),
         floatingLabelBehavior: FloatingLabelBehavior.always,

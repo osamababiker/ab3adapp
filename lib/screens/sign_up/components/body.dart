@@ -1,7 +1,8 @@
-import 'package:ab3ad/screens/sign_up/components/sign_up_form.dart';
+import 'package:ab3ad/screens/sign_up/components/form.dart';
 import 'package:flutter/material.dart';
 import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/size_config.dart';
+import 'package:get/get.dart';
 
 class Body extends StatelessWidget {
   const Body({Key? key}) : super(key: key);
@@ -29,12 +30,12 @@ class Body extends StatelessWidget {
                     height: getScreenSize(context) * 10.0,
                     child: Image.asset(
                       "assets/images/logo.jpg",
-                      height: getScreenSize(context) * 26.5,
+                      height: getScreenSize(context) * 26.5, 
                       width: getScreenSize(context) * 23.5,
                     ),
                   ),
                   Text(
-                    "انشاء حساب",
+                    "signup_screen_title".tr,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: getScreenSize(context) * 2.5,
@@ -42,12 +43,12 @@ class Body extends StatelessWidget {
                     ),
                   ),
                   const VerticalSpacing(of: 2.0), 
-                  const SignUpForm(),
+                  SignUpForm(),
                   SizedBox(height: getScreenSize(context) * 2.0), 
-                  const Text(
-                    'بانشاء حسابك فانك توافق على شروط وسياسات الاستخدام للتطبيق',
+                  Text(
+                    "signup_screen_terms".tr,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: const TextStyle( 
                       color: kTextColor,
                       fontSize: 14
                     ),

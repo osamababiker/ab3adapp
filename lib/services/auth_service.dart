@@ -9,9 +9,7 @@ class AuthService extends GetConnect {
   final storage = const FlutterSecureStorage();
 
   Future login({required Map formData}) async {
-    final response = await post(
-      authEndPoint,
-      formData,
+    final response = await post(loginEndPoint,formData,
       headers: {"Accept": "application/json"},
     );
     if (response.status.hasError) {
@@ -22,22 +20,17 @@ class AuthService extends GetConnect {
     }
   }
 
-  Future otpVerification({required Map formData}) async {
-    String token = await readToken();
-    final response = await post(
-      otpEndPoint,
-      formData,
-      headers: {
-        "Accept": "application/json",
-        "Authorization": "Bearer $token"
-      },
+  Future register({required Map formData}) async{
+    final response = await post(registerEndPoint, formData, 
+      headers: {"Accept": "application/json"}
     );
-    if (response.status.hasError) {
+    if(response.status.hasError){
       return Future.error(response.statusText.toString());
     } else {
-      return true;
+      String token = response.body['data'].toString();
+      return await tryToken(token: token);
     }
-  }
+  } 
 
   Future<User> tryToken({required String token}) async {
     final response = await get(fetchAuthUserEndPoint,

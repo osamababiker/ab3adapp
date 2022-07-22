@@ -1,29 +1,26 @@
 import 'package:ab3ad/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'components/body.dart';
 
 class SignUpScreen extends StatelessWidget {
-  static String routeName = "/sign_up";
 
   const SignUpScreen({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "انشاء حساب",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: kTextColor
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "signup_screen_title".tr,
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: kTextColor
           ),
         ),
-        body: const Body(),
       ),
+      body: const Body(),
     );
   }
 }
