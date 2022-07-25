@@ -6,6 +6,7 @@ import 'package:ab3ad/screens/components/default_button.dart';
 import 'package:flutter/material.dart';
 import 'package:ab3ad/screens/components/form_error.dart';
 import 'package:get/get.dart';
+import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class SignForm extends StatelessWidget {
@@ -16,20 +17,34 @@ class SignForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        children: [
-          buildPhoneFormField(),
-          SizedBox(height: getScreenSize(context) * 3.0),
-          buildPasswordFormField(),
-          SizedBox(height: getScreenSize(context) * 3.0),
-          FormError(errors: _authController.errors),
-          SizedBox(height: getScreenSize(context) * 2.0),
-          DefaultButton(
-            text: "signin_screen_btn".tr,
-            press: () async {}
-          )
-        ],
+    return Obx(() => Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Column(
+          children: [
+            buildPhoneFormField(),
+            SizedBox(height: getScreenSize(context) * 3.0),
+            buildPasswordFormField(),
+            SizedBox(height: getScreenSize(context) * 3.0),
+            FormError(errors: _authController.errors),
+            SizedBox(height: getScreenSize(context) * 2.0),
+            _authController.isLoading.value ?
+            SizedBox(
+              width: getScreenSize(context) * 4.0,
+              height: getScreenSize(context) * 4.0,
+              child: const CircularProgressIndicator(
+                color: Colors.white,
+                backgroundColor: kPrimaryColor,
+              )
+            )
+            : DefaultButton(
+              text: "signin_screen_btn".tr,
+              press: () async {
+                _authController.isLoading.value = true;
+                _authController.checkSignIn(); 
+              }
+            )
+          ],
+        ),
       ),
     );
   }
@@ -37,10 +52,8 @@ class SignForm extends StatelessWidget {
   TextFormField buildPasswordFormField() {
     return TextFormField(
       obscureText: true,
-      onChanged: (value) {
-        
-      },
       validator: (value) {
+        _authController.validatePassword(value!);
       },
       decoration: InputDecoration(
         labelText: "signin_screen_password_label".tr,
@@ -56,11 +69,10 @@ class SignForm extends StatelessWidget {
   TextFormField buildPhoneFormField() {
     return TextFormField(
       keyboardType: TextInputType.phone,
-      onChanged: (value) {
-
+      validator: (value){
+        _authController.validatePhone(value!);
       },
-      validator: (value) {
-      },
+      controller: _authController.phoneController,
       decoration: InputDecoration(
         labelText: "signin_screen_phone_label".tr,
         hintText: "signin_screen_phone_hint".tr,

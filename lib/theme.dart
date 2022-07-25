@@ -17,7 +17,7 @@ ThemeData theme() {
  
 InputDecorationTheme inputDecorationTheme() { 
   OutlineInputBorder outlineInputBorder = OutlineInputBorder(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(5),
         gapPadding: 10,
       );
 
@@ -26,7 +26,7 @@ InputDecorationTheme inputDecorationTheme() {
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(
             color: kTextColor.withOpacity(0.5)),
-            borderRadius: BorderRadius.circular(kDefaultPadding * 2),
+            borderRadius: BorderRadius.circular(5),
         ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(
@@ -48,14 +48,8 @@ AppBarTheme appBarTheme() {
     color: Colors.white,
     elevation: 0,
     iconTheme: IconThemeData(
-      color: Colors.black
+      color: kTextColor
     ),
-    textTheme: TextTheme(
-      headline6: const TextStyle(
-        color: Color(0xFF3C4046),
-        fontSize: 18,
-        fontFamily: kFontFamily 
-      ),
-    ), systemOverlayStyle: SystemUiOverlayStyle.dark
+    
   );
 }

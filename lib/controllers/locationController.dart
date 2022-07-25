@@ -16,7 +16,7 @@ class LocationControler extends GetxController {
   late StreamSubscription<Position> streamSubscription;
 
   @override
-  void onInit() {
+  void onInit() { 
     super.onInit();
     getLocation(); 
     setMarkers();
@@ -83,7 +83,7 @@ class LocationControler extends GetxController {
   Future<List<Placemark>> getAddress(
       {required double lat, required double lng}) async {
     List<Placemark> placemarks =
-        await placemarkFromCoordinates(52.2165157, 6.9437819);
+        await placemarkFromCoordinates(lat, lng);
     return placemarks;
   }
 }

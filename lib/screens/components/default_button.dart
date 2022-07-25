@@ -20,7 +20,7 @@ class DefaultButton extends StatelessWidget {
       height: getScreenSize(context) * 5.6,
       decoration: BoxDecoration(
         color: Colors.black.withOpacity(0.8),
-        borderRadius: BorderRadius.circular(kDefaultPadding * 2),
+        borderRadius: BorderRadius.circular(5),
       ),
       child: TextButton(
         onPressed: press, 

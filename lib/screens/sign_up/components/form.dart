@@ -1,4 +1,5 @@
 
+import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/controllers/authController.dart';
 import 'package:ab3ad/screens/components/custom_suffix_icon.dart';
 import 'package:ab3ad/size_config.dart';
@@ -16,29 +17,41 @@ class SignUpForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _authController.signupFormKey,
-      child: Column(
-        children: [
-          buildNameFormField(),
-          SizedBox(height: getScreenSize(context) * 2.0),
-          buildPhoneFormField(),
-          SizedBox(height: getScreenSize(context) * 2.0),
-          buildAddressFormField(),
-          SizedBox(height: getScreenSize(context) * 2.0),
-          buildPasswordFormField(),
-          SizedBox(height: getScreenSize(context) * 2.0),
-          buildConformPassFormField(),
-          SizedBox(height: getScreenSize(context) * 2.0),
-          FormError(errors: _authController.errors),
-          SizedBox(height: getScreenSize(context) * 2.0),
-          DefaultButton(
-            text: "signup_screen_btn".tr,
-            press: () async{
-              _authController.checkSignUp();
-            },
-          )
-        ],
+    return Obx(() => Form(
+        key: _authController.signupFormKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Column(
+          children: [
+            buildNameFormField(),
+            SizedBox(height: getScreenSize(context) * 2.0),
+            buildPhoneFormField(),
+            SizedBox(height: getScreenSize(context) * 2.0),
+            buildAddressFormField(),
+            SizedBox(height: getScreenSize(context) * 2.0),
+            buildPasswordFormField(),
+            SizedBox(height: getScreenSize(context) * 2.0),
+            buildConformPassFormField(),
+            SizedBox(height: getScreenSize(context) * 2.0),
+            FormError(errors: _authController.errors),
+            SizedBox(height: getScreenSize(context) * 2.0),
+            _authController.isLoading.value ?
+            SizedBox(
+              width: getScreenSize(context) * 4.0,
+              height: getScreenSize(context) * 4.0,
+              child: const CircularProgressIndicator(
+                color: Colors.white,
+                backgroundColor: kPrimaryColor,
+              )
+            )
+            : DefaultButton(
+              text: "signup_screen_btn".tr,
+              press: () async{
+                _authController.isLoading.value = true;
+                _authController.checkSignUp(); 
+              },
+            )
+          ],
+        ),
       ),
     );
   }
@@ -48,7 +61,7 @@ class SignUpForm extends StatelessWidget {
     return TextFormField( 
       keyboardType: TextInputType.name,
       validator: (value){
-        _authController.validateName(value!);
+        return _authController.validateName(value!);
       },
       controller: _authController.nameController,
       decoration: InputDecoration(

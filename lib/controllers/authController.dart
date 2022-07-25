@@ -24,11 +24,12 @@ class AuthController extends GetxController {
   RxBool isLoggedIn = false.obs;
   RxBool isVerified = false.obs;
   RxBool isLoading = false.obs;
-  List errors = [].obs;
+  RxList errors = [].obs;
   late User _user;
   User get user => _user;
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   late String deviceName, notificationToken;
+  late LocationControler locationController;
 
   @override
   void onInit() {
@@ -37,6 +38,7 @@ class AuthController extends GetxController {
     addressController = TextEditingController();
     passwordController = TextEditingController();
     passwordConfirmController = TextEditingController();
+    locationController = Get.put(LocationControler());
     getDeviceName();
     getNotificationToken();
     tryToken();
@@ -94,17 +96,18 @@ class AuthController extends GetxController {
     isLoading(false);
   }
 
-  void validateName(String name){
+  String? validateName(String name){
     if(!GetUtils.isTxt(name)){
-      errors.add("signup_screen_name_validation_error".tr);
-    }else{
-      errors.remove("signup_screen_name_validation_error".tr);
+      return "signup_screen_name_validation_error".tr;
     }
+    return null;
   }
 
   void validateAddress(String address){
     if(!GetUtils.isTxt(address)){
-      errors.add("signup_screen_address_validation_error".tr);
+      if(!errors.contains("signup_screen_address_validation_error".tr)){
+        errors.add("signup_screen_address_validation_error".tr);
+      }
     }else{
       errors.remove("signup_screen_address_validation_error".tr);
     }
@@ -112,7 +115,9 @@ class AuthController extends GetxController {
 
   void validatePhone(String phone) {
     if (!GetUtils.isPhoneNumber(phone)) {
-      errors.add("signin_screen_phone_validation_error".tr);
+      if(!errors.contains("signin_screen_phone_validation_error".tr)){
+        errors.add("signin_screen_phone_validation_error".tr);
+      }
     }else{
       errors.remove("signin_screen_phone_validation_error".tr);
     }
@@ -120,7 +125,9 @@ class AuthController extends GetxController {
  
   void validatePassword(String password) {
     if (!GetUtils.isTxt(password)) {
-      errors.add("signin_screen_password_validation_error".tr);
+      if(!errors.contains("signin_screen_password_validation_error".tr)){
+        errors.add("signin_screen_password_validation_error".tr);
+      }
     }else{
       errors.remove("signin_screen_password_validation_error".tr);
     }
@@ -128,7 +135,9 @@ class AuthController extends GetxController {
 
   void validatePasswordConfirm(String password) {
     if (!GetUtils.isTxt(password)) {
-      errors.add("signup_screen_password_confirm_validation_error".tr);
+      if(!errors.contains("signup_screen_password_confirm_validation_error".tr)){
+        errors.add("signup_screen_password_confirm_validation_error".tr);
+      }
     }else{
       errors.remove("signup_screen_password_confirm_validation_error".tr);
     }
@@ -144,26 +153,28 @@ class AuthController extends GetxController {
   }
 
   void checkSignUp() {
-    final isValid = signupFormKey.currentState!.validate();
-    if(!isValid){
+
+    print(errors.length);
+    if(errors.isNotEmpty){
       return;
     }
 
-    LocationControler _locationController = 
-    Get.find<LocationControler>();
-    Map<String, dynamic> formData = {
-      'name': nameController.text,
-      'password': passwordController.text,
-      'password_confirmation': passwordConfirmController.text,
-      'address': addressController.text,
-      'phone': phoneController.text,
-      'lat': _locationController.lat.value, 
-      'lng': _locationController.lng.value,
-      'device_name': deviceName, 
-      'notificationToken': notificationToken
-    };
+    // //errors.clear();
+    
+    // Map<String, dynamic> formData = {
+    //   'name': nameController.text,
+    //   'password': passwordController.text,
+    //   'password_confirmation': passwordConfirmController.text,
+    //   'address': addressController.text, 
+    //   'phone': phoneController.text,
+    //   'lat': locationController.lat.value, 
+    //   'lng': locationController.lng.value,
+    //   'device_name': deviceName, 
+    //   'notificationToken': notificationToken
+    // };
 
-    print(formData);
+    isLoading.value = false;
+    //print(formData);
   }
 
 }
