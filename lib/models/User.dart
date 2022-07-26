@@ -24,6 +24,6 @@ class User {
         lat = json['lat'],
         lng = json['lng'],
         rating = json['rating'].toDouble(),
-        isVerify = json['isVerify'].toInt(),
+        isVerify = json['isVerify'].toInt(), 
         isDriver = json['isDriver'].toInt();
 }

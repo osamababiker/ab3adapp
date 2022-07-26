@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   route() {
-    Get.toNamed('/signin'); 
+    Get.offNamed('/signin'); 
   }
   
   @override

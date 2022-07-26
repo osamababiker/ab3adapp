@@ -6,7 +6,6 @@ import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:ab3ad/screens/components/custom_surfix_icon.dart';
 import 'package:ab3ad/screens/components/default_button.dart';
-import 'package:ab3ad/screens/components/form_error.dart';
 import 'package:get/get.dart';
 
 class SignUpForm extends StatelessWidget {
@@ -32,9 +31,7 @@ class SignUpForm extends StatelessWidget {
             SizedBox(height: getScreenSize(context) * 2.0),
             buildConformPassFormField(),
             SizedBox(height: getScreenSize(context) * 2.0),
-            FormError(errors: _authController.errors),
-            SizedBox(height: getScreenSize(context) * 2.0),
-            _authController.isLoading.value ?
+            _authController.signupIsLoading.value ?
             SizedBox(
               width: getScreenSize(context) * 4.0,
               height: getScreenSize(context) * 4.0,
@@ -46,8 +43,8 @@ class SignUpForm extends StatelessWidget {
             : DefaultButton(
               text: "signup_screen_btn".tr,
               press: () async{
-                _authController.isLoading.value = true;
-                _authController.checkSignUp(); 
+                _authController.signupIsLoading.value = true;
+                _authController.signUp(); 
               },
             )
           ],
@@ -77,7 +74,7 @@ class SignUpForm extends StatelessWidget {
     return TextFormField(
       keyboardType: TextInputType.streetAddress,
       validator: (value){
-        _authController.validateAddress(value!);
+        return _authController.validateAddress(value!);
       },
       controller: _authController.addressController,
       decoration: InputDecoration(
@@ -93,7 +90,7 @@ class SignUpForm extends StatelessWidget {
     return TextFormField(
       keyboardType: TextInputType.phone,
       validator: (value){
-        _authController.validatePhone(value!);
+        return _authController.validatePhone(value!);
       },
       controller: _authController.phoneController,
       decoration: InputDecoration(
@@ -109,7 +106,7 @@ class SignUpForm extends StatelessWidget {
     return TextFormField(
       obscureText: true,
       validator: (value) {
-        _authController.validatePasswordConfirm(value!);
+        return _authController.validatePasswordConfirm(value!);
       },
       controller: _authController.passwordConfirmController,
       decoration: InputDecoration(
@@ -125,7 +122,7 @@ class SignUpForm extends StatelessWidget {
     return TextFormField(
       obscureText: true,
       validator: (value) {
-        _authController.validatePassword(value!);
+        return _authController.validatePassword(value!);
       },
       controller: _authController.passwordController,
       decoration: InputDecoration(

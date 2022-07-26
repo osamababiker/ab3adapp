@@ -1,7 +1,7 @@
 const baseUri = 'https://ab3adapp.com/api';
 const uploadUri = 'https://ab3adapp.com/upload';
 
-const loginEndPoint = baseUri + '/login';
+const loginEndPoint = baseUri + '/sanctum/token';
 const registerEndPoint = baseUri + '/register';
 const fetchAuthUserEndPoint = baseUri + '/user';
 

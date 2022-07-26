@@ -30,11 +30,11 @@ class AuthService extends GetConnect {
       String token = response.body['data'].toString();
       return await tryToken(token: token);
     }
-  } 
+  }  
 
   Future<User> tryToken({required String token}) async {
     final response = await get(fetchAuthUserEndPoint,
-        headers: {'Authorization': 'Bearer $token'});
+        headers: {'Authorization': 'Bearer $token'}); 
     if (response.status.hasError) {
       return Future.error(response.statusText.toString());
     } else {

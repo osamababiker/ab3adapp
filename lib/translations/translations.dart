@@ -54,6 +54,8 @@ final Map<String, String> ar = {
   'signin_screen_create_account': 'أنشاء حساب',
   'signin_screen_phone_validation_error': 'الرجاء ادخال رقم هاتف صحيح',
   'signin_screen_password_validation_error': 'الرجاء ادخال كلمة مرور صحيحة',
+  'signup_screen_signin_error_title': 'مشكلة في تسجيل الدخول ',
+  'signup_screen_signin_error_message': 'مشكلة في تسجيل الدخول الرجاء المحاولة في وقت اخر',
 
 
   /** signup screen */
@@ -72,7 +74,10 @@ final Map<String, String> ar = {
   'signup_screen_password_hint': 'قم بادخال كلمة المرور',
   'signup_screen_name_validation_error': 'الرجاء ادخال اسم صحيح',
   'signup_screen_address_validation_error': 'الرجاء ادخال عنوان صحيح',
-  'signup_screen_password_confirm_validation_error': 'كلمة المرور التي ادخلتها غير مطابقة'
+  'signup_screen_password_confirm_validation_error': 'كلمة المرور التي ادخلتها غير مطابقة',
+  'signup_screen_password_short_validation_error': 'يجب ان تحتوي كلمة المرور على 6 حروف على الاقل',
+  'signup_screen_signup_error_title': 'مشكلة في انشاء حساب',
+  'signup_screen_signup_error_message': 'مشكلة في انشاء الحساب الرجاء المحاولة في وقت اخر'
   
 };
 
@@ -122,6 +127,8 @@ final Map<String, String> en = {
   'signin_screen_create_account': 'Create account',
   'signin_screen_phone_validation_error': 'Please enter a valid phone number',
   'signin_screen_password_validation_error': 'Please enter a valid password',
+  'signup_screen_signin_error_title': 'Problem sign you in',
+  'signup_screen_signin_error_message': 'Problem sign you in , please try again later',
 
   /** signup screen */
   'signup_screen_title': 'Create account',
@@ -139,6 +146,9 @@ final Map<String, String> en = {
   'signup_screen_password_hint': 'Enter your password',
   'signup_screen_name_validation_error': 'Please enter a valid name',
   'signup_screen_address_validation_error': 'Please enter a valid address',
-  'signup_screen_password_confirm_validation_error': 'The password you entered does not match'
+  'signup_screen_password_confirm_validation_error': 'The password you entered does not match',
+  'signup_screen_password_short_validation_error': 'Password must contain at least 6 characters',
+  'signup_screen_signup_error_title': 'Problem sign you up',
+  'signup_screen_signup_error_message': 'Problem sign you up , please try again later'
 
 };

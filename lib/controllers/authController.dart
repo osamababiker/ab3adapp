@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/controllers/locationController.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import '../models/User.dart';
@@ -23,10 +25,10 @@ class AuthController extends GetxController {
   bool get verified => isVerified.value;
   RxBool isLoggedIn = false.obs;
   RxBool isVerified = false.obs;
-  RxBool isLoading = false.obs;
-  RxList errors = [].obs;
-  late User _user;
-  User get user => _user;
+  RxBool signinIsLoading = false.obs;
+  RxBool signupIsLoading = false.obs;
+  late User authUser;
+  User get user => authUser;
   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
   late String deviceName, notificationToken;
   late LocationControler locationController;
@@ -73,108 +75,118 @@ class AuthController extends GetxController {
     }
   }
 
-  Future login({required Map formData}) async {
-    isLoading(true);
-    await _authService.login(formData: formData).then((response) {
-      _user = response;
-      isLoggedIn(true);
-    }, onError: (error) {
-      print(error);
-    });
-    isLoading(false);
-  }
-
   Future tryToken() async {
     String token = await _authService.readToken();
-    isLoading(true);
     await _authService.tryToken(token: token).then((response) {
-      _user = response;
+      authUser = response; 
       isLoggedIn(true);
     }, onError: (error) {
       print(error);
     });
-    isLoading(false);
   }
 
   String? validateName(String name){
-    if(!GetUtils.isTxt(name)){
-      return "signup_screen_name_validation_error".tr;
+    if(name.isEmpty){
+      return "signup_screen_name_validation_error".tr; 
     }
     return null;
   }
 
-  void validateAddress(String address){
-    if(!GetUtils.isTxt(address)){
-      if(!errors.contains("signup_screen_address_validation_error".tr)){
-        errors.add("signup_screen_address_validation_error".tr);
-      }
-    }else{
-      errors.remove("signup_screen_address_validation_error".tr);
+  String? validateAddress(String address){
+    if(address.isEmpty){
+      return "signup_screen_address_validation_error".tr;
     }
+    return null;
   }
 
-  void validatePhone(String phone) {
+  String? validatePhone(String phone) {
     if (!GetUtils.isPhoneNumber(phone)) {
-      if(!errors.contains("signin_screen_phone_validation_error".tr)){
-        errors.add("signin_screen_phone_validation_error".tr);
-      }
-    }else{
-      errors.remove("signin_screen_phone_validation_error".tr);
+      return "signin_screen_phone_validation_error".tr;
     }
+    return null;
   }
  
-  void validatePassword(String password) {
-    if (!GetUtils.isTxt(password)) {
-      if(!errors.contains("signin_screen_password_validation_error".tr)){
-        errors.add("signin_screen_password_validation_error".tr);
-      }
-    }else{
-      errors.remove("signin_screen_password_validation_error".tr);
+  String? validatePassword(String password) {
+    if (password.isEmpty) {
+      return "signin_screen_password_validation_error".tr;
+    }else if(password.length < 6){
+      return "signup_screen_password_short_validation_error".tr;
     }
+    return null;
   }
 
-  void validatePasswordConfirm(String password) {
-    if (!GetUtils.isTxt(password)) {
-      if(!errors.contains("signup_screen_password_confirm_validation_error".tr)){
-        errors.add("signup_screen_password_confirm_validation_error".tr);
-      }
-    }else{
-      errors.remove("signup_screen_password_confirm_validation_error".tr);
+  String? validatePasswordConfirm(String password) {
+    if (password.isEmpty || passwordController.text != password) {
+      return "signup_screen_password_confirm_validation_error".tr;
     }
+    return null;
   }
 
-
-  void checkSignIn() {
+  // signin a new user
+  signIn() async{
     final isValid = signinFormKey.currentState!.validate();
     if (!isValid) {
+      signinIsLoading.value = false;
       return;
     }
-    signinFormKey.currentState!.save();
+    Map<String, dynamic> formData = {
+      'password': passwordController.text,
+      'phone': phoneController.text,
+      'device_name': deviceName
+    };
+    await _authService.login(formData: formData).then((response) {
+      authUser = response;
+      isLoggedIn(true);
+      signinIsLoading.value = false;
+      Get.offAllNamed('/home');
+    }, onError: (error) {
+      print(error);
+      Get.snackbar(
+        "signup_screen_signin_error_title".tr, 
+        "signup_screen_signin_error_message".tr,
+        backgroundColor: kPrimaryColor,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM
+      );
+      signinIsLoading.value = false;
+    });
   }
 
-  void checkSignUp() {
-
-    print(errors.length);
-    if(errors.isNotEmpty){
+  // signup a new user
+  signUp() async {
+    final isValid = signupFormKey.currentState!.validate();
+    if (!isValid) {
+      signupIsLoading.value = false;
       return;
     }
-
-    // //errors.clear();
+    Map<String, dynamic> formData = {
+      'name': nameController.text,
+      'password': passwordController.text,
+      'password_confirmation': passwordConfirmController.text,
+      'address': addressController.text, 
+      'phone': phoneController.text, 
+      'lat': locationController.lat.value, 
+      'lng': locationController.lng.value,
+      'device_name': deviceName, 
+      'notificationToken': notificationToken
+    };
+    await _authService.register(formData: formData).then((response) {
+      authUser = response;
+      isLoggedIn(true);
+      signupIsLoading.value = false;
+      Get.offAllNamed('/home');
+    }, onError: (error) {
+      print(error);
+      Get.snackbar(
+        "signup_screen_signup_error_title".tr, 
+        "signup_screen_signup_error_message".tr,
+        backgroundColor: kPrimaryColor,
+        colorText: Colors.white,
+        snackPosition: SnackPosition.BOTTOM
+      );
+      signupIsLoading.value = false;
+    });
     
-    // Map<String, dynamic> formData = {
-    //   'name': nameController.text,
-    //   'password': passwordController.text,
-    //   'password_confirmation': passwordConfirmController.text,
-    //   'address': addressController.text, 
-    //   'phone': phoneController.text,
-    //   'lat': locationController.lat.value, 
-    //   'lng': locationController.lng.value,
-    //   'device_name': deviceName, 
-    //   'notificationToken': notificationToken
-    // };
-
-    isLoading.value = false;
-    //print(formData);
   }
 
 }

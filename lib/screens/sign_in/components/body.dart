@@ -47,7 +47,7 @@ class Body extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const VerticalSpacing(of: 1.0),
+                  const VerticalSpacing(of: 3.0),
                   SignForm(), 
                   const VerticalSpacing(of: 1.0),
                   SizedBox(height: getScreenSize(context) * 2.0),
