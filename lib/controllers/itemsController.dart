@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import 'package:ab3ad/models/item.dart';
 import 'package:ab3ad/services/items_service.dart';
 import 'package:flutter/cupertino.dart';

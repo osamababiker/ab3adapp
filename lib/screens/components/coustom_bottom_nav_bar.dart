@@ -5,13 +5,17 @@ import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/enums.dart';
 import 'package:get/get.dart';
 
+import '../../controllers/authController.dart';
+
 class CustomBottomNavBar extends StatelessWidget {
-  const CustomBottomNavBar({
+  CustomBottomNavBar({
     Key? key,
     required this.selectedMenu,
   }) : super(key: key);
 
   final MenuState selectedMenu;
+  final AuthController _authController = 
+  Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +68,13 @@ class CustomBottomNavBar extends StatelessWidget {
                       ? kPrimaryColor
                       : kTextColor,
                 ),
-                onPressed: () => Get.toNamed('/profile')
+                onPressed: () {
+                  if(_authController.authenticated){
+                    Get.toNamed('/profile');
+                  }else{
+                    Get.toNamed('/signin');
+                  }
+                } 
               ),
             ],
           )

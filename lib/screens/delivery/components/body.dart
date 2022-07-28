@@ -3,7 +3,7 @@ import 'package:ab3ad/models/order.dart';
 import 'package:ab3ad/screens/delivery/take_order_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:ab3ad/utils/.env.dart';
+import 'package:get/get.dart';
 import '../../../size_config.dart';
 
 
@@ -29,10 +29,9 @@ class Body extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "بيانات العميل",
-                                style:
-                                    TextStyle(fontSize: 16, color: kTextColor),
+                              Text( 
+                                "delivery_screen_customer_details".tr,
+                                style: const TextStyle(fontSize: 16, color: kTextColor),
                               ),
                               const SizedBox(height: kDefaultPadding / 2),
                               Row(
@@ -64,10 +63,9 @@ class Body extends StatelessWidget {
                                 ],
                               ),
                               Divider(color: kTextColor.withOpacity(0.5)),
-                              const Text(
-                                "تفاصيل الطلب",
-                                style:
-                                    TextStyle(fontSize: 16, color: kTextColor),
+                              Text(
+                                "delivery_screen_order_details".tr,
+                                style: const TextStyle(fontSize: 16, color: kTextColor),
                               ),
                               const SizedBox(height: kDefaultPadding / 2),
                               Padding(
@@ -110,9 +108,9 @@ class Body extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                      const Text(
-                                        " الكمية المطلوبة",
-                                        style: TextStyle(fontSize: 16, color: kTextColor),
+                                      Text(
+                                        "delivery_screen_quantity".tr,
+                                        style: const TextStyle(fontSize: 16, color: kTextColor),
                                       ),
                                       SizedBox(width: getScreenSize(context) * 2.0),
                                       const Text(

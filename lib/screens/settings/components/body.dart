@@ -1,9 +1,14 @@
+import 'package:ab3ad/controllers/settingsController.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ab3ad/constants.dart';
 
 class Body extends StatelessWidget {
-  const Body({ Key? key }) : super(key: key);
   
+  Body({ Key? key }) : super(key: key);
+  final SettingsController _settingsController = 
+  Get.find<SettingsController>();
+
   @override
   Widget build(BuildContext context) {
 
@@ -21,25 +26,43 @@ class Body extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                "Ab3ad \n اصدار :  1.0",
-                style: TextStyle(
-                  fontSize: 16
-                )
-              ),
-              SizedBox(height: 15),
+            children: [ 
               Text.rich(
                 TextSpan(
-                  text: " الايميل \n \n",
-                  style: TextStyle(
+                  text: "app_name".tr,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                   children: [
                     TextSpan(
-                      text: "ab3ad@email.com" ,
-                      style: TextStyle(
+                      text: "settings_screen_app_version".tr ,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.normal,
+                      )
+                    ),
+                    TextSpan(
+                      text: " : ${_settingsController.info.value.appVersion}"
+                    ),
+                  ]
+                )
+              ),
+              const SizedBox(height: 15),
+              Text.rich(
+                TextSpan(
+                  text: "settings_screen_app_email".tr,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  children: [
+                    const TextSpan(
+                      text: "\n \n"
+                    ),
+                    TextSpan(
+                      text: _settingsController.info.value.email,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
                       )
@@ -47,19 +70,22 @@ class Body extends StatelessWidget {
                   ]
                 )
               ),
-              Divider(),
-              SizedBox(height: kDefaultPadding),
+              const Divider(),
+              const SizedBox(height: kDefaultPadding),
               Text.rich(
                 TextSpan(
-                  text: " سياسة الاستخدام والخصوصية \n \n",
-                  style: TextStyle(
+                  text: "settings_screen_app_policy".tr,
+                  style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                   children: [
+                    const TextSpan(
+                      text: "\n \n"
+                    ),
                     TextSpan(
-                      text: "policy",
-                      style: TextStyle(
+                      text: _settingsController.info.value.policy,
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
                       )

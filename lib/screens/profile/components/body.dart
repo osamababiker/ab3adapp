@@ -1,11 +1,16 @@
 
 import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../controllers/authController.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+
+  Body({Key? key}) : super(key: key);
+  final AuthController _authController = 
+  Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -15,25 +20,28 @@ class Body extends StatelessWidget {
         children: [
           const ProfilePic(),
           const VerticalSpacing(of: 2.0),
-          const Text(
-            "osama babiker",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Text(
+            _authController.user.name,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const VerticalSpacing(of: 2.0),
           ProfileMenu(
-            text: "الاعدادات",
-            icon: "assets/icons/Settings.svg",
+            text: "profile_screen_settings_btn".tr,
+            icon: "assets/icons/question_mark.svg",
+            press: () {},
+          ),  
+          ProfileMenu(
+            text: "profile_screen_orders_btn".tr,
+            icon: "assets/icons/bag.svg",
             press: () {},
           ),
           ProfileMenu(
-            text: "طلبات التوصيل",
-            icon: "assets/icons/Settings.svg",
-            press: () {},
-          ),
-          ProfileMenu(
-            text: "تسجيل خروج",
-            icon: "assets/icons/Log out.svg",
-            press: () async {},
+            text: "profile_screen_signout_btn".tr,
+            icon: "assets/icons/Log_out.svg",
+            press: () async {
+              await _authController.signOut();
+              Get.offNamed('/signin');
+            },
           ),
         ],
       ),

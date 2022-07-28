@@ -8,6 +8,13 @@ class AuthService extends GetConnect {
   late String token;
   final storage = const FlutterSecureStorage();
 
+  @override
+  void onInit() {
+    httpClient.defaultContentType = "multipart/form-data";
+    httpClient.timeout = const Duration(seconds: 4);
+    super.onInit();
+  }
+
   Future login({required Map formData}) async {
     final response = await post(loginEndPoint,formData,
       headers: {"Accept": "application/json"},
@@ -15,7 +22,7 @@ class AuthService extends GetConnect {
     if (response.status.hasError) {
       return Future.error(response.statusText.toString());
     } else {
-      String token = response.body['data'].toString();
+      String token = response.body.toString();
       return await tryToken(token: token);
     }
   }
@@ -27,7 +34,7 @@ class AuthService extends GetConnect {
     if(response.status.hasError){
       return Future.error(response.statusText.toString());
     } else {
-      String token = response.body['data'].toString();
+      String token = response.body.toString();
       return await tryToken(token: token);
     }
   }  
@@ -39,7 +46,18 @@ class AuthService extends GetConnect {
       return Future.error(response.statusText.toString());
     } else {
       await storeToken(token: token);
-      return User.fromJson(response.body['data']);
+      return User.fromJson(response.body);
+    }
+  }
+
+  Future<void> logout() async {
+    token = await readToken();
+    final response = await get(logoutEndPoint, 
+    headers: {'Authorization': 'Bearer $token'});
+    if(response.status.hasError){
+      return Future.error(response.statusText.toString());
+    }else {
+      cleanToken();
     }
   }
 
@@ -50,5 +68,9 @@ class AuthService extends GetConnect {
   Future<String> readToken() async {
     String token = await storage.read(key: 'token') as String;
     return token;
+  }
+
+  void cleanToken() async {
+    await storage.delete(key: 'token');
   }
 }

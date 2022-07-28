@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:ab3ad/screens/components/default_button.dart';
+import 'package:get/get.dart';
 import '../../../size_config.dart';
 
 class CheckoutCard extends StatelessWidget {
@@ -44,17 +45,29 @@ class CheckoutCard extends StatelessWidget {
             //       contentPadding: EdgeInsets.all(kDefaultPadding),
             //     )),
             // SizedBox(height: getScreenSize(context) * 2.0),
-            Row(
+            Row( 
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text.rich(
+                Text.rich(
                   TextSpan(
-                    text: "المجموع :\n",
                     children: [
                       TextSpan(
-                        text: "1200 جنيه",
-                        style: TextStyle(
-                            fontSize: 16, color: Colors.black),
+                        text: "cart_screen_check_out_total".tr,
+                        style: const TextStyle(
+                          fontSize: 16, color: Colors.black
+                        ),
+                      ),
+                      const TextSpan(
+                        text: "\n"
+                      ),
+                      TextSpan(
+                        text: "1200",
+                        style: const TextStyle(
+                          fontSize: 16, color: Colors.black
+                        ),
+                      ),
+                      TextSpan(
+                        text: "cart_screen_check_out_currancy".tr
                       ),
                     ],
                   ),
@@ -62,7 +75,7 @@ class CheckoutCard extends StatelessWidget {
                 SizedBox(
                   width: getScreenSize(context) * 25.0,
                   child: DefaultButton(
-                    text: "اختر موقع التوصيل",
+                    text: "cart_screen_check_out_delivery_btn".tr,
                     press: () {},
                   ),
                 ),

@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         ) 
         : Body(categories: _categoriesController.categoriesList)
       )),
-      bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.home),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.home),
     );
   }
 }

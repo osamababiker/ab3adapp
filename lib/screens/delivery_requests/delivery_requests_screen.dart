@@ -21,7 +21,7 @@ class DeliveryRequestsScreen extends StatelessWidget {
           ),
         ),
         body: Body(),
-        bottomNavigationBar:  const CustomBottomNavBar(selectedMenu: MenuState.orders),
+        bottomNavigationBar:  CustomBottomNavBar(selectedMenu: MenuState.orders),
       ),
     );
   }

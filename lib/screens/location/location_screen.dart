@@ -20,7 +20,7 @@ class LocationScreen extends StatelessWidget {
         ),
       ),  
       body: Body(),
-      bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.map)
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.map)
     );
   }
 }

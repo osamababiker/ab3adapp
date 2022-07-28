@@ -3,7 +3,6 @@ import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/controllers/locationController.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
@@ -79,9 +78,9 @@ class AuthController extends GetxController {
     String token = await _authService.readToken();
     await _authService.tryToken(token: token).then((response) {
       authUser = response; 
-      isLoggedIn(true);
+      isLoggedIn.value = true;
     }, onError: (error) {
-      print(error);
+      print("error: $error");
     });
   }
 
@@ -140,7 +139,6 @@ class AuthController extends GetxController {
       signinIsLoading.value = false;
       Get.offAllNamed('/home');
     }, onError: (error) {
-      print(error);
       Get.snackbar(
         "signup_screen_signin_error_title".tr, 
         "signup_screen_signin_error_message".tr,
@@ -176,7 +174,6 @@ class AuthController extends GetxController {
       signupIsLoading.value = false;
       Get.offAllNamed('/home');
     }, onError: (error) {
-      print(error);
       Get.snackbar(
         "signup_screen_signup_error_title".tr, 
         "signup_screen_signup_error_message".tr,
@@ -186,7 +183,10 @@ class AuthController extends GetxController {
       );
       signupIsLoading.value = false;
     });
-    
+  }
+
+  signOut() async{
+    await _authService.logout();
   }
 
 }

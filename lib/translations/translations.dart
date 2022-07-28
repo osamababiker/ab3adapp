@@ -35,6 +35,15 @@ final Map<String, String> ar = {
   'cart_screen_title': 'عربة التسوق الخاصة بك',
   'cart_screen_item_deleted_title': 'تم الحذف بنجاح',
   'cart_screen_item_deleted_title_message': 'تم حذف العنصر من سلة التسوق بنجاح',
+  'cart_screen_check_out_total': 'المجموع',
+  'cart_screen_check_out_currancy': 'جنيه',
+  'cart_screen_check_out_delivery_btn': 'اختر موقع التوصيل',
+
+  /** delivery screen */
+  'delivery_screen_title': 'طلبات التوصيل',
+  'delivery_screen_customer_details': 'تفاصيل العميل',
+  'delivery_screen_order_details': 'تفاصيل الطلب',
+  'delivery_screen_quantity': 'الكمية',
 
   /** location screen */
   'location_screen_title': 'اختر موقع التوصيل',
@@ -77,7 +86,19 @@ final Map<String, String> ar = {
   'signup_screen_password_confirm_validation_error': 'كلمة المرور التي ادخلتها غير مطابقة',
   'signup_screen_password_short_validation_error': 'يجب ان تحتوي كلمة المرور على 6 حروف على الاقل',
   'signup_screen_signup_error_title': 'مشكلة في انشاء حساب',
-  'signup_screen_signup_error_message': 'مشكلة في انشاء الحساب الرجاء المحاولة في وقت اخر'
+  'signup_screen_signup_error_message': 'مشكلة في انشاء الحساب الرجاء المحاولة في وقت اخر',
+
+  /**  profile screen */
+  'profile_screen_title': 'الملف الشخصي',
+  'profile_screen_settings_btn': 'الاعدادات',
+  'profile_screen_orders_btn': 'طلبات التوصيل',
+  'profile_screen_signout_btn': 'تسجيل خروج',
+
+  /** settings screen */
+  'settings_screen_title': 'معلومات عن التطبيق',
+  'settings_screen_app_version': 'الاصدار',
+  'settings_screen_app_email': 'الايميل',
+  'settings_screen_app_policy': 'سياسة الاستخدام والخصوصية'
   
 };
 
@@ -108,6 +129,15 @@ final Map<String, String> en = {
   'cart_screen_title': 'Your shopping cart',
   'cart_screen_item_deleted_title': 'Deleted successfully',
   'cart_screen_item_deleted_title_message': 'Item has been deleted successfully',
+  'cart_screen_check_out_total': 'Total',
+  'cart_screen_check_out_currancy': 'Pound',
+  'cart_screen_check_out_delivery_btn': 'Choose delivery location',
+
+  /** delivery screen */
+  'delivery_screen_title': 'Delivery Request',
+  'delivery_screen_customer_details': 'Customer details',
+  'delivery_screen_order_details': 'Order details',
+  'delivery_screen_quantity': 'Quantity',
 
   /** location screen */
   'location_screen_title': 'Choose a delivery location',
@@ -149,6 +179,18 @@ final Map<String, String> en = {
   'signup_screen_password_confirm_validation_error': 'The password you entered does not match',
   'signup_screen_password_short_validation_error': 'Password must contain at least 6 characters',
   'signup_screen_signup_error_title': 'Problem sign you up',
-  'signup_screen_signup_error_message': 'Problem sign you up , please try again later'
+  'signup_screen_signup_error_message': 'Problem sign you up , please try again later',
+
+  /**  profile screen */
+  'profile_screen_title': 'Your Profile',
+  'profile_screen_settings_btn': 'Settings',
+  'profile_screen_orders_btn': 'Delivery requests',
+  'profile_screen_signout_btn': 'Sign out',
+
+  /** settings screen */
+  'settings_screen_title': 'Info about the app',
+  'settings_screen_app_version': 'Version',
+  'settings_screen_app_email': 'Email',
+  'settings_screen_app_policy': 'Usage and Privacy Policy'
 
 };

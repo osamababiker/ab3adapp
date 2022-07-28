@@ -22,13 +22,18 @@ import 'package:get/get.dart';
 
 class Routes {
   static final routes = [
-    GetPage(name: '/splash', page: () => const SplashScreen()),
+    GetPage(
+      name: '/splash', 
+      page: () => const SplashScreen(),
+      binding: AuthControllerBinding()
+    ),
     GetPage(
       name: '/home', 
       page: () => HomeScreen(),
       bindings: [
         CategoriesControllersBindings(),
-        CartControllersBindings()
+        CartControllersBindings(),
+        AuthControllerBinding()
       ]
     ),
     GetPage(
@@ -47,7 +52,8 @@ class Routes {
       bindings: [
         ItemsControllersBindings(),
         ImageControllersBindings(),
-        CartControllersBindings()
+        CartControllersBindings(),
+        AuthControllerBinding()
       ] 
     ),
     GetPage(
@@ -56,22 +62,30 @@ class Routes {
       bindings: [
         LocationControllersBindings(),
         CartControllersBindings(), 
-        OrdersControllersBindings()
+        OrdersControllersBindings(),
+        AuthControllerBinding()
       ]
     ),
     GetPage(
       name: '/settings', 
       page: () => const SettingsScreen(),
-      binding: SettingsControllersBindings()
+      bindings: [
+        SettingsControllersBindings(),
+        AuthControllerBinding(),
+      ]
     ),
     GetPage(
       name: '/profile', 
-      page: () => const ProfileScreen()
+      page: () => const ProfileScreen(),
+      binding: AuthControllerBinding()
     ),
     GetPage(
       name: '/cart', 
       page: () => const CartScreen(),
-      binding: CartControllersBindings()
+      bindings: [
+        CartControllersBindings(),
+        AuthControllerBinding() 
+      ]
     ),
     GetPage(
       name: '/orderComplete', 

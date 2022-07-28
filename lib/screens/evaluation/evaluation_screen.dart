@@ -27,7 +27,7 @@ class EvaluationScreen extends StatelessWidget {
           ),
         ),
         body: const Body(),
-        bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.orders),
+        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.orders),
       ),
     );
   }

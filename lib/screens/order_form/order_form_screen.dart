@@ -42,7 +42,7 @@ class OrderFormScreen extends StatelessWidget {
           ));
         }
       ),
-      bottomNavigationBar: const CustomBottomNavBar(selectedMenu: MenuState.orderForm),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.orderForm),
     );
   }
 }
