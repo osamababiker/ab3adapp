@@ -11,7 +11,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+ 
     Size size = MediaQuery.of(context).size;
 
     return Padding(
@@ -43,7 +43,7 @@ class Body extends StatelessWidget {
                       )
                     ),
                     TextSpan(
-                      text: " : ${_settingsController.info.value.appVersion}"
+                      text: " : ${_settingsController.info.appVersion}"
                     ),
                   ]
                 )
@@ -61,7 +61,7 @@ class Body extends StatelessWidget {
                       text: "\n \n"
                     ),
                     TextSpan(
-                      text: _settingsController.info.value.email,
+                      text: _settingsController.info.email,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,
@@ -84,7 +84,7 @@ class Body extends StatelessWidget {
                       text: "\n \n"
                     ),
                     TextSpan(
-                      text: _settingsController.info.value.policy,
+                      text: _settingsController.info.policy,
                       style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.normal,

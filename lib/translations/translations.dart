@@ -44,6 +44,14 @@ final Map<String, String> ar = {
   'delivery_screen_customer_details': 'تفاصيل العميل',
   'delivery_screen_order_details': 'تفاصيل الطلب',
   'delivery_screen_quantity': 'الكمية',
+  'delivery_screen_no_orders': 'لا توجد طلبات توصيل لعرضها حاليا',
+
+  /** delivery requests screen */
+  'delivery_requests_screen_title': 'طلبات التوصيل',
+  'delivery_requests_customer_details': 'تفاصيل العميل',
+  'delivery_requests_order_details': 'تفاصيل الطلب',
+  'delivery_requests_quantity': 'الكمية',
+  'delivery_requests_no_requests': 'لا توجد طلبات توصيل لعرضها حاليا',
 
   /** location screen */
   'location_screen_title': 'اختر موقع التوصيل',
@@ -134,10 +142,18 @@ final Map<String, String> en = {
   'cart_screen_check_out_delivery_btn': 'Choose delivery location',
 
   /** delivery screen */
-  'delivery_screen_title': 'Delivery Request',
+  'delivery_screen_title': 'Delivery orders',
   'delivery_screen_customer_details': 'Customer details',
   'delivery_screen_order_details': 'Order details',
   'delivery_screen_quantity': 'Quantity',
+  'delivery_screen_no_orders': 'No delivery order found',
+
+  /** delivery requests screen */
+  'delivery_requests_screen_title': 'Delivery requests',
+  'delivery_requests_customer_details': 'Customer Details',
+  'delivery_requests_order_details': 'Order Details',
+  'delivery_requests_quantity': 'Quantity',
+  'delivery_requests_no_requests': 'No delivery requests found',
 
   /** location screen */
   'location_screen_title': 'Choose a delivery location',

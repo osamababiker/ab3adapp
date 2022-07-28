@@ -46,15 +46,6 @@ class AuthController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    phoneController.dispose();
-    nameController.dispose();
-    addressController.dispose();
-    passwordController.dispose();
-    passwordConfirmController.dispose();
-    super.onClose();
-  }
 
   void getNotificationToken() =>
     FirebaseMessaging.instance.getToken().then((value) => notificationToken = value.toString());

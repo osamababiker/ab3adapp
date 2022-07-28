@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Obx((() =>   
-        _categoriesController.isLoading.value 
+        _categoriesController.isLoading.value  
         ? Center(
           child: SizedBox(
             width: getScreenSize(context) * 4.0,

@@ -28,12 +28,20 @@ class Body extends StatelessWidget {
           ProfileMenu(
             text: "profile_screen_settings_btn".tr,
             icon: "assets/icons/question_mark.svg",
-            press: () {},
+            press: () {
+              Get.toNamed('/settings');
+            },
           ),  
           ProfileMenu(
             text: "profile_screen_orders_btn".tr,
             icon: "assets/icons/bag.svg",
-            press: () {},
+            press: () {
+              if(_authController.user.isDriver == 1){
+
+              }else {
+                Get.toNamed('/orders');
+              }
+            },
           ),
           ProfileMenu(
             text: "profile_screen_signout_btn".tr,

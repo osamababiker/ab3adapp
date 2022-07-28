@@ -13,4 +13,12 @@ const fetchCategoriesEndPoint = baseUri + '/categories';
 const fetchOrdersEndPoint = baseUri + '/orders';
 const sendOrderEndPoint = baseUri + '/orders/create';
 
+const fetchDeliveryRequestsEndPoint = baseUri + '/delivery/request';
+const fetchAcceptedRequestsEndPoint = baseUri + '/delivery/request/accepted';
+const sendDeliveryRequestEndPoint = baseUri + '/delivery/request/store';
+const orderCompleteEndPoint = baseUri + '/delivery/order/complete';
+
+const fetchevaluationEndPoint = baseUri + '/evaluation';
+const saveEvaluationEndPoint = baseUri + '/evaluation/save';
+
 const settingsEndPoint = baseUri + '/settings';

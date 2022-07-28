@@ -4,18 +4,18 @@ import 'package:get/get.dart';
 import '../models/setting.dart';
 
 class SettingsController extends GetxController{
-  var isLoading = false.obs;
-  late Rx<Setting> info;
+  var isLoading = true.obs;
+  late Setting info;
   final SettingsService _settingsService = SettingsService();
   @override
-  void onInit() {
+  void onInit() { 
     super.onInit();
     fetchSettings();
   }
 
   Future fetchSettings() async{ 
     await _settingsService.fetchSettings().then((response) {
-      info.value = response;
+      info = response;
     }, onError: (error) {
       print(error);
     });

@@ -11,14 +11,31 @@ class OrdersService extends GetConnect{
     return responseBody.map<Order>((json) => Order.fromJson(json)).toList();
   }
 
-  Future<List<Order>> fetchOrders() async {
-    final response = await get(fetchOrdersEndPoint); 
+  Future<List<Order>> fetchOrders({required String ordersEndPoint}) async {
+    String token = await storage.read(key: 'token') as String;
+    final response = await get(
+      ordersEndPoint,
+      headers: {'Authorization': 'Bearer $token'}
+    ); 
     if (response.status.hasError) {
       return Future.error(response.statusText.toString());
     } else {
       return parseOrders(response.body['data']);
     }  
-  }
+  } 
+
+  Future<Order> fetchSingleOrder({required int orderId}) async {
+    String token = await storage.read(key: 'token') as String;
+    final response = await get(
+      "$fetchOrdersEndPoint/$orderId",
+      headers: {'Authorization': 'Bearer $token'}
+    ); 
+    if (response.status.hasError) {
+      return Future.error(response.statusText.toString());
+    } else {
+      return Order.fromJson(response.body['data']);
+    }  
+  } 
   
 
   Future<Order> sendOrder({required Map formData}) async {
@@ -35,4 +52,5 @@ class OrdersService extends GetConnect{
       return response.body['data'];
     }
   }
+  
 }
