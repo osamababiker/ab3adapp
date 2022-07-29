@@ -18,6 +18,19 @@ final Map<String, String> ar = {
   'home_screen_discount_section_action': 'أطلب الان',
   'home_screen_header_section_search_label': 'حدد مكان التوصيل ',
 
+  /** orders screen */
+  'orders_screen_title': 'طلباتي السابقة',
+  'orders_screen_quantity': 'الكمية المطلوبة',
+  'orders_screen_order_status': 'حالة الطلب',
+  'orders_screen_pending': 'قيد الانتظار',
+  'orders_screen_delivery': 'قيد التوصيل',
+  'orders_screen_delivered': 'تم التوصيل',
+  'orders_screen_canceled': 'تم الالغاء',
+  'orders_screen_done': 'تم الاستلام',
+  'orders_screen_no_orders': 'لا توجد طلبات لعرضها حاليا',
+  'orders_screen_update_error_title': 'مشكلة في التحديث',
+  'orders_screen_update_error_message': 'هناك مشكلة في تحديث حالة الطلب',
+
   /** order form screen */
   'order_form_screen_title': ' اضافة الطلب للسلة',
   'order_form_screen_quantity_label': 'العدد المطلوب',
@@ -52,6 +65,17 @@ final Map<String, String> ar = {
   'delivery_requests_order_details': 'تفاصيل الطلب',
   'delivery_requests_quantity': 'الكمية',
   'delivery_requests_no_requests': 'لا توجد طلبات توصيل لعرضها حاليا',
+
+  /** evaluation screen */
+  'evaluation_screen_title': 'تقييم الخدمة',
+  'evaluation_screen_rating_label': 'قيم تجربتك من 1 الى 5',
+  'evaluation_screen_review_label': 'رجاءا اخبرنا اكثر عن تجربتك',
+  'evaluation_screen_send_btn': 'ارسال التقييم',
+  'evaluation_screen_review_field_error': 'الرجاء كتابة نعليق صحيح',
+  'evaluation_screen_error_title': 'مشكلة في ارسال التقييم',
+  'evaluation_screen_error_message': 'هناك مشكلة في ارسال التقييم',
+  'evaluation_screen_success_title': 'تم ارسال التقييم',
+  'evaluation_screen_success_message': 'تم ارسال تقييم بنجاح',
 
   /** location screen */
   'location_screen_title': 'اختر موقع التوصيل',
@@ -106,7 +130,8 @@ final Map<String, String> ar = {
   'settings_screen_title': 'معلومات عن التطبيق',
   'settings_screen_app_version': 'الاصدار',
   'settings_screen_app_email': 'الايميل',
-  'settings_screen_app_policy': 'سياسة الاستخدام والخصوصية'
+  'settings_screen_app_policy': 'سياسة الاستخدام والخصوصية',
+  'settings_screen_change_langauge': 'تغيير اللغة'
   
 };
 
@@ -120,6 +145,19 @@ final Map<String, String> en = {
   'home_screen_discount_section_action': 'Order now',
   'home_screen_header_section_search_label': 'Search delivery location',
   
+  /** orders screen */
+  'orders_screen_title': 'My previous orders',
+  'orders_screen_quantity': 'Required quantity',
+  'orders_screen_order_status': 'Order status',
+  'orders_screen_pending': 'Is Pending',
+  'orders_screen_delivery': 'In delivery',
+  'orders_screen_delivered': 'Is delivered',
+  'orders_screen_canceled': 'Is canceled',
+  'orders_screen_done': 'It was received',
+  'orders_screen_no_orders': 'There are no orders to display at this time',
+  'orders_screen_update_error_title': 'Problem updating',
+  'orders_screen_update_error_message': 'There is a problem updating the status of the request',
+
   /** order form screen */
   'order_form_screen_title': 'Add order to cart',
   'order_form_screen_quantity_label': 'The required number',
@@ -154,6 +192,17 @@ final Map<String, String> en = {
   'delivery_requests_order_details': 'Order Details',
   'delivery_requests_quantity': 'Quantity',
   'delivery_requests_no_requests': 'No delivery requests found',
+
+  /** evaluation screen */
+  'evaluation_screen_title': 'Service evaluation',
+  'evaluation_screen_rating_label': 'Rate your experience from 1 to 5',
+  'evaluation_screen_review_label': 'Please tell us more about your experience.',
+  'evaluation_screen_send_btn': 'send evaluation',
+  'evaluation_screen_review_field_error': 'Please write a valid reviwe.',
+  'evaluation_screen_error_title': 'Error sending evaluation',
+  'evaluation_screen_error_message': 'There is a problem sending the evaluation.',
+  'evaluation_screen_success_title': 'Send successfully',
+  'evaluation_screen_success_message': 'Evaluation has been sent successfully.',
 
   /** location screen */
   'location_screen_title': 'Choose a delivery location',
@@ -207,6 +256,7 @@ final Map<String, String> en = {
   'settings_screen_title': 'Info about the app',
   'settings_screen_app_version': 'Version',
   'settings_screen_app_email': 'Email',
-  'settings_screen_app_policy': 'Usage and Privacy Policy'
+  'settings_screen_app_policy': 'Usage and Privacy Policy',
+  'settings_screen_change_langauge': 'Change language'
 
 };

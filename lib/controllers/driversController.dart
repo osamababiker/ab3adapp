@@ -39,7 +39,7 @@ class DriversController extends GetxController{
       print(error);
     });
     isLoading(false);
-  }
+  } 
 
   Future<bool> sendDeliveryRequest({required Map formData}) async {
     isLoading(true);

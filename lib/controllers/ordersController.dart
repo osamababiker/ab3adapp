@@ -28,7 +28,7 @@ class OrdersController extends GetxController{
       ordersList.value = response;
     }, onError: (error) {});
     isLoading(false);
-  }
+  } 
 
   Future fetchSingleOrder({required int orderId}) async{
     isLoading(true);
@@ -44,4 +44,14 @@ class OrdersController extends GetxController{
     isLoading(false);
     return true;
   }
+
+  Future updateOrder({required var formData}) async {
+    isLoading(true);
+    await _ordersService.updateOrder(formData: formData);
+    isLoading(false);
+    return true;
+  }
+
+
+
 }

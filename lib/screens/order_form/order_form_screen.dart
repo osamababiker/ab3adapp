@@ -13,7 +13,8 @@ class OrderFormScreen extends StatelessWidget {
   OrderFormScreen({Key? key}) : super(key: key);
 
   final ItemsController _itemsController = 
-    Get.find<ItemsController>();
+  Get.find<ItemsController>();
+  
   @override
   Widget build(BuildContext context) { 
     final Category categoryAgrs = ModalRoute.of(context)!.settings.arguments as Category;

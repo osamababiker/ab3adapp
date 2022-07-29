@@ -1,4 +1,5 @@
 
+import 'package:ab3ad/controllers/cartController.dart';
 import 'package:flutter/material.dart';
 import 'package:ab3ad/screens/components/default_button.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,9 @@ class CheckoutCard extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+
+    final CartDbController _cartController = 
+    Get.find<CartDbController>();
 
     return Container(
       padding: EdgeInsets.symmetric(
@@ -45,41 +49,48 @@ class CheckoutCard extends StatelessWidget {
             //       contentPadding: EdgeInsets.all(kDefaultPadding),
             //     )),
             // SizedBox(height: getScreenSize(context) * 2.0),
-            Row( 
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text.rich(
-                  TextSpan(
-                    children: [
+            FutureBuilder(
+              future: _cartController.getCartTotal(),
+              builder: (context, AsyncSnapshot snapshot) {
+                return Row( 
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text.rich(
                       TextSpan(
-                        text: "cart_screen_check_out_total".tr,
-                        style: const TextStyle(
-                          fontSize: 16, color: Colors.black
-                        ),
+                        children: [
+                          TextSpan(
+                            text: "cart_screen_check_out_total".tr,
+                            style: const TextStyle(
+                              fontSize: 16, color: Colors.black
+                            ),
+                          ),
+                          const TextSpan(
+                            text: "\n"
+                          ),
+                          TextSpan(
+                            text: _cartController.isLoading.value ? "" : "${snapshot.data} ",
+                            style: const TextStyle(
+                              fontSize: 16, color: Colors.black
+                            ),
+                          ),
+                          TextSpan(
+                            text: "cart_screen_check_out_currancy".tr
+                          ),
+                        ],
                       ),
-                      const TextSpan(
-                        text: "\n"
+                    ),
+                    SizedBox(
+                      width: getScreenSize(context) * 20.0,
+                      child: DefaultButton(
+                        text: "cart_screen_check_out_delivery_btn".tr,
+                        press: () {
+                          Get.toNamed('/location');
+                        },
                       ),
-                      TextSpan(
-                        text: "1200",
-                        style: const TextStyle(
-                          fontSize: 16, color: Colors.black
-                        ),
-                      ),
-                      TextSpan(
-                        text: "cart_screen_check_out_currancy".tr
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: getScreenSize(context) * 25.0,
-                  child: DefaultButton(
-                    text: "cart_screen_check_out_delivery_btn".tr,
-                    press: () {},
-                  ),
-                ),
-              ],
+                    ),
+                  ],
+                );
+              }
             ),
           ],
         ),

@@ -8,12 +8,6 @@ class AuthService extends GetConnect {
   late String token;
   final storage = const FlutterSecureStorage();
 
-  @override
-  void onInit() {
-    httpClient.defaultContentType = "multipart/form-data";
-    httpClient.timeout = const Duration(seconds: 4);
-    super.onInit();
-  }
 
   Future login({required Map formData}) async {
     final response = await post(loginEndPoint,formData,
@@ -66,8 +60,9 @@ class AuthService extends GetConnect {
   }
 
   Future<String> readToken() async {
-    String token = await storage.read(key: 'token') as String;
-    return token;
+    var token = await storage.read(key: 'token');
+    if(token != null) return token.toString();
+    return '';
   }
 
   void cleanToken() async {

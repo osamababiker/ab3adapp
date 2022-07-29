@@ -1,7 +1,4 @@
-
-
 import 'dart:io';
-
 import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/controllers/cartController.dart';
 import 'package:ab3ad/controllers/imagePickerController.dart';
@@ -9,7 +6,6 @@ import 'package:ab3ad/controllers/itemsController.dart';
 import 'package:ab3ad/models/category.dart';
 import 'package:ab3ad/models/item.dart';
 import 'package:ab3ad/screens/components/default_button.dart';
-import 'package:ab3ad/screens/components/form_error.dart';
 import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -305,12 +301,12 @@ class Body extends StatelessWidget {
                             "order_form_screen_add_to_cart_title".tr,
                             "order_form_screen_add_to_cart_message".tr,
                             snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: kPrimaryLightColor
+                            backgroundColor: kPrimaryLightColor,
+                            colorText: Colors.white
                           );
                         }
                       ),
                       const SizedBox(height: kDefaultPadding / 2),
-                      const FormError(errors: []),
                     ],
                   ),
                 ),

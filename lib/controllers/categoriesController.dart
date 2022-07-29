@@ -14,6 +14,7 @@ class CategoriesController extends GetxController{
   }
 
   Future fetchCategories() async{
+    isLoading(true);
     await _categoriesService.fetchCategories().then((response) {
       categoriesList.value = response;
     }, onError: (error) {

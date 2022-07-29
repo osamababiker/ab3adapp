@@ -18,6 +18,8 @@ const fetchAcceptedRequestsEndPoint = baseUri + '/delivery/request/accepted';
 const sendDeliveryRequestEndPoint = baseUri + '/delivery/request/store';
 const orderCompleteEndPoint = baseUri + '/delivery/order/complete';
 
+const updateOrderEndPoint = baseUri + '/order/update';
+
 const fetchevaluationEndPoint = baseUri + '/evaluation';
 const saveEvaluationEndPoint = baseUri + '/evaluation/save';
 

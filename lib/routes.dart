@@ -101,6 +101,7 @@ class Routes {
       page: () => DeliveryScreen(),
       bindings: [
         OrdersControllersBindings(),
+        AuthControllerBinding()
       ]
     ),
     GetPage(
@@ -124,7 +125,9 @@ class Routes {
       name: '/evaluation', 
       page: () => const EvaluationScreen(),
       bindings: [
-        EvaluationsControllersBindings()
+        EvaluationsControllersBindings(),
+        DriversControllersBindings(),
+        AuthControllerBinding()
       ]
     )
   ];

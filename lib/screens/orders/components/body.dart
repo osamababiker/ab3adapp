@@ -1,11 +1,24 @@
 import 'package:ab3ad/constants.dart';
+import 'package:ab3ad/controllers/authController.dart';
+import 'package:ab3ad/models/order.dart';
 import 'package:ab3ad/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+import '../../../controllers/ordersController.dart';
+import '../../../utils/.env.dart';
 
 
 class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+
+  Body({Key? key, required this.orders}) : super(key: key);
+  final List<Order> orders;
+  final AuthController _authController = 
+  Get.find<AuthController>();
+  final OrdersController _ordersController = 
+  Get.find<OrdersController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -17,15 +30,13 @@ class Body extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
-              children: List.generate(4,(index) => Column(
+              children: List.generate(orders.length,(index) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:
-                        const EdgeInsets.all(kDefaultPadding / 2),
+                    padding: const EdgeInsets.all(kDefaultPadding / 2),
                     child: Row(
-                      mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(children: [
                           SizedBox(
@@ -36,33 +47,33 @@ class Body extends StatelessWidget {
                                 SizedBox(
                                   width: getScreenSize(context) * 4.0,
                                   height: getScreenSize(context) * 4.0,
-                                  child: Image.asset("assets/images/item_1.jpg"),
-                                  // child: FadeInImage.assetNetwork(
-                                  //   imageErrorBuilder:
-                                  //       (context, error, stackTrace) {
-                                  //     return Image.asset("assets/images/spinner.gif");
-                                  //   },
-                                  //   placeholder: "assets/images/spinner.gif",
-                                  //   image: "$uploadUri/items/${widget.orders[index].item.image}"
-                                  // )
+                                  child: FadeInImage.assetNetwork(
+                                    imageErrorBuilder:
+                                        (context, error, stackTrace) {
+                                      return Image.asset("assets/images/spinner.gif");
+                                    },
+                                    placeholder: "assets/images/spinner.gif",
+                                    image: "$uploadUri/items/${orders[index].item.image}"
+                                  )
                                 ),
                                 const VerticalSpacing(of: 1.0),
-                                const Text("غاز ايران",
-                                  style: TextStyle(fontSize: 16,color: kTextColor),
+                                Text(
+                                  orders[index].item.name,
+                                  style: const TextStyle(fontSize: 16,color: kTextColor),
                                 )
                               ],
                             ),
                           ),
-                          const Text(
-                            " الكمية المطلوبة",
-                            style: TextStyle(
+                          Text(
+                            "orders_screen_quantity".tr,
+                            style: const TextStyle(
                                 fontSize: 16, color: kTextColor),
                           ),
                           SizedBox(
                               width: getScreenSize(context) * 2.0),
-                          const Text(
-                            "4",
-                            style: TextStyle(
+                          Text(
+                            "${orders[index].quantity}",
+                            style: const TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
                           ),
@@ -84,7 +95,7 @@ class Body extends StatelessWidget {
                                   color: Colors.white),
                             ),
                           ),
-                        )
+                        )  
                       ],
                     ),
                   ),
@@ -92,16 +103,24 @@ class Body extends StatelessWidget {
                     padding:
                         const EdgeInsets.all(kDefaultPadding / 2),
                     child: Row(
-                      children: const [
+                      children: [
                         Text(
-                          "حالة الطلب",
-                          style: TextStyle(
+                          "orders_screen_order_status".tr,
+                          style: const TextStyle(
                               fontSize: 16, color: kTextColor),
                         ),
-                        SizedBox(width: kDefaultPadding / 4),
+                        const SizedBox(width: kDefaultPadding / 4),
                         Text(
-                          " قيد الانتظار ",
-                          style: TextStyle(
+                          orders[index].status == 0 ? 
+                          "orders_screen_pending".tr 
+                          : orders[index].status == 1 ?  
+                          "orders_screen_delivery".tr
+                          : orders[index].status == 2 ? 
+                          "orders_screen_delivered".tr
+                          : orders[index].status == 3 ?
+                          "orders_screen_canceled".tr
+                          : "",
+                          style: const TextStyle(
                               fontSize: 16,
                               color: kTextColor,
                               fontStyle: FontStyle.italic),
@@ -112,7 +131,24 @@ class Body extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(kDefaultPadding / 2),
                     child: GestureDetector(
-                        onTap: () async {},
+                        onTap: () async {
+                          Map formData = {
+                            'customerId': _authController.user.id,
+                            'orderId': orders[index].id
+                          };
+                          bool checkUpdate = await _ordersController.updateOrder(formData: formData);
+                          if(checkUpdate){
+                            Get.toNamed('/evaluation', arguments: orders[index]);
+                          }else{
+                            Get.snackbar(
+                              "orders_screen_update_error_title".tr, 
+                              "orders_screen_update_error_message".tr,
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: kPrimaryColor,
+                              colorText: Colors.white
+                            );
+                          }
+                        },
                         child: Column(
                           children: [
                             Container(
@@ -128,9 +164,9 @@ class Body extends StatelessWidget {
                                 child: Icon(Icons.check, color: Colors.white),
                               ),
                             ),
-                            const Text(
-                              "تم الاستلام",
-                              style: TextStyle(
+                            Text(
+                              "orders_screen_done".tr,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: kTextColor
                               ),

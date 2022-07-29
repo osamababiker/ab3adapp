@@ -74,7 +74,8 @@ class Body extends StatelessWidget {
                             'cart_screen_item_deleted_title'.tr,
                             'cart_screen_item_deleted_title_message'.tr,
                             snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: kPrimaryLightColor
+                            backgroundColor: kPrimaryLightColor,
+                            colorText: Colors.white
                           );
                         },
                         child: Container(

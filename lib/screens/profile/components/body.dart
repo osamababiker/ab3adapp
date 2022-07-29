@@ -37,7 +37,7 @@ class Body extends StatelessWidget {
             icon: "assets/icons/bag.svg",
             press: () {
               if(_authController.user.isDriver == 1){
-
+                Get.toNamed('/deliveryRequests');
               }else {
                 Get.toNamed('/orders');
               }

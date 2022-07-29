@@ -12,17 +12,24 @@ class LocationControler extends GetxController {
   var zoom = 19.151926040649414.obs;
 
   Completer<GoogleMapController> mapController = Completer();
-  Map<MarkerId, Marker> markers = {};
+  late Map<MarkerId, Marker> markers = {};
   late StreamSubscription<Position> streamSubscription;
 
   @override
   void onInit() { 
     super.onInit();
-    getLocation(); 
     setMarkers();
   }
 
+  Future setMarkers() async {
+    isLoading(true);
+    await getLocation(); 
+    addMarker(LatLng(lat.value, lng.value), "موقعك", BitmapDescriptor.defaultMarker);
+    isLoading(false);
+  }
+
   Future getLocation() async {
+    isLoading(true);
     bool serviceEnabled;
     LocationPermission permission;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -52,6 +59,7 @@ class LocationControler extends GetxController {
       lng.value = position.longitude;
       getAddressFromLatLng(position);
     });
+    isLoading(false);
   }
 
   Future<void> getAddressFromLatLng(Position position) async {
@@ -61,22 +69,19 @@ class LocationControler extends GetxController {
     address.value = '${place.locality}, ${place.country}';
   }
 
-  Future setMarkers() async {
-    addMarker(
-        LatLng(lat.value, lng.value), "موقعك", BitmapDescriptor.defaultMarker);
-  }
-
   addMarker(LatLng position, String id, BitmapDescriptor descriptor) {
     MarkerId markerId = MarkerId(id);
-    Marker marker =
-        Marker(markerId: markerId, icon: descriptor, position: position);
+    Marker marker = Marker(markerId: markerId, icon: descriptor, position: position);
     markers[markerId] = marker;
     return markers;
   }
  
   Future<List<Location>> getCoordinates({required String address}) async {
+    isLoading(true);
     List<Location> locations = await locationFromAddress(address);
-    print(locations);
+    lat.value = locations[0].latitude;
+    lng.value = locations[0].longitude;
+    isLoading(false);
     return locations;
   }
 

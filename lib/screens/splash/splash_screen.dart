@@ -28,6 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> isAuthenticated() async{
     await _authController.tryToken();
     if(_authController.authenticated){
+      print('finr');
       Get.offNamed('/home');
     }else{
       startTime();
