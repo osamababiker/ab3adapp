@@ -37,7 +37,7 @@ class SignForm extends StatelessWidget {
           : DefaultButton(
             text: "signin_screen_btn".tr,
             press: () async {
-              _authController.signinIsLoading.value = true;
+              _authController.signinIsLoading(true);
               _authController.signIn(); 
             }
           )

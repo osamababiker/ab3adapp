@@ -12,6 +12,7 @@ import 'package:ab3ad/bindings/settingsControllerBinding.dart';
 import 'package:ab3ad/screens/cart/cart_screen.dart';
 import 'package:ab3ad/screens/delivery/delivery_screen.dart';
 import 'package:ab3ad/screens/delivery_requests/delivery_requests_screen.dart';
+import 'package:ab3ad/screens/errors/no_internet.dart';
 import 'package:ab3ad/screens/evaluation/evaluation_screen.dart';
 import 'package:ab3ad/screens/home/home_screen.dart';
 import 'package:ab3ad/screens/location/location_screen.dart';
@@ -109,7 +110,9 @@ class Routes {
       page: () => const TakeOrderScreen(),
       bindings: [
         OrdersControllersBindings(),
-        AuthControllerBinding()
+        AuthControllerBinding(),
+        LocationControllersBindings(),
+        DriversControllersBindings()
       ]
     ),
     GetPage(
@@ -129,6 +132,10 @@ class Routes {
         DriversControllersBindings(),
         AuthControllerBinding()
       ]
+    ),
+    GetPage(
+      name: '/noInternet', 
+      page: () => const NoInternetScreen()
     )
   ];
 }

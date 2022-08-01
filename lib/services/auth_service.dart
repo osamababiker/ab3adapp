@@ -14,7 +14,10 @@ class AuthService extends GetConnect {
       headers: {"Accept": "application/json"},
     );
     if (response.status.hasError) {
-      return Future.error(response.statusText.toString());
+      if(response.status.isUnauthorized){
+        return Future.error("signin_screen_unauthorized_message".tr);
+      }else{return Future.error("signin_screen_signin_error_message".tr);}
+      
     } else {
       String token = response.body.toString();
       return await tryToken(token: token);
@@ -28,8 +31,7 @@ class AuthService extends GetConnect {
     if(response.status.hasError){
       return Future.error(response.statusText.toString());
     } else {
-      String token = response.body.toString();
-      return await tryToken(token: token);
+      return true;
     }
   }  
 

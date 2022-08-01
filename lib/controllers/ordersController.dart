@@ -8,6 +8,7 @@ import '../utils/.env.dart';
 
 class OrdersController extends GetxController{
   var isLoading = true.obs;
+  var isButtonPressed = false.obs;
   var ordersList = <Order>[].obs;
   late Order order;
   TextEditingController confirmOrderController = TextEditingController();
@@ -26,9 +27,12 @@ class OrdersController extends GetxController{
     isLoading(true);
     await _ordersService.fetchOrders(ordersEndPoint: "$fetchOrdersEndPoint/${authController.user.id}").then((response) {
       ordersList.value = response;
-    }, onError: (error) {});
+    }, onError: (error) {
+      print(error);
+      isLoading(false);
+    });
     isLoading(false);
-  } 
+  }  
 
   Future fetchSingleOrder({required int orderId}) async{
     isLoading(true);
@@ -39,16 +43,16 @@ class OrdersController extends GetxController{
   }
 
   Future sendOrder({required var formData}) async {
-    isLoading(true);
+    isButtonPressed(true);
     await _ordersService.sendOrder(formData: formData);
-    isLoading(false);
-    return true;
+    isButtonPressed(false);
+    return true; 
   }
 
   Future updateOrder({required var formData}) async {
-    isLoading(true);
+    isButtonPressed(true);
     await _ordersService.updateOrder(formData: formData);
-    isLoading(false);
+    isButtonPressed(false);
     return true;
   }
 

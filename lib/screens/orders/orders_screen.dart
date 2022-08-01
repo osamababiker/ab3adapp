@@ -30,7 +30,7 @@ class OrdersScreen extends StatelessWidget {
         future: _ordersController.fetchOrders(),
         builder: (context, AsyncSnapshot snapshot) {
           if(!_ordersController.isLoading.value){
-            return Body(orders: snapshot.data);
+            return Body(orders: _ordersController.ordersList);
           }else {
             return Center(
               child: SizedBox(

@@ -301,7 +301,7 @@ class Body extends StatelessWidget {
                             "order_form_screen_add_to_cart_title".tr,
                             "order_form_screen_add_to_cart_message".tr,
                             snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: kPrimaryLightColor,
+                            backgroundColor: kPrimaryColor,
                             colorText: Colors.white
                           );
                         }

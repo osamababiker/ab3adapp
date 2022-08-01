@@ -38,21 +38,21 @@ class OrdersService extends GetConnect{
   } 
   
 
-  Future<Order> sendOrder({required Map formData}) async {
+  Future<bool> sendOrder({required FormData formData}) async {
     String token = await storage.read(key: 'token') as String;
     final response = await post(
-      sendOrderEndPoint,
+      sendOrderEndPoint, 
       formData,
       headers: {"Accept": "application/json", "Authorization": "Bearer $token"},
     );
     if (response.status.hasError) {
       return Future.error(response.statusText.toString());
     } else {
-      return response.body['data'];
-    }
+      return true;
+    } 
   }
 
-  Future<Order> updateOrder({required Map formData}) async {
+  Future<bool> updateOrder({required Map formData}) async {
     String token = await storage.read(key: 'token') as String;
     final response = await post(
       updateOrderEndPoint,
@@ -62,7 +62,7 @@ class OrdersService extends GetConnect{
     if (response.status.hasError) {
       return Future.error(response.statusText.toString());
     } else {
-      return response.body['data'];
+      return true;
     }
   }
 

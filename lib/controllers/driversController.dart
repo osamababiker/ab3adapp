@@ -15,12 +15,12 @@ class DriversController extends GetxController{
   void onInit() {
     authController = Get.put(AuthController());
     fetchRequests();
-    super.onInit();
+    super.onInit(); 
   }
 
   Future fetchRequests() async{
     isLoading(true);
-    await _driverService.fetchRequests(
+    await _driverService.fetchRequests( 
       requestsEndPoint: "$fetchDeliveryRequestsEndPoint/${authController.user.id}")
     .then((response) {
       requestsList.value = response;
@@ -45,7 +45,7 @@ class DriversController extends GetxController{
     isLoading(true);
     await _driverService.sendDeliveryRequest(formData: formData);
     isLoading(false);
-    return true;
+    return true; 
   }
 
   Future<bool> orderCompleteSign({required Map formData}) async {

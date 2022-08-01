@@ -25,9 +25,8 @@ class Body extends StatelessWidget {
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
-          children: List.generate(_driversController.requestsList.length,
-            (index) => Column(
-              children: [
+          children: List.generate(_driversController.requestsList.length,(index) => Column(
+              children: [ 
                 Container(
                   padding: const EdgeInsets.all(kDefaultPadding / 2),
                   decoration: BoxDecoration(

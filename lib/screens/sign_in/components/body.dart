@@ -1,6 +1,5 @@
 import 'package:ab3ad/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:ab3ad/screens/sign_in/components/no_account_text.dart';
 import 'package:get/get.dart';
 import '../../../size_config.dart';
 import 'form.dart';
@@ -51,7 +50,31 @@ class Body extends StatelessWidget {
                   SignForm(), 
                   const VerticalSpacing(of: 1.0),
                   SizedBox(height: getScreenSize(context) * 2.0),
-                  const NoAccountText(),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: getScreenSize(context) * 20.0,
+                          child: Text(
+                            overflow: TextOverflow.ellipsis,
+                            "signin_screen_not_having_account".tr,
+                            style: TextStyle(fontSize: getScreenSize(context) * 1.6),
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () => Get.toNamed('/signup'),
+                          child: Text(
+                            "signin_screen_create_account".tr,
+                            style: TextStyle(
+                                fontSize: getScreenSize(context) * 1.6,
+                                color: kPrimaryColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),

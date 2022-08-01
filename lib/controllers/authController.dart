@@ -69,7 +69,7 @@ class AuthController extends GetxController {
     String token = await _authService.readToken();
     await _authService.tryToken(token: token).then((response) {
       authUser = response; 
-      isLoggedIn.value = true;
+      isLoggedIn(true);
     }, onError: (error) {
       print("error: $error");
     });
@@ -125,19 +125,19 @@ class AuthController extends GetxController {
       'device_name': deviceName
     };
     await _authService.login(formData: formData).then((response) {
-      authUser = response;
+      authUser = response; 
       isLoggedIn(true);
-      signinIsLoading.value = false;
+      signinIsLoading(false);
       Get.offAllNamed('/home');
     }, onError: (error) {
       Get.snackbar(
         "signup_screen_signin_error_title".tr, 
-        "signup_screen_signin_error_message".tr,
+        error,
+        snackPosition: SnackPosition.BOTTOM,
         backgroundColor: kPrimaryColor,
-        colorText: Colors.white,
-        snackPosition: SnackPosition.BOTTOM
+        colorText: Colors.white
       );
-      signinIsLoading.value = false;
+      signinIsLoading(false);
     });
   }
 
@@ -145,7 +145,7 @@ class AuthController extends GetxController {
   signUp() async {
     final isValid = signupFormKey.currentState!.validate();
     if (!isValid) {
-      signupIsLoading.value = false;
+      signupIsLoading(false);
       return;
     }
     Map<String, dynamic> formData = {
@@ -160,19 +160,17 @@ class AuthController extends GetxController {
       'notificationToken': notificationToken
     };
     await _authService.register(formData: formData).then((response) {
-      authUser = response;
-      isLoggedIn(true);
-      signupIsLoading.value = false;
-      Get.offAllNamed('/home');
+      signupIsLoading(false);
+      Get.offAllNamed('/signin');
     }, onError: (error) {
       Get.snackbar(
         "signup_screen_signup_error_title".tr, 
         "signup_screen_signup_error_message".tr,
+        snackPosition: SnackPosition.BOTTOM,
         backgroundColor: kPrimaryColor,
-        colorText: Colors.white,
-        snackPosition: SnackPosition.BOTTOM
+        colorText: Colors.white
       );
-      signupIsLoading.value = false;
+      signupIsLoading(false);
     });
   }
 

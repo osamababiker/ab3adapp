@@ -95,8 +95,9 @@ final Map<String, String> ar = {
   'signin_screen_create_account': 'أنشاء حساب',
   'signin_screen_phone_validation_error': 'الرجاء ادخال رقم هاتف صحيح',
   'signin_screen_password_validation_error': 'الرجاء ادخال كلمة مرور صحيحة',
-  'signup_screen_signin_error_title': 'مشكلة في تسجيل الدخول ',
-  'signup_screen_signin_error_message': 'مشكلة في تسجيل الدخول الرجاء المحاولة في وقت اخر',
+  'signin_screen_unauthorized_message': 'رقم الهاتف او الايميل المدخل غير صحيح',
+  'signin_screen_signin_error_title': 'مشكلة في تسجيل الدخول ',
+  'signin_screen_signin_error_message': 'مشكلة في تسجيل الدخول الرجاء المحاولة في وقت اخر',
 
 
   /** signup screen */
@@ -126,13 +127,31 @@ final Map<String, String> ar = {
   'profile_screen_orders_btn': 'طلبات التوصيل',
   'profile_screen_signout_btn': 'تسجيل خروج',
 
+  /** take order screen */
+  'take_order_screen_title': 'توصيل الطلب',
+  'take_order_screen_delivery_address': 'عنوان التوصيل',
+  'take_order_screen_deliver_order_btn': 'توصيل الطلب',
+  'take_order_screen_success_title': 'نجاح', 
+  'take_order_screen_success_message': 'تم ارسال طلب التوصيل بنجاح',
+  'take_order_screen_error_title': 'خطأ', 
+  'take_order_screen_error_message': 'هناك مشكلة في ارسال الطلب الخاص بك',
+
+  /** order complete screen */
+  'order_complete_screen_message': 'تم ارسال الطلب بنجاح',
+  'order_complete_screen_btn': 'مواصلة التسوق',
+
   /** settings screen */
   'settings_screen_title': 'معلومات عن التطبيق',
   'settings_screen_app_version': 'الاصدار',
   'settings_screen_app_email': 'الايميل',
   'settings_screen_app_policy': 'سياسة الاستخدام والخصوصية',
-  'settings_screen_change_langauge': 'تغيير اللغة'
-  
+  'settings_screen_change_langauge': 'تغيير اللغة',
+  'order_form_during_day': 'خلال اليوم',
+  'order_form_morning': 'صباحا',
+  'order_form_afternoon': 'بعد الظهر',
+  'order_form_evening': 'مساءا',
+  'network_error_message_1': 'هناك مشكلة في الاتصال',
+  'network_error_message_2': 'الرجاء المحاولة في وقت لاحق'
 };
 
 final Map<String, String> en = {
@@ -222,6 +241,7 @@ final Map<String, String> en = {
   'signin_screen_create_account': 'Create account',
   'signin_screen_phone_validation_error': 'Please enter a valid phone number',
   'signin_screen_password_validation_error': 'Please enter a valid password',
+  'signin_screen_unauthorized_message': 'The phone number or email entered is incorrect.',
   'signup_screen_signin_error_title': 'Problem sign you in',
   'signup_screen_signin_error_message': 'Problem sign you in , please try again later',
 
@@ -252,11 +272,30 @@ final Map<String, String> en = {
   'profile_screen_orders_btn': 'Delivery requests',
   'profile_screen_signout_btn': 'Sign out',
 
+  /** take order screen */
+  'take_order_screen_title': 'Deliver order',
+  'take_order_screen_delivery_address': 'Delivery address',
+  'take_order_screen_deliver_order_btn': 'Deliver Order',
+  'take_order_screen_success_title': 'Success', 
+  'take_order_screen_success_message': 'Your request has been send successfully',
+  'take_order_screen_error_title': 'Error', 
+  'take_order_screen_error_message': 'Problem sending your request',
+
+  /** order complete screen */
+  'order_complete_screen_message': 'Your order has been send successfully',
+  'order_complete_screen_btn': 'Continue shopping',
+
   /** settings screen */
   'settings_screen_title': 'Info about the app',
   'settings_screen_app_version': 'Version',
   'settings_screen_app_email': 'Email',
   'settings_screen_app_policy': 'Usage and Privacy Policy',
-  'settings_screen_change_langauge': 'Change language'
+  'settings_screen_change_langauge': 'Change language',
+  'order_form_during_day': 'During the day',
+  'order_form_morning': 'At Morning',
+  'order_form_afternoon': 'At Afternoon',
+  'order_form_evening': 'At Evening',
+  'network_error_message_1': 'There is a connection problem',
+  'network_error_message_2': 'Please try again later'
 
 };

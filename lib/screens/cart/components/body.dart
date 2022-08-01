@@ -53,10 +53,16 @@ class Body extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           Text.rich(
-                            TextSpan(
-                              text: "${_cartController.itemsList[index].price} جنيه",
-                              style: const TextStyle(fontWeight: FontWeight.w600,color: kPrimaryColor),
+                            TextSpan( 
                               children: [
+                                TextSpan(
+                                  text: " ${_cartController.itemsList[index].price} ",
+                                  style: const TextStyle(fontWeight: FontWeight.w600,color: kPrimaryColor),
+                                ),
+                                TextSpan(
+                                  text: "cart_screen_check_out_currancy".tr,
+                                  style: const TextStyle(fontWeight: FontWeight.w600,color: kPrimaryColor),
+                                ),
                                 TextSpan(
                                   text:" x ${_cartController.itemsList[index].quantity}",
                                   style: Theme.of(context).textTheme.bodyText1
@@ -74,7 +80,7 @@ class Body extends StatelessWidget {
                             'cart_screen_item_deleted_title'.tr,
                             'cart_screen_item_deleted_title_message'.tr,
                             snackPosition: SnackPosition.BOTTOM,
-                            backgroundColor: kPrimaryLightColor,
+                            backgroundColor: kPrimaryColor,
                             colorText: Colors.white
                           );
                         },

@@ -29,7 +29,6 @@ class LocationControler extends GetxController {
   }
 
   Future getLocation() async {
-    isLoading(true);
     bool serviceEnabled;
     LocationPermission permission;
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -48,21 +47,17 @@ class LocationControler extends GetxController {
     }
 
     if (permission == LocationPermission.deniedForever) {
-      return Future.error(
-          'Locaion permission are permanetly denied , we cannot request permissions');
+      return Future.error('Locaion permission are permanetly denied , we cannot request permissions');
     }
 
     // to get user location
-    streamSubscription =
-        Geolocator.getPositionStream().listen((Position position) {
-      lat.value = position.latitude;
-      lng.value = position.longitude;
-      getAddressFromLatLng(position);
-    });
-    isLoading(false);
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    lat.value = position.latitude;
+    lng.value = position.longitude;
+    getAddressFromPosition(position);
   }
 
-  Future<void> getAddressFromLatLng(Position position) async {
+  Future<void> getAddressFromPosition(Position position) async {
     List<Placemark> placemark =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     Placemark place = placemark[0];
@@ -85,10 +80,11 @@ class LocationControler extends GetxController {
     return locations;
   }
 
-  Future<List<Placemark>> getAddress(
-      {required double lat, required double lng}) async {
-    List<Placemark> placemarks =
-        await placemarkFromCoordinates(lat, lng);
-    return placemarks;
+  Future<String> getAddress({required double lat, required double lng}) async {
+    isLoading(true);
+    List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+    isLoading(false);
+    Placemark placeMark  = placemarks[0];
+    return "${placeMark.name} / ${placeMark.locality} /  ${placeMark.country}";
   }
 }

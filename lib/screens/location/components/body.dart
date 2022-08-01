@@ -87,22 +87,35 @@ class Body extends StatelessWidget {
                         )
                       ),
                       const SizedBox(height: 5),
+                      _ordersController.isButtonPressed.value ?
+                      Center(
+                        child: SizedBox(
+                          width: getScreenSize(context) * 4.0,
+                          height: getScreenSize(context) * 4.0,
+                          child: const CircularProgressIndicator(
+                            color: Colors.white,
+                            backgroundColor: kPrimaryColor,
+                          )
+                        ),
+                      ):
                       DefaultButton(
                         text: "location_screen_send_order_btn".tr,
                         press: () async {
-                          List cartList = await _cartController.getItems();
+                          List cartList = _cartController.itemsList;
                           if(cartList.isEmpty){
-                            Get.snackbar(
+                            Get.snackbar( 
                               "location_screen_cart_empty_error_title".tr,
                               "location_screen_cart_empty_error_message".tr,
                               snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: kPrimaryLightColor
+                              backgroundColor: kPrimaryColor,
+                              colorText: Colors.white
                             );
                           }else {
                             var _itemFile;
                             for (var i = 0; i < cartList.length; i++) {
                               var cartMap = cartList[i].toMap();
-                              if(cartMap['uploadedImage'] != null){
+                              print(cartMap['uploadedImage']);
+                              if(cartMap['uploadedImage'] != ''){
                                 _itemFile = MultipartFile(
                                   cartMap['uploadedImage'],
                                   filename: basename(cartMap['uploadedImage']),
@@ -118,7 +131,7 @@ class Body extends StatelessWidget {
                             });
                             await _ordersController.sendOrder(formData: formData);
                             await _cartController.deleteItem(cartList[i].id);
-                            Get.toNamed('/orderComplete');
+                            Get.toNamed('/orderComplete'); 
                           }
                         }
                       })

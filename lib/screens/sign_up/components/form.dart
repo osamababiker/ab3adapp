@@ -45,6 +45,7 @@ class SignUpForm extends StatelessWidget {
               press: () async{
                 _authController.signupIsLoading.value = true;
                 _authController.signUp(); 
+                
               },
             )
           ],

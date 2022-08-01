@@ -49,49 +49,45 @@ class CheckoutCard extends StatelessWidget {
             //       contentPadding: EdgeInsets.all(kDefaultPadding),
             //     )),
             // SizedBox(height: getScreenSize(context) * 2.0),
-            FutureBuilder(
-              future: _cartController.getCartTotal(),
-              builder: (context, AsyncSnapshot snapshot) {
-                return Row( 
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text.rich(
-                      TextSpan(
-                        children: [
-                          TextSpan(
-                            text: "cart_screen_check_out_total".tr,
-                            style: const TextStyle(
-                              fontSize: 16, color: Colors.black
-                            ),
+            Obx(() => Row( 
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text.rich(
+                    TextSpan(
+                      children: [
+                        TextSpan(
+                          text: "cart_screen_check_out_total".tr,
+                          style: const TextStyle(
+                            fontSize: 16, color: Colors.black
                           ),
-                          const TextSpan(
-                            text: "\n"
+                        ),
+                        const TextSpan(
+                          text: "\n"
+                        ),
+                        TextSpan(
+                          text: _cartController.isLoading.value ? "" : "${_cartController.cartTotal.value} ",
+                          style: const TextStyle(
+                            fontSize: 16, color: Colors.black
                           ),
-                          TextSpan(
-                            text: _cartController.isLoading.value ? "" : "${snapshot.data} ",
-                            style: const TextStyle(
-                              fontSize: 16, color: Colors.black
-                            ),
-                          ),
-                          TextSpan(
-                            text: "cart_screen_check_out_currancy".tr
-                          ),
-                        ],
-                      ),
+                        ),
+                        TextSpan(
+                          text: "cart_screen_check_out_currancy".tr
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      width: getScreenSize(context) * 20.0,
-                      child: DefaultButton(
-                        text: "cart_screen_check_out_delivery_btn".tr,
-                        press: () {
-                          Get.toNamed('/location');
-                        },
-                      ),
+                  ),
+                  SizedBox(
+                    width: getScreenSize(context) * 20.0,
+                    child: DefaultButton(
+                      text: "cart_screen_check_out_delivery_btn".tr,
+                      press: () {
+                        Get.toNamed('/location');
+                      },
                     ),
-                  ],
-                );
-              }
-            ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),

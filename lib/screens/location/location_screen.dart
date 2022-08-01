@@ -6,7 +6,6 @@ import 'components/body.dart';
 import '../../constants.dart';
 
 class LocationScreen extends StatelessWidget {
-  static String routeName = "/location";
   
   const LocationScreen({Key? key}) : super(key: key);
   @override

@@ -25,6 +25,7 @@ class CartDbController extends GetxController {
   final String deliveryNote = "deliveryNote"; 
 
   RxInt cartCounter = 0.obs;
+  RxDouble cartTotal = 0.0.obs;
   RxList itemsList = [].obs;
   RxBool isLoading = false.obs;
 
@@ -32,6 +33,7 @@ class CartDbController extends GetxController {
   @override
   void onInit() {
     getCount();
+    getCartTotal();
     getItems();
     super.onInit();
   }
@@ -60,29 +62,35 @@ class CartDbController extends GetxController {
 
   addToCart({required Map<String, dynamic> listData}) async {
     var dbClient = await db;
-    var id = listData['itemId'];
+    var listItemId = listData['itemId'];
     var result = await dbClient
-        .rawQuery("SELECT itemId , quantity FROM $table WHERE $itemId = $id");
+        .rawQuery("SELECT itemId , quantity FROM $table WHERE $itemId = $listItemId");
     if (result.isEmpty) {
       saveItem(listData: listData);
     } else {
       int id = result[0]['itemId'] as int;
       int quantity = result[0]['quantity'] as int;
-      listData['quantity'] += quantity;
-      updateQuantity(listData: listData, id: id);
+      int listDataQuantity = int.parse(listData['quantity']);
+      listDataQuantity += quantity;
+      listData['quantity']  = listDataQuantity;
+      updateQuantity(listData: listData, listItemId: listItemId);
     }
   }
 
   // INSERTIONG
   Future<int> saveItem({required Map<String, dynamic> listData}) async {
+    isLoading(true);
     var dbClient = await db;
     try {
       int item = await dbClient.insert(table, listData);
       getCount();
+      getCartTotal();
       getItems();
+      isLoading(false);
       return item;
     } catch (e) {
       print("problem Insert item === $e");
+      isLoading(false);
       throw (e);
     }
   }
@@ -119,7 +127,8 @@ class CartDbController extends GetxController {
     }
   }
 
-  Future<double> getCartTotal() async {
+  Future getCartTotal() async {
+    isLoading(true);
     var dbclient = await db;
     var total = 0.0;
     var listData = [];
@@ -133,11 +142,13 @@ class CartDbController extends GetxController {
       print("problem selecting all items == $e");
       throw (e);
     }
-    return total;
+    cartTotal.value = total;
+    isLoading(false);
   }
 
   // GETTING COUNT
   Future getCount() async {
+    isLoading(true);
     var dbClient = await db;
     var numOfItems = 0;
     try {
@@ -148,6 +159,7 @@ class CartDbController extends GetxController {
       throw (e);
     }
     cartCounter.value = numOfItems;
+    isLoading(false);
   }
 
   // DELETEING ITEM
@@ -157,21 +169,24 @@ class CartDbController extends GetxController {
       int deleteItem =
           await dbClient.delete(table, where: "$id = ?", whereArgs: [itemId]);
       getCount();
+      getCartTotal();
       getItems();
       return deleteItem;
     } catch (e) {
       print("problem deleteing Item == $e");
       throw (e);
     }
-  }
+  } 
 
   // UPDATING
   Future<int> updateQuantity(
-      {required Map<String, dynamic> listData, required int id}) async {
+      {required Map<String, dynamic> listData, required int listItemId}) async {
     var dbClient = await db;
     try {
       int updateItem = await dbClient
-          .update(table, listData, where: '$id = ?', whereArgs: [id]);
+          .update(table, listData, where: '$itemId = ?', whereArgs: [listItemId]);
+      getCount();
+      getCartTotal();
       getItems();
       return updateItem;
     } catch (e) {

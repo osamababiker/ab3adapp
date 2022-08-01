@@ -11,7 +11,7 @@ const fetchItemsEndPoint = baseUri + '/items';
 const fetchCategoriesEndPoint = baseUri + '/categories';
 
 const fetchOrdersEndPoint = baseUri + '/orders';
-const sendOrderEndPoint = baseUri + '/orders/create';
+const sendOrderEndPoint = baseUri + '/orders/send';
 
 const fetchDeliveryRequestsEndPoint = baseUri + '/delivery/request';
 const fetchAcceptedRequestsEndPoint = baseUri + '/delivery/request/accepted';

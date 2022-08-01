@@ -9,14 +9,13 @@ class ItemsController extends GetxController{
   final ItemsService _itemsService = ItemsService();
   final formKey = GlobalKey<FormState>();
   Item? selectedItem;
-  RxString selectedTime = "خلال اليوم".obs;
+  RxString selectedTime = "order_form_during_day".tr.obs;
   final List<String> timeList = [ 
-    'خلال اليوم',
-    'صباحا',
-    'بعد الظهر',
-    ' بعد العصر',
-    ' مساءا'
-  ];
+    'order_form_during_day'.tr,
+    'order_form_morning'.tr,
+    'order_form_afternoon'.tr,
+    'order_form_evening'.tr
+  ]; 
   final List<String> errors = [];
   final quantityController = TextEditingController();
   final notesController = TextEditingController();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import '../../constants.dart';
 import '../../size_config.dart';
 
@@ -28,21 +29,21 @@ class NoInternetScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   child: Column(
-                    children: const [
+                    children: [
                       Text(
-                        "هناك مشكلة في الاتصال",
-                        style: TextStyle(
+                        "network_error_message_1".tr,
+                        style: const TextStyle(
                           fontSize: 14,
                           color: kTextColor
                         ),
                       ),
                       Text(
-                        "الرجاء المحاولة في وقت لاحق",
-                        style: TextStyle(
+                        "network_error_message_2".tr,
+                        style: const TextStyle(
                           fontSize: 14,
                           color: kTextColor
                         ),
-                      ),
+                      ), 
                     ],
                   ),
                 ),

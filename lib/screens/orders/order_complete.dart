@@ -1,6 +1,6 @@
-import 'package:ab3ad/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
@@ -25,7 +25,6 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Center(
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -37,25 +36,27 @@ class Body extends StatelessWidget {
               child: SvgPicture.asset("assets/icons/order_complete.svg")
             ), 
             const SizedBox(height: kDefaultPadding),
-            const Text(
-              "تم ارسال الطلب بنجاح",
-              style: TextStyle(
+            Text(
+              "order_complete_screen_message".tr,
+              style: const TextStyle(
                 fontSize: 16,
-                color: kTextColor
+                color: kTextColor 
               ),
             ),
             const SizedBox(height: kDefaultPadding),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Get.offNamed('/home');
+              },
               child: Container(
                 padding: const EdgeInsets.all(kDefaultPadding / 2),
                 decoration: BoxDecoration(
                   color: kPrimaryColor,
                   borderRadius: BorderRadius.circular(50),
                 ),
-                child: const Text(
-                  "مواصلة التسوق",
-                  style: TextStyle(
+                child: Text(
+                  "order_complete_screen_btn".tr,
+                  style: const TextStyle(
                     fontSize: 14,
                     color: Colors.white
                   ),
