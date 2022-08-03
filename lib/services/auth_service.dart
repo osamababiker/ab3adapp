@@ -5,6 +5,11 @@ import 'package:get/get.dart';
 import '../utils/.env.dart';
 
 class AuthService extends GetConnect {
+
+  AuthService() {
+    timeout = const Duration(seconds: 30);
+  }
+
   late String token;
   final storage = const FlutterSecureStorage();
 

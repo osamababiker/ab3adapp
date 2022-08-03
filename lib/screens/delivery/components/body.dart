@@ -128,7 +128,7 @@ class Body extends StatelessWidget {
                                   child: Padding(
                                     padding: const EdgeInsets.all(
                                         kDefaultPadding / 2),
-                                    child: SvgPicture.asset(
+                                    child: SvgPicture.asset( 
                                         "assets/icons/Location_point.svg",
                                         color: Colors.white),
                                   ),
@@ -154,7 +154,7 @@ class Body extends StatelessWidget {
               fontSize: 18
             ),
           ),
-        );
+      );
     }
   }
 }

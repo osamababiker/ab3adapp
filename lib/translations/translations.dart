@@ -30,6 +30,8 @@ final Map<String, String> ar = {
   'orders_screen_no_orders': 'لا توجد طلبات لعرضها حاليا',
   'orders_screen_update_error_title': 'مشكلة في التحديث',
   'orders_screen_update_error_message': 'هناك مشكلة في تحديث حالة الطلب',
+  'orders_screen_delete_success_title': 'تم الحذف',
+  'orders_screen_delete_success_message': 'تم حذف الطلب بنجاح',
 
   /** order form screen */
   'order_form_screen_title': ' اضافة الطلب للسلة',
@@ -176,6 +178,8 @@ final Map<String, String> en = {
   'orders_screen_no_orders': 'There are no orders to display at this time',
   'orders_screen_update_error_title': 'Problem updating',
   'orders_screen_update_error_message': 'There is a problem updating the status of the request',
+  'orders_screen_delete_success_title': 'Deleted',
+  'orders_screen_delete_success_message': 'Order has been deleted successfully',
 
   /** order form screen */
   'order_form_screen_title': 'Add order to cart',

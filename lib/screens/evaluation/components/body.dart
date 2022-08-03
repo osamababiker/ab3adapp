@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
   final DeliveryRequest deliveryRequest;
   final AuthController authController = 
   Get.find<AuthController>();
-
+ 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

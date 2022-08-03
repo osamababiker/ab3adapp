@@ -6,6 +6,10 @@ import '../utils/.env.dart';
 
 class EvaluationService extends GetConnect{
 
+  EvaluationService() {
+    timeout = const Duration(seconds: 30);
+  }
+
   static const storage = FlutterSecureStorage();
 
   List<Evaluation> parseEvaluations(List responseBody) {

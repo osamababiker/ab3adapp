@@ -156,79 +156,85 @@ class Body extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: kDefaultPadding / 2),
-                            SizedBox(
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton2(
-                                  isExpanded: true,
-                                  hint: Row(
-                                    children: [
-                                      const Icon(
-                                        Icons.list,
-                                        size: 16,
-                                        color: kTextColor,
-                                      ),
-                                      const SizedBox(
-                                        width: 4,
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          "order_form_screen_choose_item_label".tr,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
+                            GetBuilder<ItemsController>(
+                              builder: (_newItemController) {
+                                return SizedBox(
+                                  child: DropdownButtonHideUnderline(
+                                    child: DropdownButton2(
+                                      isExpanded: true,
+                                      hint: Row(
+                                        children: [
+                                          const Icon(
+                                            Icons.list,
+                                            size: 16,
                                             color: kTextColor,
                                           ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
+                                          const SizedBox(
+                                            width: 4,
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              "order_form_screen_choose_item_label".tr,
+                                              style: const TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                                color: kTextColor,
+                                              ),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ],
-                                  ),
-                                  items: items 
-                                    .map((item) => DropdownMenuItem<Item>(
-                                      value: item,
-                                      child: Text(
-                                        item.name,
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          color: kTextColor,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
+                                      items: items 
+                                        .map((item) => DropdownMenuItem<Item>(
+                                          value: item,
+                                          child: Text(
+                                            item.name,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              color: kTextColor,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                          ),
+                                        )
+                                      ).toList(),
+                                      value: _newItemController.selectedItem,
+                                      onChanged: (value) {
+                                         value = value as Item;
+                                        _newItemController.selectedItem = value;
+                                        _newItemController.update();
+                                      }, 
+                                      icon: const Icon(
+                                        Icons.arrow_forward_ios_outlined,
                                       ),
-                                    )
-                                  ).toList(),
-                                  value: _itemsController.selectedItem,
-                                  onChanged: (value) {
-                                    _itemsController.selectedItem = value as Item;
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_forward_ios_outlined,
+                                      iconSize: 14,
+                                      iconEnabledColor: kTextColor,
+                                      iconDisabledColor: Colors.grey,
+                                      buttonHeight: 50,
+                                      buttonWidth: 160,
+                                      buttonPadding: const EdgeInsets.only(left: 14, right: 14),
+                                      buttonDecoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(kDefaultPadding / 2),
+                                        border: Border.all(color: Colors.black26),
+                                        color: Colors.white,
+                                      ),
+                                      itemHeight: 40,
+                                      itemPadding: const EdgeInsets.only(left: 14, right: 14),
+                                      dropdownMaxHeight: 200,
+                                      dropdownWidth: 200,
+                                      dropdownPadding: null,
+                                      dropdownDecoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(kDefaultPadding / 2),
+                                        color: Colors.white,
+                                      ),
+                                      scrollbarRadius: const Radius.circular(kDefaultPadding / 2),
+                                      scrollbarThickness: 6,
+                                      scrollbarAlwaysShow: true,
+                                    ),
                                   ),
-                                  iconSize: 14,
-                                  iconEnabledColor: kTextColor,
-                                  iconDisabledColor: Colors.grey,
-                                  buttonHeight: 50,
-                                  buttonWidth: 160,
-                                  buttonPadding: const EdgeInsets.only(left: 14, right: 14),
-                                  buttonDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(kDefaultPadding / 2),
-                                    border: Border.all(color: Colors.black26),
-                                    color: Colors.white,
-                                  ),
-                                  itemHeight: 40,
-                                  itemPadding: const EdgeInsets.only(left: 14, right: 14),
-                                  dropdownMaxHeight: 200,
-                                  dropdownWidth: 200,
-                                  dropdownPadding: null,
-                                  dropdownDecoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(kDefaultPadding / 2),
-                                    color: Colors.white,
-                                  ),
-                                  scrollbarRadius: const Radius.circular(kDefaultPadding / 2),
-                                  scrollbarThickness: 6,
-                                  scrollbarAlwaysShow: true,
-                                ),
-                              ),
+                                );
+                              }
                             ),
                           ],
                         ),

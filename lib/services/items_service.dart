@@ -2,6 +2,11 @@ import 'package:ab3ad/models/item.dart';
 import 'package:get/get.dart';
 
 class ItemsService extends GetConnect{
+
+  ItemsService() {
+    timeout = const Duration(seconds: 30);
+  }
+
   List<Item> parseItems(List responseBody) {
     return responseBody.map<Item>((json) => Item.fromJson(json)).toList();
   }

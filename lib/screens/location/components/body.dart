@@ -114,16 +114,15 @@ class Body extends StatelessWidget {
                             var _itemFile;
                             for (var i = 0; i < cartList.length; i++) {
                               var cartMap = cartList[i].toMap();
-                              print(cartMap['uploadedImage']);
                               if(cartMap['uploadedImage'] != ''){
                                 _itemFile = MultipartFile(
                                   cartMap['uploadedImage'],
                                   filename: basename(cartMap['uploadedImage']),
                                 );
-                            }
+                              }
                             var formData = FormData({
                               'userId': _authController.user.id,
-                              'cart': jsonEncode(cartMap),
+                              'cart': jsonEncode(cartMap), 
                               'lat': _locationControler.lat.value,
                               'lng': _locationControler.lng.value,
                               'file': _itemFile,
@@ -131,8 +130,8 @@ class Body extends StatelessWidget {
                             });
                             await _ordersController.sendOrder(formData: formData);
                             await _cartController.deleteItem(cartList[i].id);
-                            Get.toNamed('/orderComplete'); 
                           }
+                          Get.toNamed('/orderComplete'); 
                         }
                       })
                     ]),

@@ -18,6 +18,7 @@ import 'package:ab3ad/screens/home/home_screen.dart';
 import 'package:ab3ad/screens/location/location_screen.dart';
 import 'package:ab3ad/screens/order_form/order_form_screen.dart';
 import 'package:ab3ad/screens/orders/order_complete.dart';
+import 'package:ab3ad/screens/orders/orders_screen.dart';
 import 'package:ab3ad/screens/profile/profile_screen.dart';
 import 'package:ab3ad/screens/settings/settings_screen.dart';
 import 'package:ab3ad/screens/sign_in/sign_in_screen.dart';
@@ -99,7 +100,7 @@ class Routes {
     ),
     GetPage(
       name: '/orders', 
-      page: () => DeliveryScreen(),
+      page: () => OrdersScreen(),
       bindings: [
         OrdersControllersBindings(),
         AuthControllerBinding()
@@ -123,6 +124,10 @@ class Routes {
         OrdersControllersBindings(),
         AuthControllerBinding()
       ]
+    ),
+    GetPage(
+      name: '/delivery', 
+      page: () => DeliveryScreen()
     ),
     GetPage(
       name: '/evaluation', 

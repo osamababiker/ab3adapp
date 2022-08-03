@@ -36,7 +36,7 @@ class DeliveryScreen extends StatelessWidget {
                 child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
               ),
             )
-            : Body()
+            : Body() 
           );
         }
       ),

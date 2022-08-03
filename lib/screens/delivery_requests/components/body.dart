@@ -64,7 +64,7 @@ class Body extends StatelessWidget {
                                 style: const TextStyle(fontSize: 16, color: kTextColor),
                               ),
                             ],
-                          ),
+                          ), 
                         ],
                       ),
                       Divider(color: kTextColor.withOpacity(0.5)),

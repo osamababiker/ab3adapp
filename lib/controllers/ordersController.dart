@@ -42,18 +42,40 @@ class OrdersController extends GetxController{
     isLoading(false);
   }
 
-  Future sendOrder({required var formData}) async {
+  Future<bool> sendOrder({required FormData formData}) async {
     isButtonPressed(true);
-    await _ordersService.sendOrder(formData: formData);
-    isButtonPressed(false);
+    await _ordersService.sendOrder(formData: formData).then((response) {
+      return true; 
+    }, onError: (error) {
+      print(error);
+      return false; 
+    }); 
+    isButtonPressed(false); 
     return true; 
   }
 
-  Future updateOrder({required var formData}) async {
+  Future<bool> updateOrder({required var formData}) async {
     isButtonPressed(true);
-    await _ordersService.updateOrder(formData: formData);
-    isButtonPressed(false);
-    return true;
+    await _ordersService.updateOrder(formData: formData).then((response) {
+      return true;
+    }, onError: (error) {
+      print(error);
+      return false;
+    });
+    isButtonPressed(false); 
+    return true; 
+  }
+
+  Future<bool> deleteOrder({required int orderId}) async {
+    isButtonPressed(true);
+    await _ordersService.deleteOrder(orderId: orderId).then((response) {
+      return true;
+    }, onError: (error) {
+      print(error);
+      return false;
+    });
+    isButtonPressed(false); 
+    return true; 
   }
 
 

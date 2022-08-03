@@ -6,6 +6,10 @@ import '../utils/.env.dart';
 
 class DriversService extends GetConnect{
 
+  DriversService() {
+    timeout = const Duration(seconds: 30);
+  }
+
   static const storage = FlutterSecureStorage();
   
   List<DeliveryRequest> parseRequests(List responseBody) {
@@ -21,12 +25,14 @@ class DriversService extends GetConnect{
     }  
   }
 
-  Future<List<DeliveryRequest>> fetchAcceptedRequests({required int orderId}) async {
-    final response = await get("$fetchAcceptedRequestsEndPoint/$orderId"); 
+  Future<DeliveryRequest> fetchAcceptedRequest({required int orderId}) async {
+    final response = await get("$fetchAcceptedRequestEndPoint/$orderId"); 
+    print("$fetchAcceptedRequestEndPoint/$orderId");
+    print(response.body['data']);
     if (response.status.hasError) {
       return Future.error(response.statusText.toString());
     } else {
-      return parseRequests(response.body['data']);
+      return DeliveryRequest.fromJson(response.body['data']);
     }  
   }
 

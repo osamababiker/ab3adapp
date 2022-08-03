@@ -8,6 +8,7 @@ import '../utils/.env.dart';
 class DriversController extends GetxController{
   var isLoading = true.obs;
   var requestsList = <DeliveryRequest>[].obs;
+  late DeliveryRequest deliveryRequest;
   final DriversService _driverService = DriversService();
   late AuthController authController;
 
@@ -31,11 +32,11 @@ class DriversController extends GetxController{
   }
  
  
-  Future fetchAcceptedRequests({required int orderId}) async {
+  Future fetchAcceptedRequest({required int orderId}) async {
     isLoading(true);
-    await _driverService.fetchAcceptedRequests(orderId: orderId).then((response) {
-      requestsList.value = response;
-    }, onError: (error) {
+    await _driverService.fetchAcceptedRequest(orderId: orderId).then((response) {
+      deliveryRequest = response;
+    }, onError: (error){
       print(error);
     });
     isLoading(false);

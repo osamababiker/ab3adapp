@@ -4,6 +4,11 @@ import 'package:get/get.dart';
 import '../utils/.env.dart';
 
 class SettingsService extends GetConnect{
+
+  SettingsService() {
+    timeout = const Duration(seconds: 30);
+  }
+
   Future<Setting> fetchSettings() async {
     final response = await get(settingsEndPoint); 
     if (response.status.hasError) {
