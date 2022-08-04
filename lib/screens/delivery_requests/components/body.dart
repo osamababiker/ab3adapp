@@ -20,10 +20,11 @@ class Body extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+    if(_driversController.requestsList.isNotEmpty){
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
       child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
+        scrollDirection: Axis.vertical, 
         child: Column(
           children: List.generate(_driversController.requestsList.length,(index) => Column(
               children: [ 
@@ -95,14 +96,14 @@ class Body extends StatelessWidget {
                                             width: getScreenSize(context) * 4.0,
                                             height: getScreenSize(context) * 4.0,
                                             child: CachedNetworkImage(
-                                              imageUrl: "$uploadUri/items/${snapshot.data.item.image}",
+                                              imageUrl: "$uploadUri/items/${_ordersController.order.item.image}",
                                               placeholder: (context, url) => Image.asset("assets/images/liquid-loader.gif"),
                                               errorWidget: (context, url, error) => Image.asset("assets/images/liquid-loader.gif"),
                                             )
                                           ),
                                           const VerticalSpacing(of: 1.0),
                                           Text(
-                                            snapshot.data.item.name,
+                                            _ordersController.order.item.name,
                                             style: const TextStyle(
                                                 fontSize: 16,
                                                 color: kTextColor
@@ -117,22 +118,22 @@ class Body extends StatelessWidget {
                                     ),
                                     SizedBox(width: getScreenSize(context) * 2.0),
                                     Text(
-                                      "${snapshot.data.quantity}",
+                                      "${_ordersController.order.quantity}",
                                       style: const TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                                     ),
                                   ]
                                     
                                   ),
-                                  _driversController.requestsList[index].isAccepted == 1  && snapshot.data.status != 2 ?
+                                  _driversController.requestsList[index].isAccepted == 1  && _ordersController.order.status != 2 ?
                                   GestureDetector(
                                     onTap: () async {
                                       Map formData = {
-                                        'orderId': snapshot.data.id,
+                                        'orderId': _ordersController.order.id,
                                         'driverId': _authController.user.id
                                       };
                                       bool checkComplete = await _driversController.orderCompleteSign(formData: formData);
                                       if(checkComplete){
-                                          Get.toNamed('/evaluation', arguments: snapshot.data);
+                                          Get.toNamed('/evaluation', arguments: _ordersController.order);
                                       }
                                     },
                                     child: Container(
@@ -151,13 +152,8 @@ class Body extends StatelessWidget {
                                 ]
                               );
                             }else {
-                              return Center(  
-                                child: Text(
-                                  "delivery_requests_no_requests".tr,
-                                  style: const TextStyle(
-                                    fontSize: 18
-                                  ),
-                                ),
+                              return const Center(  
+                                child: CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white,),
                               );
                             }
                           }
@@ -173,5 +169,15 @@ class Body extends StatelessWidget {
         ),
       ),
     );
+    }else{
+      return Center(
+        child: Text(
+          "delivery_requests_no_requests".tr,
+          style: const TextStyle(
+            fontSize: 18
+          ),
+        ),
+      );
+    }
   }
 }

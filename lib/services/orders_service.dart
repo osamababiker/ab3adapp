@@ -22,6 +22,9 @@ class OrdersService extends GetConnect{
       headers: {'Authorization': 'Bearer $token'}
     ); 
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return parseOrders(response.body['data']);
@@ -31,10 +34,13 @@ class OrdersService extends GetConnect{
   Future<Order> fetchSingleOrder({required int orderId}) async {
     String token = await storage.read(key: 'token') as String;
     final response = await get( 
-      "$fetchOrdersEndPoint/$orderId",
+      "$fetchSingleOrderEndPoint/$orderId",
       headers: {'Authorization': 'Bearer $token'}
     ); 
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return Order.fromJson(response.body['data']);
@@ -53,6 +59,9 @@ class OrdersService extends GetConnect{
       },
     );
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return true;
@@ -67,6 +76,9 @@ class OrdersService extends GetConnect{
       headers: {"Accept": "application/json", "Authorization": "Bearer $token"},
     );
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return true;
@@ -80,6 +92,9 @@ class OrdersService extends GetConnect{
       headers: {"Accept": "application/json", "Authorization": "Bearer $token"},
     );
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return true;

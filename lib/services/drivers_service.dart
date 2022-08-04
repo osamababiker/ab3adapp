@@ -17,19 +17,31 @@ class DriversService extends GetConnect{
   }
 
   Future<List<DeliveryRequest>> fetchRequests({required String requestsEndPoint}) async {
-    final response = await get(requestsEndPoint); 
+    String token = await storage.read(key: 'token') as String;
+    final response = await get(
+      requestsEndPoint, 
+      headers: {"Accept": "application/json", "Authorization": "Bearer $token"}
+    ); 
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return parseRequests(response.body['data']);
     }  
   }
-
+  
   Future<DeliveryRequest> fetchAcceptedRequest({required int orderId}) async {
-    final response = await get("$fetchAcceptedRequestEndPoint/$orderId"); 
-    print("$fetchAcceptedRequestEndPoint/$orderId");
-    print(response.body['data']);
+     String token = await storage.read(key: 'token') as String;
+    final response = await get(
+      "$fetchAcceptedRequestEndPoint/$orderId",
+      headers: {"Accept": "application/json", "Authorization": "Bearer $token"}
+    ); 
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return DeliveryRequest.fromJson(response.body['data']);
@@ -44,6 +56,9 @@ class DriversService extends GetConnect{
       headers: {"Accept": "application/json", "Authorization": "Bearer $token"},
     );
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return true;
@@ -58,6 +73,9 @@ class DriversService extends GetConnect{
       headers: {"Accept": "application/json", "Authorization": "Bearer $token"},
     );
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return true;

@@ -127,7 +127,10 @@ class Routes {
     ),
     GetPage(
       name: '/delivery', 
-      page: () => DeliveryScreen()
+      page: () => DeliveryScreen(),
+      bindings: [
+        OrdersControllersBindings()
+      ]
     ),
     GetPage(
       name: '/evaluation', 

@@ -7,6 +7,7 @@ import '../utils/.env.dart';
 
 class DriversController extends GetxController{
   var isLoading = true.obs;
+  var isButtonPressed = false.obs;
   var requestsList = <DeliveryRequest>[].obs;
   late DeliveryRequest deliveryRequest;
   final DriversService _driverService = DriversService();
@@ -22,8 +23,7 @@ class DriversController extends GetxController{
   Future fetchRequests() async{
     isLoading(true);
     await _driverService.fetchRequests( 
-      requestsEndPoint: "$fetchDeliveryRequestsEndPoint/${authController.user.id}")
-    .then((response) {
+      requestsEndPoint: "$fetchDeliveryRequestsEndPoint/${authController.user.id}").then((response) {
       requestsList.value = response;
     }, onError: (error) {
       print(error);
@@ -31,7 +31,7 @@ class DriversController extends GetxController{
     isLoading(false);
   }
  
- 
+  
   Future fetchAcceptedRequest({required int orderId}) async {
     isLoading(true);
     await _driverService.fetchAcceptedRequest(orderId: orderId).then((response) {
@@ -43,16 +43,16 @@ class DriversController extends GetxController{
   } 
 
   Future<bool> sendDeliveryRequest({required Map formData}) async {
-    isLoading(true);
+    isButtonPressed(true);
     await _driverService.sendDeliveryRequest(formData: formData);
-    isLoading(false);
+    isButtonPressed(false);
     return true; 
   }
 
   Future<bool> orderCompleteSign({required Map formData}) async {
-    isLoading(true);
+    isButtonPressed(true);
     await _driverService.orderComplete(formData: formData);
-    isLoading(false);
+    isButtonPressed(false);
     return true;
   }
 

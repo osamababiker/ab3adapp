@@ -49,10 +49,14 @@ class CustomBottomNavBar extends StatelessWidget {
               onPressed: () => Get.toNamed('/home')),
             IconButton(
               icon: SvgPicture.asset("assets/icons/location.svg",
-                  color: MenuState.orders == selectedMenu
-                      ? kPrimaryColor
-                      : kTextColor),
-              onPressed: () => Get.toNamed('/location'),
+                  color: MenuState.orders == selectedMenu ? kPrimaryColor: kTextColor),
+              onPressed: () {
+                if(_authController.user.isDriver == 1){
+                  Get.toNamed('/delivery');
+                }else {
+                  Get.toNamed('/orders');
+                } 
+              }
             ),
             IconButton(
               icon: SvgPicture.asset("assets/icons/question_mark.svg",

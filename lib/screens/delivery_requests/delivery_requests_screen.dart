@@ -34,7 +34,7 @@ class DeliveryRequestsScreen extends StatelessWidget {
             child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
           ),
         )
-        : Body()
+        : Body() 
       ),
       bottomNavigationBar:  CustomBottomNavBar(selectedMenu: MenuState.orders),
     );

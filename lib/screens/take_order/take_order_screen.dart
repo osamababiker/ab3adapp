@@ -11,18 +11,15 @@ class TakeOrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Order agrs = Get.arguments;
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "take_order_screen_title".tr,
-            style: const TextStyle(color: kTextColor, fontSize: 16),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "take_order_screen_title".tr,
+          style: const TextStyle(color: kTextColor, fontSize: 16),
         ),
-        body: Body(order: agrs),
-        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.orders),
       ),
+      body: Body(order: agrs),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.orders),
     ); 
   }
 }

@@ -30,15 +30,30 @@ class OrdersController extends GetxController{
     }, onError: (error) {
       print(error);
       isLoading(false);
-    });
+    }); 
     isLoading(false);
   }  
+
+  Future fetchAllOrders() async {
+    isLoading(true);
+      await _ordersService.fetchOrders(
+        ordersEndPoint: "$fetchAllOrdersEndPoint/${locationControler.lat.value}/${locationControler.lng.value}")
+        .then((response) {
+        ordersList.value = response;
+      }, onError: (error) {
+        print(error);
+        isLoading(false);
+      }); 
+      isLoading(false);
+  }
 
   Future fetchSingleOrder({required int orderId}) async{
     isLoading(true);
     await _ordersService.fetchSingleOrder(orderId: orderId).then((response) {
       order = response;
-    }, onError: (error) {});
+    }, onError: (error) {
+      print(error);
+    });
     isLoading(false);
   }
 

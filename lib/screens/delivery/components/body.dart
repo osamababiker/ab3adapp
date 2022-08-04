@@ -116,7 +116,7 @@ class Body extends StatelessWidget {
                               ]),
                               GestureDetector(
                                 onTap: () {
-                                  Get.toNamed('/location');
+                                  Get.toNamed('/takeOrder', arguments: _ordersController.ordersList[index]);
                                 },
                                 child: Container(
                                   width: getScreenSize(context) * 4.0,

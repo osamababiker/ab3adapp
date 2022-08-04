@@ -19,6 +19,9 @@ class AuthService extends GetConnect {
       headers: {"Accept": "application/json"},
     );
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       if(response.status.isUnauthorized){
         return Future.error("signin_screen_unauthorized_message".tr);
       }else{return Future.error("signin_screen_signin_error_message".tr);}
@@ -34,6 +37,9 @@ class AuthService extends GetConnect {
       headers: {"Accept": "application/json"}
     );
     if(response.status.hasError){
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return true;
@@ -44,7 +50,11 @@ class AuthService extends GetConnect {
     final response = await get(fetchAuthUserEndPoint,
         headers: {'Authorization': 'Bearer $token'}); 
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
+      
     } else {
       await storeToken(token: token);
       return User.fromJson(response.body);
@@ -56,6 +66,9 @@ class AuthService extends GetConnect {
     final response = await get(logoutEndPoint, 
     headers: {'Authorization': 'Bearer $token'});
     if(response.status.hasError){
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     }else {
       cleanToken();

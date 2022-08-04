@@ -25,7 +25,7 @@ class DeliveryScreen extends StatelessWidget {
         ),
       ), 
       body: FutureBuilder(
-        future: _ordersController.fetchOrders(),
+        future: _ordersController.fetchAllOrders(),
         builder: (context, AsyncSnapshot snapshot) {
           return Obx(() => 
             _ordersController.isLoading.value 
@@ -36,7 +36,7 @@ class DeliveryScreen extends StatelessWidget {
                 child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
               ),
             )
-            : Body() 
+            : Body()  
           );
         }
       ),

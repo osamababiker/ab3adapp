@@ -44,20 +44,20 @@ class Body extends StatelessWidget {
                     height: getScreenSize(context) * 4.0,
                     child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
                   ),
-                ) 
-                : GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(_locationControler.lat.value, _locationControler.lng.value),
-                  zoom: _locationControler.zoom.value
+                ) : 
+                GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(_locationControler.lat.value, _locationControler.lng.value),
+                    zoom: _locationControler.zoom.value
+                  ),
+                  myLocationButtonEnabled: true,
+                  zoomControlsEnabled: true,
+                  onMapCreated: (GoogleMapController controller){
+                    _locationControler.mapController.complete(controller);
+                  },
+                  mapToolbarEnabled: true,
+                  markers: Set<Marker>.of(_locationControler.markers.values),
                 ),
-                myLocationButtonEnabled: true,
-                zoomControlsEnabled: true,
-                onMapCreated: (GoogleMapController controller){
-                  _locationControler.mapController.complete(controller);
-                },
-                mapToolbarEnabled: true,
-                markers: Set<Marker>.of(_locationControler.markers.values),
-              ),
             ),
             Positioned(
               bottom: 0,
@@ -130,7 +130,7 @@ class Body extends StatelessWidget {
                             });
                             await _ordersController.sendOrder(formData: formData);
                             await _cartController.deleteItem(cartList[i].id);
-                          }
+                          } 
                           Get.toNamed('/orderComplete'); 
                         }
                       })

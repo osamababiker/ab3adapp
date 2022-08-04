@@ -163,14 +163,14 @@ class CartDbController extends GetxController {
   }
 
   // DELETEING ITEM
-  Future<int> deleteItem(int itemId) async {
+  Future<int> deleteItem(int id) async {
     var dbClient = await db;
     try {
       int deleteItem =
-          await dbClient.delete(table, where: "$id = ?", whereArgs: [itemId]);
+          await dbClient.delete(table, where: "$id = ?", whereArgs: [id]);
       getCount();
       getCartTotal();
-      getItems();
+      //getItems();
       return deleteItem;
     } catch (e) {
       print("problem deleteing Item == $e");

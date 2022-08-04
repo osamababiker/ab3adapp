@@ -12,6 +12,9 @@ class SettingsService extends GetConnect{
   Future<Setting> fetchSettings() async {
     final response = await get(settingsEndPoint); 
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return Setting.fromJson(response.body['data']);

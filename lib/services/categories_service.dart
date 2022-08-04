@@ -15,6 +15,9 @@ class CategoriesService extends GetConnect{
   Future<List<Category>> fetchCategories() async {
     final response = await get(fetchCategoriesEndPoint); 
     if (response.status.hasError) {
+      if(response.status.connectionError){
+        Get.toNamed('/noInternet');
+      }
       return Future.error(response.statusText.toString());
     } else {
       return parseCategories(response.body['data']);
