@@ -16,11 +16,10 @@ class DriversController extends GetxController{
   @override 
   void onInit() {
     authController = Get.put(AuthController());
-    fetchRequests();
     super.onInit(); 
   }
 
-  Future fetchRequests() async{
+  Future<List<DeliveryRequest>> fetchRequests() async{
     isLoading(true);
     await _driverService.fetchRequests( 
       requestsEndPoint: "$fetchDeliveryRequestsEndPoint/${authController.user.id}").then((response) {
@@ -29,17 +28,19 @@ class DriversController extends GetxController{
       print(error);
     });
     isLoading(false);
+    return requestsList;
   }
- 
+   
   
-  Future fetchAcceptedRequest({required int orderId}) async {
+  Future<DeliveryRequest> fetchAcceptedRequest({required int orderId}) async {
     isLoading(true);
     await _driverService.fetchAcceptedRequest(orderId: orderId).then((response) {
       deliveryRequest = response;
     }, onError: (error){
-      print(error);
+      print("error: $error");
     });
-    isLoading(false);
+    isLoading(false); 
+    return deliveryRequest;
   } 
 
   Future<bool> sendDeliveryRequest({required Map formData}) async {

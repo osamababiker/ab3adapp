@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
         child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
+          scrollDirection: Axis.vertical, 
           child: Column(
             children: List.generate(_ordersController.ordersList.length,
               (index) => Column(
@@ -92,7 +92,7 @@ class Body extends StatelessWidget {
                                           placeholder: "assets/images/spinner.gif",
                                           image: "$uploadUri/items/${_ordersController.ordersList[index].item.image}"
                                         )
-                                      ),
+                                      ), 
                                       const VerticalSpacing(of: 1.0),
                                       Text(
                                         _ordersController.ordersList[index].item.name,

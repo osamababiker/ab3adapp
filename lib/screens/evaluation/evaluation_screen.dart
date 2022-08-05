@@ -1,10 +1,12 @@
-import 'package:ab3ad/controllers/driversController.dart';
+
 import 'package:ab3ad/models/order.dart';
+import 'package:ab3ad/translations/translations.dart';
 import 'package:flutter/material.dart';
 import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/enums.dart';
 import 'package:ab3ad/screens/components/coustom_bottom_nav_bar.dart';
 import 'package:get/get.dart';
+import '../../controllers/driversController.dart';
 import '../../size_config.dart';
 import 'components/body.dart';
 
@@ -30,11 +32,11 @@ class EvaluationScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Obx(() => FutureBuilder(
+      body: FutureBuilder(
         future: _driverController.fetchAcceptedRequest(orderId: arguments.id),
         builder: (context, AsyncSnapshot snapshot) {
-          if(!_driverController.isLoading.value){
-            return Body(deliveryRequest: snapshot.data);
+          if(snapshot.hasData){
+            return Body(deliveryRequest: _driverController.deliveryRequest);
           }else {
             return Center(
               child: SizedBox(
@@ -46,8 +48,6 @@ class EvaluationScreen extends StatelessWidget {
           }
         }
       ),
-    ),
-    bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.orders),
-    );
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.orders));
   }
 }

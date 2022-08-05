@@ -40,7 +40,7 @@ class DeliveryScreen extends StatelessWidget {
           );
         }
       ),
-      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.orders),
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.delivery),
     );
   }
 }

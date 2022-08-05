@@ -67,7 +67,7 @@ class SignForm extends StatelessWidget {
   TextFormField buildPhoneFormField() {
     return TextFormField(
       keyboardType: TextInputType.phone,
-      validator: (value){
+      validator: (value){ 
         return _authController.validatePhone(value!);
       },
       controller: _authController.phoneController,

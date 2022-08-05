@@ -32,8 +32,8 @@ class DriversService extends GetConnect{
     }  
   }
   
-  Future<DeliveryRequest> fetchAcceptedRequest({required int orderId}) async {
-     String token = await storage.read(key: 'token') as String;
+  Future<DeliveryRequest> fetchAcceptedRequest({required int orderId}) async { 
+    String token = await storage.read(key: 'token') as String;
     final response = await get(
       "$fetchAcceptedRequestEndPoint/$orderId",
       headers: {"Accept": "application/json", "Authorization": "Bearer $token"}
@@ -43,7 +43,7 @@ class DriversService extends GetConnect{
         Get.toNamed('/noInternet');
       }
       return Future.error(response.statusText.toString());
-    } else {
+    } else { 
       return DeliveryRequest.fromJson(response.body['data']);
     }  
   }

@@ -8,6 +8,7 @@ import '../utils/.env.dart';
 
 class EvaluationsController extends GetxController{
   var isLoading = true.obs;
+  var isButtonPressed = false.obs;
   var evaluationList = <Evaluation>[].obs;
   final EvaluationService _evaluationService = EvaluationService();
   late AuthController authController;
@@ -20,7 +21,7 @@ class EvaluationsController extends GetxController{
     authController = Get.put(AuthController());
     fetchEvaluations();
     super.onInit();
-  }
+  } 
 
   Future fetchEvaluations() async{
     isLoading(true);
@@ -35,9 +36,9 @@ class EvaluationsController extends GetxController{
   }
  
   Future<bool> saveEvaluation({required Map formData}) async {
-    isLoading(true);
+    isButtonPressed(true);
     await _evaluationService.saveEvaluation(formData: formData);
-    isLoading(false);
+    isButtonPressed(false);
     return true;
   }
 

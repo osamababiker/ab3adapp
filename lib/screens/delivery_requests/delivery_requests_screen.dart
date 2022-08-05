@@ -24,18 +24,23 @@ class DeliveryRequestsScreen extends StatelessWidget {
           "delivery_requests_screen_title".tr,
           style: const TextStyle(color: kTextColor, fontSize: 16),
         ),
-      ), 
-      body: Obx(() => 
-        _driverController.isLoading.value
-        ? Center(
-          child: SizedBox(
-            width: getScreenSize(context) * 4.0,
-            height: getScreenSize(context) * 4.0,
-            child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
-          ),
-        )
-        : Body() 
-      ),
+      ),  
+      body: FutureBuilder(
+        future: _driverController.fetchRequests(),
+        builder: (context, AsyncSnapshot snapshot) {
+          if(snapshot.hasData){
+            return Body(requestsList: snapshot.data);
+          }else { 
+            return Center(
+              child: SizedBox(
+                width: getScreenSize(context) * 4.0,
+                height: getScreenSize(context) * 4.0,
+                child: const CircularProgressIndicator(backgroundColor: kPrimaryColor, color: Colors.white)
+              ),
+            );
+          }
+        }
+      ) ,
       bottomNavigationBar:  CustomBottomNavBar(selectedMenu: MenuState.orders),
     );
   }

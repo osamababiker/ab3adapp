@@ -147,7 +147,7 @@ class Body extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(kDefaultPadding / 2),
                       child: !_ordersController.isButtonPressed.value 
-                      ? DefaultButton(
+                      ? DefaultButton( 
                         text: "orders_screen_done".tr, 
                         press: () async {
                           Map formData = {

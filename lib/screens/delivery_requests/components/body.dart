@@ -1,6 +1,7 @@
 import 'package:ab3ad/constants.dart';
 import 'package:ab3ad/controllers/authController.dart';
 import 'package:ab3ad/controllers/ordersController.dart';
+import 'package:ab3ad/models/deliveryRequest.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,23 +11,24 @@ import '../../../utils/.env.dart';
 
 class Body extends StatelessWidget {
   
-  Body({Key? key}) : super(key: key);
+  Body({Key? key, required this.requestsList}) : super(key: key);
   final DriversController _driversController = 
   Get.find<DriversController>();
   final OrdersController _ordersController = 
   Get.find<OrdersController>();
   final AuthController _authController = 
   Get.find<AuthController>();
+  final List<DeliveryRequest> requestsList ;
   
   @override
   Widget build(BuildContext context) {
-    if(_driversController.requestsList.isNotEmpty){
+    if(requestsList.isNotEmpty){
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical, 
         child: Column(
-          children: List.generate(_driversController.requestsList.length,(index) => Column(
+          children: List.generate(requestsList.length,(index) => Column(
               children: [ 
                 Container(
                   padding: const EdgeInsets.all(kDefaultPadding / 2),
@@ -49,7 +51,7 @@ class Body extends StatelessWidget {
                               const Icon(Icons.person),
                               const SizedBox(width: kDefaultPadding / 4),
                               Text(
-                                _driversController.requestsList[index].customer.name,
+                                requestsList[index].customer.name,
                                 style: const TextStyle(
                                     fontSize: 16, color: kTextColor),
                               ),
@@ -61,7 +63,7 @@ class Body extends StatelessWidget {
                               const Icon(Icons.phone),
                               const SizedBox(width: kDefaultPadding / 4),
                               Text(
-                                _driversController.requestsList[index].customer.phone,
+                                requestsList[index].customer.phone,
                                 style: const TextStyle(fontSize: 16, color: kTextColor),
                               ),
                             ],
@@ -76,12 +78,12 @@ class Body extends StatelessWidget {
                       const SizedBox(height: kDefaultPadding / 2),
                       Padding(
                         padding: const EdgeInsets.all(kDefaultPadding / 2),
-                        child: FutureBuilder(
-                          future: _ordersController.fetchSingleOrder(
-                            orderId: _driversController.requestsList[index].orderId
-                          ),
+                        child: FutureBuilder( 
+                          future: _ordersController.fetchSingleOrder( 
+                            orderId: requestsList[index].orderId
+                          ), 
                           builder: (context, AsyncSnapshot snapshot) {
-                            if(!_ordersController.isLoading.value){
+                            if(snapshot.hasData){
                               return Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -96,14 +98,14 @@ class Body extends StatelessWidget {
                                             width: getScreenSize(context) * 4.0,
                                             height: getScreenSize(context) * 4.0,
                                             child: CachedNetworkImage(
-                                              imageUrl: "$uploadUri/items/${_ordersController.order.item.image}",
+                                              imageUrl: "$uploadUri/items/${snapshot.data.item.image}",
                                               placeholder: (context, url) => Image.asset("assets/images/liquid-loader.gif"),
                                               errorWidget: (context, url, error) => Image.asset("assets/images/liquid-loader.gif"),
                                             )
                                           ),
                                           const VerticalSpacing(of: 1.0),
                                           Text(
-                                            _ordersController.order.item.name,
+                                            snapshot.data.item.name,
                                             style: const TextStyle(
                                                 fontSize: 16,
                                                 color: kTextColor
@@ -118,22 +120,22 @@ class Body extends StatelessWidget {
                                     ),
                                     SizedBox(width: getScreenSize(context) * 2.0),
                                     Text(
-                                      "${_ordersController.order.quantity}",
+                                      "${snapshot.data.quantity}",
                                       style: const TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
                                     ),
                                   ]
                                     
                                   ),
-                                  _driversController.requestsList[index].isAccepted == 1  && _ordersController.order.status != 2 ?
+                                  requestsList[index].isAccepted == 1  && snapshot.data.status != 2 ?
                                   GestureDetector(
                                     onTap: () async {
                                       Map formData = {
-                                        'orderId': _ordersController.order.id,
+                                        'orderId': snapshot.data.id,
                                         'driverId': _authController.user.id
                                       };
                                       bool checkComplete = await _driversController.orderCompleteSign(formData: formData);
                                       if(checkComplete){
-                                          Get.toNamed('/evaluation', arguments: _ordersController.order);
+                                        Get.toNamed('/evaluation', arguments: snapshot.data);
                                       }
                                     },
                                     child: Container(

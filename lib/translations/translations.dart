@@ -62,7 +62,7 @@ final Map<String, String> ar = {
   'delivery_screen_no_orders': 'لا توجد طلبات توصيل لعرضها حاليا',
 
   /** delivery requests screen */
-  'delivery_requests_screen_title': 'طلبات التوصيل',
+  'delivery_requests_screen_title': 'طلباتك للتوصيل',
   'delivery_requests_customer_details': 'تفاصيل العميل',
   'delivery_requests_order_details': 'تفاصيل الطلب',
   'delivery_requests_quantity': 'الكمية',
@@ -210,7 +210,7 @@ final Map<String, String> en = {
   'delivery_screen_no_orders': 'No delivery order found',
 
   /** delivery requests screen */
-  'delivery_requests_screen_title': 'Delivery requests',
+  'delivery_requests_screen_title': 'Your delivery requests',
   'delivery_requests_customer_details': 'Customer Details',
   'delivery_requests_order_details': 'Order Details',
   'delivery_requests_quantity': 'Quantity',

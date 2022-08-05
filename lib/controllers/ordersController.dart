@@ -47,7 +47,7 @@ class OrdersController extends GetxController{
       isLoading(false);
   }
 
-  Future fetchSingleOrder({required int orderId}) async{
+  Future<Order> fetchSingleOrder({required int orderId}) async{
     isLoading(true);
     await _ordersService.fetchSingleOrder(orderId: orderId).then((response) {
       order = response;
@@ -55,6 +55,7 @@ class OrdersController extends GetxController{
       print(error);
     });
     isLoading(false);
+    return order;
   }
 
   Future<bool> sendOrder({required FormData formData}) async {

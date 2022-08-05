@@ -16,10 +16,10 @@ class ImagePickerController extends GetxController {
     final pickedFile = await ImagePicker().pickImage(source: imageSource);
     if (pickedFile != null) {
       selectedImagePath.value = pickedFile.path;
-
+      
       // to compress the image
       final dir = Directory.systemTemp;
-      final targetPath = "${dir.absolute.path}/temp.jpg";
+      final targetPath = "${dir.absolute.path}/${pickedFile.name}.jpg";
       var compressedFile = await FlutterImageCompress.compressAndGetFile(
         selectedImagePath.value, 
         targetPath,
@@ -27,7 +27,7 @@ class ImagePickerController extends GetxController {
       selectedImagePath.value = compressedFile!.path;
       selectedImageSize.value = "${((File(selectedImagePath.value))
         .lengthSync() / 1024 / 1024).toStringAsFixed(2)} Mb";
-
+ 
       // to move image to permanent location
       File tmpFile = File(pickedFile.path);
       final appDir = await syspaths.getApplicationDocumentsDirectory();
