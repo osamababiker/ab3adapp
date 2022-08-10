@@ -23,8 +23,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'app_name'.tr,
-      locale: Get.deviceLocale,
-      fallbackLocale: const Locale('en','en-US'),
+      locale: const Locale('ar'),
+      fallbackLocale: const Locale('ar','ar-eg'),
       translationsKeys: AppTranslation.translationsKeys,
       theme: theme(),
       debugShowCheckedModeBanner: false,
