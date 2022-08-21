@@ -12,7 +12,7 @@ final Map<String, String> ar = {
   'app_name': 'أبعاد',
   'app_slogan': 'خدمة توصيل غاز من الباب الى الباب', 
 
-  /** home screen */
+  /** home screen */ 
   'home_screen_categories_section_title': 'ماذا تريد ان تطلب',
   'home_screen_discount_section_slogn': 'خدمة توصيل غاز من الباب الى الباب',
   'home_screen_discount_section_action': 'أطلب الان',
@@ -153,7 +153,8 @@ final Map<String, String> ar = {
   'order_form_afternoon': 'بعد الظهر',
   'order_form_evening': 'مساءا',
   'network_error_message_1': 'هناك مشكلة في الاتصال',
-  'network_error_message_2': 'الرجاء المحاولة في وقت لاحق'
+  'network_error_message_2': 'الرجاء المحاولة في وقت لاحق',
+  'image_picker_not_select_image_error': 'الرجاء اختيار الصورة',
 };
 
 final Map<String, String> en = {
@@ -300,6 +301,7 @@ final Map<String, String> en = {
   'order_form_afternoon': 'At Afternoon',
   'order_form_evening': 'At Evening',
   'network_error_message_1': 'There is a connection problem',
-  'network_error_message_2': 'Please try again later'
+  'network_error_message_2': 'Please try again later',
+  'image_picker_not_select_image_error': 'Please select an image',
 
 };

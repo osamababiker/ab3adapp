@@ -7,7 +7,7 @@ import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart' as syspaths; 
 
 class ImagePickerController extends GetxController {
-  var selectedImagePath = ''.obs;
+  var selectedImagePath = ''.obs; 
   var selectedImageSize = ''.obs;
 
 
