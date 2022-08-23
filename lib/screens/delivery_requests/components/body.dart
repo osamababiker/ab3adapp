@@ -91,7 +91,6 @@ class Body extends StatelessWidget {
                                     children: [
                                     SizedBox(
                                       width: getScreenSize(context) * 8.0,
-                                      height: getScreenSize(context) * 8.0,
                                       child: Column(
                                         children: [
                                           SizedBox(
@@ -106,6 +105,26 @@ class Body extends StatelessWidget {
                                           const VerticalSpacing(of: 1.0),
                                           Text(
                                             snapshot.data.item.name,
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: kTextColor
+                                            ),
+                                          ),
+                                          const VerticalSpacing(of: 1.0),
+                                          Text(
+                                            "delivery_screen_delivery_time".tr,
+                                            style: const TextStyle(fontSize: 16, color: kTextColor),
+                                          ),
+                                          Text(
+                                            snapshot.data.delivaryTime,
+                                            style: const TextStyle(
+                                                fontSize: 16,
+                                                color: kTextColor
+                                            ),
+                                          ),
+                                          const VerticalSpacing(of: 1.0),
+                                          Text(
+                                            snapshot.data.notes,
                                             style: const TextStyle(
                                                 fontSize: 16,
                                                 color: kTextColor

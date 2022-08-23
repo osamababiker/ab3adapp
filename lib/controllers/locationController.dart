@@ -76,6 +76,7 @@ class LocationControler extends GetxController {
     List<Location> locations = await locationFromAddress(address);
     lat.value = locations[0].latitude;
     lng.value = locations[0].longitude;
+    addMarker(LatLng(lat.value, lng.value), "موقعك", BitmapDescriptor.defaultMarker);
     isLoading(false);
     return locations;
   }

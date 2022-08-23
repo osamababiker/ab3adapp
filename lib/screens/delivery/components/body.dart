@@ -77,7 +77,6 @@ class Body extends StatelessWidget {
                               Row(children: [
                                 SizedBox(
                                   width: getScreenSize(context) * 8.0,
-                                  height: getScreenSize(context) * 8.0,
                                   child: Column(
                                     children: [
                                       SizedBox(
@@ -86,10 +85,10 @@ class Body extends StatelessWidget {
                                         child: FadeInImage.assetNetwork(
                                           imageErrorBuilder: (context, error, stackTrace) {
                                             return Image.asset(
-                                              "assets/images/spinner.gif",
+                                              "assets/images/liquid-loader.gif",
                                             );
                                           },
-                                          placeholder: "assets/images/spinner.gif",
+                                          placeholder: "assets/images/liquid-loader.gif",
                                           image: "$uploadUri/items/${_ordersController.ordersList[index].item.image}"
                                         )
                                       ), 
@@ -100,7 +99,28 @@ class Body extends StatelessWidget {
                                             fontSize: 16,
                                             color: kTextColor
                                         ),
-                                      )
+                                      ),
+                                      const VerticalSpacing(of: 1.0),
+                                      Text(
+                                        "delivery_screen_delivery_time".tr,
+                                        style: const TextStyle(fontSize: 16, color: kTextColor),
+                                      ),
+                                      Text(
+                                        _ordersController.ordersList[index].delivaryTime,
+                                        style: const TextStyle(
+                                          overflow: TextOverflow.ellipsis,
+                                            fontSize: 16,
+                                            color: kTextColor
+                                        )
+                                      ),
+                                      const VerticalSpacing(of: 1.0),
+                                      Text(
+                                        _ordersController.ordersList[index].notes,
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            color: kTextColor
+                                        )
+                                      ),
                                     ],
                                   ),
                                 ),

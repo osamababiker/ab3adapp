@@ -53,9 +53,9 @@ class Body extends StatelessWidget {
                                     child: FadeInImage.assetNetwork(
                                       imageErrorBuilder:
                                           (context, error, stackTrace) {
-                                        return Image.asset("assets/images/spinner.gif");
+                                        return Image.asset("assets/images/liquid-loader.gif");
                                       },
-                                      placeholder: "assets/images/spinner.gif",
+                                      placeholder: "assets/images/liquid-loader.gif",
                                       image: "$uploadUri/items/${orders[index].item.image}"
                                     )
                                   ),
