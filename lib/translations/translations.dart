@@ -103,7 +103,7 @@ final Map<String, String> ar = {
   'signin_screen_signin_error_message': 'مشكلة في تسجيل الدخول الرجاء المحاولة في وقت اخر',
 
 
-  /** signup screen */
+  /** signup screen */ 
   'signup_screen_title': 'أنشاء حساب',
   'signup_screen_terms': 'بانشاء حسابك فانك توافق على شروط وسياسات الاستخدام للتطبيق',
   'signup_screen_btn': 'انشاء حساب',

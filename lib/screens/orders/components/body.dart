@@ -81,6 +81,7 @@ class Body extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             ),
                           ]),
+                          orders[index].status == 0 ?
                           GestureDetector(
                             onTap: () async {
                               bool checkDelete = await _ordersController.deleteOrder(orderId: orders[index].id);
@@ -110,7 +111,7 @@ class Body extends StatelessWidget {
                                     color: Colors.white),
                               ),
                             ),
-                          )  
+                          ): const Text("")  
                         ],
                       ),
                     ),

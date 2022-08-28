@@ -81,9 +81,12 @@ class LocationControler extends GetxController {
     return locations;
   }
 
-  Future<String> getAddress({required double lat, required double lng}) async {
+  Future<String> getAddress({required double customerLat, required double customerLng}) async {
     isLoading(true);
-    List<Placemark> placemarks = await placemarkFromCoordinates(lat, lng);
+    lat.value = customerLat;
+    lng.value = customerLng;
+    addMarker(LatLng(lat.value, lng.value), "موقعك", BitmapDescriptor.defaultMarker);
+    List<Placemark> placemarks = await placemarkFromCoordinates(customerLat, customerLng);
     isLoading(false);
     Placemark placeMark  = placemarks[0];
     return "${placeMark.name} / ${placeMark.locality} /  ${placeMark.country}";

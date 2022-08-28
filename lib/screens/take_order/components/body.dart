@@ -26,9 +26,9 @@ class Body extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder(
       future: _locationControler.getAddress(
-        lat: double.parse(order.customerLat), 
-        lng: double.parse(order.customerLng)),
-      builder: (context, AsyncSnapshot snapshot) {
+        customerLat: double.parse(order.customerLat), 
+        customerLng: double.parse(order.customerLng)),
+      builder: (context, AsyncSnapshot snapshot) { 
         if(!_locationControler.isLoading.value){
           return Obx(() => SizedBox(
               width: size.width,

@@ -41,7 +41,7 @@ class Body extends StatelessWidget {
                     children: [
                       Text( 
                         "delivery_requests_customer_details".tr,
-                        style: const TextStyle(fontSize: 16, color: kTextColor),
+                        style: const TextStyle(fontSize: 16, color: kTextColor, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: kDefaultPadding / 2),
                       Row(
@@ -73,7 +73,7 @@ class Body extends StatelessWidget {
                       Divider(color: kTextColor.withOpacity(0.5)),
                       Text(
                         "delivery_requests_order_details".tr,
-                        style: const TextStyle(fontSize: 16, color: kTextColor),
+                        style: const TextStyle(fontSize: 16, color: kTextColor, fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(height: kDefaultPadding / 2),
                       Padding(
@@ -84,93 +84,98 @@ class Body extends StatelessWidget {
                           ), 
                           builder: (context, AsyncSnapshot snapshot) {
                             if(snapshot.hasData){
-                              return Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                    SizedBox(
-                                      width: getScreenSize(context) * 8.0,
-                                      child: Column(
+                                      Row(
                                         children: [
-                                          SizedBox(
-                                            width: getScreenSize(context) * 4.0,
-                                            height: getScreenSize(context) * 4.0,
-                                            child: CachedNetworkImage(
-                                              imageUrl: "$uploadUri/items/${snapshot.data.item.image}",
-                                              placeholder: (context, url) => Image.asset("assets/images/liquid-loader.gif"),
-                                              errorWidget: (context, url, error) => Image.asset("assets/images/liquid-loader.gif"),
-                                            )
+                                        SizedBox(
+                                          width: getScreenSize(context) * 8.0,
+                                          child: Column(
+                                            children: [
+                                              SizedBox(
+                                                width: getScreenSize(context) * 4.0,
+                                                height: getScreenSize(context) * 4.0,
+                                                child: CachedNetworkImage(
+                                                  imageUrl: "$uploadUri/items/${snapshot.data.item.image}",
+                                                  placeholder: (context, url) => Image.asset("assets/images/liquid-loader.gif"),
+                                                  errorWidget: (context, url, error) => Image.asset("assets/images/liquid-loader.gif"),
+                                                )
+                                              ),
+                                              const VerticalSpacing(of: 1.0),
+                                              Text(
+                                                snapshot.data.item.name,
+                                                style: const TextStyle(
+                                                    fontSize: 16,
+                                                    color: kTextColor
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                          const VerticalSpacing(of: 1.0),
-                                          Text(
-                                            snapshot.data.item.name,
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                color: kTextColor
-                                            ),
-                                          ),
-                                          const VerticalSpacing(of: 1.0),
-                                          Text(
-                                            "delivery_screen_delivery_time".tr,
-                                            style: const TextStyle(fontSize: 16, color: kTextColor),
-                                          ),
-                                          Text(
-                                            snapshot.data.delivaryTime,
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                color: kTextColor
-                                            ),
-                                          ),
-                                          const VerticalSpacing(of: 1.0),
-                                          Text(
-                                            snapshot.data.notes,
-                                            style: const TextStyle(
-                                                fontSize: 16,
-                                                color: kTextColor
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Text(
-                                      "delivery_requests_quantity".tr,
-                                      style: const TextStyle(fontSize: 16,color: kTextColor)
-                                    ),
-                                    SizedBox(width: getScreenSize(context) * 2.0),
-                                    Text(
-                                      "${snapshot.data.quantity}",
-                                      style: const TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
-                                    ),
-                                  ]
-                                    
-                                  ),
-                                  requestsList[index].isAccepted == 1  && snapshot.data.status != 2 ?
-                                  GestureDetector(
-                                    onTap: () async {
-                                      Map formData = {
-                                        'orderId': snapshot.data.id,
-                                        'driverId': _authController.user.id
-                                      };
-                                      bool checkComplete = await _driversController.orderCompleteSign(formData: formData);
-                                      if(checkComplete){
-                                        Get.toNamed('/evaluation', arguments: snapshot.data);
-                                      }
-                                    },
-                                    child: Container(
-                                      width: getScreenSize(context) * 4.0,
-                                      height: getScreenSize(context) * 4.0,
-                                      decoration: BoxDecoration(
-                                          color: kPrimaryColor,
-                                          borderRadius: BorderRadius.circular(50)
                                         ),
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(kDefaultPadding / 2),
-                                        child: Icon(Icons.check, color: Colors.white),
+                                        Text(
+                                          "delivery_requests_quantity".tr,
+                                          style: const TextStyle(fontSize: 16,color: kTextColor)
+                                        ),
+                                        SizedBox(width: getScreenSize(context) * 2.0),
+                                        Text(
+                                          "${snapshot.data.quantity}",
+                                          style: const TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+                                        ),
+                                      ]
+                                        
                                       ),
+                                      requestsList[index].isAccepted == 1  && snapshot.data.status != 2 ?
+                                      GestureDetector(
+                                        onTap: () async {
+                                          Map formData = {
+                                            'orderId': snapshot.data.id,
+                                            'driverId': _authController.user.id
+                                          };
+                                          bool checkComplete = await _driversController.orderCompleteSign(formData: formData);
+                                          if(checkComplete){
+                                            Get.toNamed('/evaluation', arguments: snapshot.data);
+                                          }
+                                        },
+                                        child: Container(
+                                          width: getScreenSize(context) * 4.0,
+                                          height: getScreenSize(context) * 4.0,
+                                          decoration: BoxDecoration(
+                                              color: kPrimaryColor,
+                                              borderRadius: BorderRadius.circular(50)
+                                            ),
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(kDefaultPadding / 2),
+                                            child: Icon(Icons.check, color: Colors.white),
+                                          ),
+                                        ),
+                                      ) : const Text("")
+                                    ]
+                                  ),
+                                  const VerticalSpacing(of: 1.0),
+                                  Text(
+                                    "delivery_screen_delivery_time".tr,
+                                    style: const TextStyle(fontSize: 16, color: kTextColor, fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    snapshot.data.delivaryTime,
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        color: kTextColor
                                     ),
-                                  ) : const Text("")
-                                ]
+                                  ),
+                                  const VerticalSpacing(of: 1.0),
+                                  Text(
+                                    snapshot.data.notes,
+                                    style: const TextStyle(
+                                        fontSize: 16,
+                                        color: kTextColor
+                                    ),
+                                  )
+                                ],
                               );
                             }else {
                               return const Center(  

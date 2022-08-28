@@ -28,6 +28,8 @@ class CategoriesCard extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row( 
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: List.generate(categories.length, (index) {
                 return CategoryCard(category: categories[index]); 
             })),

@@ -131,7 +131,7 @@ class AuthController extends GetxController {
       Get.offAllNamed('/home');
     }, onError: (error) {
       Get.snackbar(
-        "signup_screen_signin_error_title".tr, 
+        "signin_screen_signin_error_title".tr, 
         error,
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: kPrimaryColor,

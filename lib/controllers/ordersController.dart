@@ -51,9 +51,11 @@ class OrdersController extends GetxController{
     isLoading(true);
     await _ordersService.fetchSingleOrder(orderId: orderId).then((response) {
       order = response;
+      return response;
     }, onError: (error) {
-      print(error);
-    });
+      isLoading(false);
+      return null;
+    }); 
     isLoading(false);
     return order;
   }

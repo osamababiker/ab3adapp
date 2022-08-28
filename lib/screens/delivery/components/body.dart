@@ -35,7 +35,7 @@ class Body extends StatelessWidget {
                       children: [
                         Text( 
                           "delivery_screen_customer_details".tr,
-                          style: const TextStyle(fontSize: 16, color: kTextColor),
+                          style: const TextStyle(fontSize: 16, color: kTextColor, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: kDefaultPadding / 2),
                         Row(
@@ -66,7 +66,7 @@ class Body extends StatelessWidget {
                         Divider(color: kTextColor.withOpacity(0.5)),
                         Text(
                           "delivery_screen_order_details".tr,
-                          style: const TextStyle(fontSize: 16, color: kTextColor),
+                          style: const TextStyle(fontSize: 16, color: kTextColor, fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(height: kDefaultPadding / 2),
                         Padding(
@@ -99,27 +99,6 @@ class Body extends StatelessWidget {
                                             fontSize: 16,
                                             color: kTextColor
                                         ),
-                                      ),
-                                      const VerticalSpacing(of: 1.0),
-                                      Text(
-                                        "delivery_screen_delivery_time".tr,
-                                        style: const TextStyle(fontSize: 16, color: kTextColor),
-                                      ),
-                                      Text(
-                                        _ordersController.ordersList[index].delivaryTime,
-                                        style: const TextStyle(
-                                          overflow: TextOverflow.ellipsis,
-                                            fontSize: 16,
-                                            color: kTextColor
-                                        )
-                                      ),
-                                      const VerticalSpacing(of: 1.0),
-                                      Text(
-                                        _ordersController.ordersList[index].notes,
-                                        style: const TextStyle(
-                                            fontSize: 16,
-                                            color: kTextColor
-                                        )
                                       ),
                                     ],
                                   ),
@@ -157,6 +136,27 @@ class Body extends StatelessWidget {
                             ],
                           ),
                         ), 
+                        const VerticalSpacing(of: 1.0),
+                        Text(
+                          "delivery_screen_delivery_time".tr,
+                          style: const TextStyle(fontSize: 16, color: kTextColor, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          _ordersController.ordersList[index].delivaryTime,
+                          style: const TextStyle(
+                            overflow: TextOverflow.ellipsis,
+                              fontSize: 16,
+                              color: kTextColor
+                          )
+                        ),
+                        const VerticalSpacing(of: 1.0),
+                          Text(
+                            _ordersController.ordersList[index].notes,
+                            style: const TextStyle(
+                                fontSize: 16,
+                                color: kTextColor
+                            )
+                          ),
                       ],
                     ),
                   ),
